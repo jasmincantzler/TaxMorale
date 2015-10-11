@@ -1,0 +1,12 @@
+---
+title: "Tax Morale"
+output: html_document
+---
+
+
+```{r}
+install.packages("rio")
+library(rio)
+main <- rio::import("http://afrobarometer.org/sites/default/files/data/round-5/merged_r5_data_0.sav")
+## export as csv and use that one for the remainder of the course
+```
