@@ -2,7 +2,7 @@
 title: "Tax Morale in Africa"
 author: "Wiebke Weiger & Jasmin Cantzler"
 date: "11. Oktober 2015"
-output: html_document
+output: word_document
 ---
 
 #### 1. Overview: Introduction & Policy Relevance, Research Question, Data Sources & Preliminary Structure of Collaborative Research Project
@@ -14,6 +14,7 @@ output: html_document
 **Data Sources**: We want to use data gathered by the Afrobarometer (include link to website?)
 
 **Preliminary Structure of Collaborative Research Project**:
+(die Aufzählung ist alles in einer Linie :( weißt du wie man das so bekommt wie es hier aussieht?))
 1. Introduction
 2. Literature Review
 3. Method
