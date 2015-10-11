@@ -1,22 +1,23 @@
 ---
-title: "Assignment 2"
+title: "Tax Morale in Africa"
 author: "Wiebke Weiger & Jasmin Cantzler"
 date: "11. Oktober 2015"
 output: html_document
 ---
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+#### 1. Overview: Introduction & Policy Relevance, Research Question, Data Sources & Preliminary Structure of Collaborative Research Project
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+**Introduction & Policy Relevance**: Tax evasion is considered a social malady across countries and is often thought to be one of the bigger obstacles to inclusive economic growth. High levels of evasion lead to a misallocation of resources and hinder the ability of the government to invest in the provision of public goods. Therefore, understanding the rationale behind tax evaders, or compliers, becomes essential to national development and state-building. Identifying and conceptualizing trends will open the possibility for governments to effectively and efficiently tackle tax evasion. Especially in developing countries little research has been done to investigate the determinants underlying tax morale. (note - this is not done yet).
 
-```{r}
-summary(cars)
-```
+**Research Question**: We want to investigate the determinants of tax morale in Africa. 
 
-You can also embed plots, for example:
+**Data Sources**: We want to use data gathered by the Afrobarometer (include link to website?)
 
-```{r, echo=FALSE}
-plot(cars)
-```
+**Preliminary Structure of Collaborative Research Project**:
+1. Introduction
+2. Literature Review
+3. Method
+4. Results and Discussion
+5. Conclusion
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+#### 2. Literature Review and Research Gap Identification
