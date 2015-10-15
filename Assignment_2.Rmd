@@ -2,8 +2,10 @@
 title: "Tax Morale in Africa"
 author: "Wiebke Weiger & Jasmin Cantzler"
 date: "11. Oktober 2015"
-output: word_document
+output: html_document
+bibliography: References.bib
 ---
+[@Cummings2009]
 
 #### 1. Overview: Introduction & Policy Relevance, Research Question, Data Sources & Preliminary Structure of Collaborative Research Project
 
@@ -35,3 +37,5 @@ In order to carry out the analysis, we will use data from the Afrobarometer, an 
 **include information about the survey, the question we will use to measure tax morale as well as some basic information about the number of observations, countries etc.; find out how to include a picture in Markdown (make map of countries included)**
 
 We will then perfom a regression analysis to investigate the determinants of tax morale in Africa.
+
+# References
