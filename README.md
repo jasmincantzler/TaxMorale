@@ -2,6 +2,8 @@
 ##### Tax Morale in Africa - *Assignments 2,3 & Final Collaborative Research Project*
 ##### Jasmin Cantzler & Wiebke Weiger
 
+
+**Folder Assignment 2 contains all neccessary information and documents for Assignment 2**
 *The second pair assignment is a proposal for your Collaborative Research Project. It is an opportunity for you to layout your research paper question and methodology, basic literature review (properly cited using BibTeX), and identify data sources that you can access to help answer your question. You will also demonstrate your understanding of literate programming technologies. Deadline: 23 October, 2,000 words maximum, 10% of final grade.*
 
 *In the third pair assignment you will gather web based data from at least two sources, merge the data sets, conduct basic inferential statistics on the data to address a relevant research question and briefly describe the results including with dynamically generated tables and figures. Students are encouraged to access data and perform statistical analyses with an eye to answering questions relevant for their Collaborative Research Project. Deadline: 6 November. The write up should be 1,500 words maximum and use literate programming, 10% of final grade.*
