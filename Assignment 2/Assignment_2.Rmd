@@ -12,14 +12,18 @@ bibliography: References.bib
 
 **Research Question**: We want to investigate the determinants of tax morale in Africa. 
 
-**Data Sources**: We want to use data gathered by the Afrobarometer [http://www.afrobarometer.org/ "Afrobarometer"] 
+**Data Sources**: We want to use data gathered by the [Afrobarometer](http://www.afrobarometer.org/)
 
 **Preliminary Structure of Collaborative Research Project**:
-(die Aufzählung ist alles in einer Linie :( weißt du wie man das so bekommt wie es hier aussieht?))
+
 1. Introduction
+
 2. Literature Review
+
 3. Method
+
 4. Results and Discussion
+
 5. Conclusion
 
 #### 2. Literature Review and Research Gap Identification
