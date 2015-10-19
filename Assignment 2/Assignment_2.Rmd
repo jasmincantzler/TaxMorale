@@ -10,13 +10,24 @@ bibliography: References.bib
 
 #### 1. Overview: Introduction & Policy Relevance, Research Question, Data Sources & Preliminary Structure of Collaborative Research Project
 
-**Introduction & Policy Relevance**: Tax evasion is considered a social malady across countries and is often thought to be one of the bigger obstacles to inclusive economic growth. High levels of evasion lead to a misallocation of resources and hinder the ability of the government to invest in the provision of public goods. Therefore, understanding the rationale behind tax evaders, or compliers, becomes essential to national development and state-building. Identifying and conceptualizing trends will open the possibility for governments to effectively and efficiently tackle tax evasion. The current tax compliance literature lacks research on the degree of tax morale in developing countries. This paper's aim therefore is to tap into this gap by studying tax morale in African countries. The paper will attempt to investigate the determinants that systemically affect tax morale using data for 36 African countries from the Afrobarmoeter.
+**Introduction & Policy Relevance**: Tax evasion is considered a social malady across countries and is often thought to be one of the bigger obstacles to inclusive economic growth. High levels of evasion lead to a misallocation of resources and hinder the ability of the government to invest in the provision of public goods. Therefore, understanding the rationale driving tax evaders as well as tax compliers becomes essential to national development and state-building. Identifying and conceptualizing patterns will open the possibility for governments to effectively and efficiently tackle tax evasion. The current tax compliance literature lacks empirical evidence on the degree of tax morale in developing countries. This paper's aim therefore is to tap into this gap by studying tax morale in African countries. The paper will attempt to investigate the determinants that systemically affect tax morale using data for 36 African countries from the Afrobarmoeter.
 
-**Research Question**: We want to investigate the determinants of tax morale in Africa. 
+**Research Question**: What are the determinants of tax morale in Africa?. 
 
-**Data Sources**: We want to use data gathered by the [Afrobarometer](http://www.afrobarometer.org/)
+**Data Sources**: The data we will use data to investigate this question is provided by the [Afrobarometer](http://www.afrobarometer.org/) and freely available for the years 2015, 2008, and 2005.
 
-**Preliminary Structure of Collaborative Research Project**:
+The data is downloaded directly from the Afrobarometer's website into R using the following code:
+
+```{r}
+install.packages("rio") ## needed to read data as it is stored in SPSS format
+library(rio)
+main <- rio::import("http://afrobarometer.org/sites/default/files/data/round-5/merged_r5_data_0.sav")
+```
+
+The data sets are available individually for the single years so some merging and cleaning of the data will be necessary before conducting the analysis. 
+
+
+**Preliminary Structure of the Final Paper for the Collaborative Research Project**:
 
 1. Introduction
 
