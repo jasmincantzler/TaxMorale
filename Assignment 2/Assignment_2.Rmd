@@ -1,13 +1,8 @@
 ---
 title: "Tax Morale in Africa"
 author: "Wiebke Weiger & Jasmin Cantzler"
-<<<<<<< HEAD
-date: "11. Oktober 2015"
-output: word_document
-=======
-date: "11 Oktober 2015"
-output: pdf_document
->>>>>>> origin/master
+date: "23 October 2015"
+output: html_document
 bibliography: References.bib
 ---
 
@@ -22,7 +17,7 @@ Tax evasion is considered a social malady across countries and is often thought 
 What are the determinants of tax morale in Africa?. 
 
 **Data Sources:** 
-The data we will use to investigate this question is provided by the [Afrobarometer](http://www.afrobarometer.org/) and freely available for the years 2015 (34 countries), 2008 (20 countries), 2005 (18 countries), 2004 (16 countries) and for the years 1999-2001 (12 countries). The data sets are available individually for the single years so some merging and cleaning of the data will be necessary before conducting the analysis.
+The data we will use to investigate this question is provided by the [Afrobarometer](http://www.afrobarometer.org/) and freely available for the years 2015 (34 countries), 2008 (20 countries), 2005 (18 countries), 2004 (16 countries) and for the years 1999-2001 (12 countries).
 
 The data is downloaded directly from the Afrobarometer's website into R using the following code:
 
@@ -30,8 +25,6 @@ The data is downloaded directly from the Afrobarometer's website into R using th
 main <- rio::import("http://afrobarometer.org/sites/default/files/data/round-5/merged_r5_data_0.sav")
 ```
 
-
-*(Additionally, we will gather data for the necessary control variables of our model from other data sources such as GDP, GDP per capita, measures of democracy and/or corruption; potential data sources: World Bank)*
 
 
 **Preliminary Structure of the Final Paper for the Collaborative Research Project:**
@@ -47,23 +40,31 @@ main <- rio::import("http://afrobarometer.org/sites/default/files/data/round-5/m
 5. Conclusion
 
 #### 2. Literature Review and Research Gap Identification
-In 1972, Allingham and Sandmo presented a formal model explaining tax evasion as a negative correlation with the probability of detection and the degree of punishment [@Allingham1972] . According to their model, rational individuals should report virtually no income. In later years, their model turned out to have little explanatory power and failed to explain the high degree of tax compliance in some countries despite their low level of deterrence. This puzzle of tax compliance and the limitations of deterrence models led to an increasing literature acknowledging the need to consider other non-economic factors, such as psychological, moral and social factors. One widely used concept to be included in the economics of crime model is that of tax morale. Tax morale is often defined as “the existence of an intrinsic motivation to pay taxes” [@Torgler2005; @Torgler2009; @Cummings2009]. While there are many other definitions out there, this is the one most commonly used. Despite the absence of a common definition of tax morale, there seems to be an agreement on certain drivers, in particular social norms, values and trust and/or approval of the government seem to have an effect on tax morale. There is strong evidence that tax morale influences tax compliance of individual taxpayers 
+
+In 1972, Allingham and Sandmo presented a formal model explaining tax evasion as a negative correlation with the probability of detection and the degree of punishment [@Allingham1972] . According to their model, rational individuals should report virtually no income. In later years, their model turned out to have little explanatory power and failed to explain the high degree of tax compliance in some countries despite their low level of deterrence. This puzzle of tax compliance and the limitations of deterrence models led to an increasing literature acknowledging the need to consider other non-economic factors, such as psychological, moral and social factors. One widely used concept to be included in the economics of crime model is that of tax morale. Tax morale is often defined as "the existence of an intrinsic motivation to pay taxes" [@Torgler2005; @Torgler2009; @Cummings2009]. While there are many other definitions out there, this is the one most commonly used. 
+
+Despite the absence of a common definition of tax morale, there seems to be an agreement on certain drivers, in particular social norms, values and trust and/or approval of the government seem to have an effect on tax morale. There is strong evidence that tax morale influences tax compliance of individual taxpayers 
 [@Maciejovsky2012; @Molero2012; @Dulleck2012].One of the major shortcomings of the current literature debate is that little research has been conducted in developing countries. This research paper thus aims to (at least partially) close this gap by investigating the determinants of tax morale in African countries. 
 
 #### 3. Research Design & Methods
-*African countries, while different on their own, share certain characteristics, such as colonial past, that render them comparable (work on that argumentation)* For the purpose of this project – to analyse a region-, specific institutional and contextual characteristics of the countries will not play a prominent role. On the other hand, emphasis will be made on their shared socio-economic characteristic of being developing nations. The direct consequence of this is that they present low tax-effort indices – revenue collections to estimated revenue potentials – and, therefore, the importance to tackle tax evasion (and avoidance) becomes more urgent. **add tax effort graph Africa**
+African countries, while different on their own, share certain characteristics, such as colonial past, that render them comparable (work on that argumentation) For the purpose of this project – to analyse a region-, specific institutional and contextual characteristics of the countries will not play a prominent role. On the other hand, emphasis will be put on their shared socio-economic characteristic of being developing nations. The direct consequence of this is that they present low tax-effort indices – revenue collections to estimated revenue potentials – and, therefore, the importance to tackle tax evasion (and avoidance) becomes more urgent. **add tax effort graph Africa**
 
-Moreover, identifying the determinants of tax morale could have interesting implications for policy interventions in compliance matters. For example, studies have shown that (pre-existing) deterrence mechanisms work better when there is a ‘social cost’ attached to them [@OECD]. With a thorough literature review, we will argue that this ‘social cost’ can be explained by tax morale. Subsequently, policy strategies aiming at increasing compliance should look at ways of increasing tax morale, appealing to the cooperative (complier) side of the sector, as opposed to increasing deterrence mechanisms which may have counter-intuitive effects – such as more evasion, even when the cost of defecting increases.
+Moreover, identifying the determinants of tax morale could have interesting implications for policy interventions in compliance matters. For example, studies have shown that (pre-existing) deterrence mechanisms work better when there is a "social cost" attached to them [@OECD]. With a thorough literature review, we will argue that this "social cost" can be explained by tax morale. Hence, policy strategies aiming at increasing compliance should look at ways of increasing tax morale, appealing to the cooperative (complier) side of the sector, as opposed to increasing deterrence mechanisms which may have counter-intuitive effects – such as more evasion, even when the cost of defecting increases.
 
-In order to carry out the analysis, we will use data from the Afrobarometer, an "African-led, non-partisan survey research project that measures citizen attitudes on democracy and governance, the economy, civil society, and other topics" (insert quote) The Afrobarometer's main donors for the survey rounds 5 and 6 included the Mo Ibrahim Foundation, the Swedish International Development Cooperation Agency, the Department for International Development, the United States Agency for International Development, as well as the World Bank. All interviews are conducted face-to-face and samples usually include either 1200 or 2400 cases per country).
+In order to carry out the analysis, we will use data from the Afrobarometer, an "African-led, non-partisan survey research project that measures citizen attitudes on democracy and governance, the economy, civil society, and other topics" (insert quote) The Afrobarometer's main donors for the survey rounds 5 and 6 (data on round 6 are not available yet) included the Mo Ibrahim Foundation, the Swedish International Development Cooperation Agency, the Department for International Development, the United States Agency for International Development, as well as the World Bank.
 
-![Countries included in the Afrobarometer (figure created by authors)](Map_Countries.png)
 
 **Figure 1: Countries included in the Afrobarometer**
+![Countries included in the Afrobarometer (figure created by authors)](Map_Countries.png)
 
 
-**include information about the survey, the question we will use to measure tax morale as well as some basic information about the number of observations, countries etc.; find out how to include a picture in Markdown (make map of countries included)**
+For this particular project, we will use the variable "People must pay taxes" from the dataset as the dependent variable. The information on this variable is obtained by asking the following question: "please tell me whether you disagree or agree: The tax authorities always have the right to make people pay taxes". The variable is coded as a categorical variable with values from 1 to 5 ("strongly disagree" to "strongly agree"). The questionnaire includes more variables that could be used to operationalize the dependent variable, but this particular variable has the advantage that it is asked in the same way for the waves of 2004, 2005, 2008 and 2015 (waves 2-5). 
 
-We will then perfom a regression analysis to investigate the determinants of tax morale in Africa.
+We will use findings from a similar study by Benno Torgler [-@Torgler2005] who has identified factors that systematically affect tax morale in Latin America to test whether we can find similar patterns for African countries as well. Accordingly we will test the hypothesis that a pro-democratic attitude and trust in political and government institutions have a positive effect on the level of tax morale.
+
+In order to test our hypothesis we will perform a multivariate regression analysis with year dummy variables. In accordance with some general findings from the tax morale literature we will control for socio-economic factors that have been found to be associated with the level of tax morale. These include for example gender (being female has been found to be associated with higher tax morale), age, education, employment status and being religious.
+
+*In order to gain some more insight into whether policies aiming at increasing tax morale in developing countries work, we will attempt to identify such policies (e.g. campaigns) during the time frame in one or some of the countries covered by the Afrobarometer. If we find such a policy then we can take advantage of the pooled cross sectional character of the dataset. As we would have data collected before and after such a policy, we can estimate its effect on tax morale.*
+
 
 # References
