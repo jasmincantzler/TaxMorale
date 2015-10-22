@@ -1,8 +1,13 @@
 ---
 title: "Tax Morale in Africa"
 author: "Wiebke Weiger & Jasmin Cantzler"
+<<<<<<< HEAD
 date: "11. Oktober 2015"
 output: word_document
+=======
+date: "11 Oktober 2015"
+output: pdf_document
+>>>>>>> origin/master
 bibliography: References.bib
 ---
 
