@@ -1,17 +1,10 @@
 ---
 title: "Tax Morale in Africa"
 author: "Wiebke Weiger & Jasmin Cantzler"
-<<<<<<< Updated upstream
-date: "23 October 2015"
+date: "22 Oktober 2015"
 output: html_document
-=======
-date: "11 Oktober 2015"
-output: word_document
->>>>>>> Stashed changes
 bibliography: References.bib
 ---
-
-
 
 #### 1. Overview: Introduction & Policy Relevance, Research Question, Data Sources & Preliminary Structure of Collaborative Research Project
 
