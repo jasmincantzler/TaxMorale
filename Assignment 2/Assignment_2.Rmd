@@ -53,7 +53,7 @@ One characteristic of developing countries is their usually low tax effort index
 
 In order to carry out the analysis, we will use data from the Afrobarometer, an "African-led, non-partisan survey research project that measures citizen attitudes on democracy and governance, the economy, civil society, and other topics" [@Afro]. The Afrobarometer's main donors for the survey rounds 5 and 6 (data on round 6 are not available yet) included the Mo Ibrahim Foundation, the Swedish International Development Cooperation Agency, the Department for International Development, the United States Agency for International Development, as well as the World Bank. 
 
-![Countries included in Latinobarometer](Map.png) 
+![Countries included in Afrobarometer](Map.png) 
 
 We will operationalize tax morale by using the variable "People must pay taxes" from the dataset as the dependent variable. The information on this variable is obtained by asking the following question: "please tell me whether you disagree or agree: The tax authorities always have the right to make people pay taxes". The variable is coded as a categorical variable with values from 1 to 5 ("strongly disagree" to "strongly agree"). The questionnaire includes more variables that could be used to operationalize the dependent variable, but this particular variable has the advantage that it is asked in the same way for the waves of 2004, 2005, 2008 and 2015 (waves 2-5). 
 
