@@ -11,12 +11,11 @@ This repository contains all the information and documents related to the collab
   * other documents or data used for this assignment (e.g. map of countries included in the dataset)
 * The folder **Assignment3** contains all information and documents related to the third pair assignment (i.e. merged data and basic inferential statistics)
 * The folder **Final Project** contains all the relevant information and documents for the final collaborative research project
-* 
 
 Assignment 2:
 *The second pair assignment is a proposal for your Collaborative Research Project. It is an opportunity for you to layout your collaborative research paper question, justify why it is interesting, provide basic literature review (properly cited using BibTeX), and identify data sources/methodologies that you can access to help answer your question. You will also demonstrate your understanding of literate programming technologies.* **Deadline 23 October**, *2,000 words maximum, 10% of final grade.*
 
-Assignment 2:
+Assignment 3:
 *In the third pair assignment you will gather web based data from at least two sources, merge the data sets, conduct basic descriptive and inferential statistics on the data to address a relevant research question and briefly describe the results including with dynamically generated tables and figures. Students are encouraged to access data and perform statistical analyses with an eye to answering questions relevant for their Collaborative Research Project.* **Deadline 13 November**, *the write up should be 1,500 words maximum and use literate programming, 10% of final grade.*
 
 Final Project:
