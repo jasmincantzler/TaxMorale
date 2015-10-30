@@ -3,23 +3,27 @@ title: "Tax Morale in Africa"
 author: "Wiebke Weiger & Jasmin Cantzler"
 date: "13 November 2015"
 output:
-  pdf_document:
-    fig_caption: yes
   html_document:
     fig_caption: yes
-bibliography: References.bib
+  pdf_document:
+    fig_caption: yes
 ---
 
 
 ```{r}
 library(rio)
 
+## in general think about how to design the mark down that it does not take forever to load. 
+
 # GATHERS DATA
+# imports the data 
 Round5 <- rio::import("http://afrobarometer.org/sites/default/files/data/round-5/merged_r5_data_0.sav")
 Round4 <- rio::import("http://afrobarometer.org/sites/default/files/data/round-4/merged_r4_data.sav")
 Round3 <- rio::import("http://afrobarometer.org/sites/default/files/data/round-3/merged_r3_data.sav")
 
 # MERGES THE DATA SETS 
+
+# serve as a CSV file to be used for the remainder of this project (mark the import data and all the rest with # so they don't run anymore)
 
 
 # CONDUCTS BASIC DESCRIPTIVE STATISTICS 
@@ -35,7 +39,9 @@ summary(Round5$Q48C)
 
 Reg1 <- lm(Q48C~Q43, data=Round5)
 summary(Reg1)
-
+stargazer::stargazer(Reg1,
+    title = 'Logistic Regression',
+    digits = 2, type = 'html')
 
 # CREATES DYNAMICALLY GENERATED TABLES AND FIGURES
 ##automatized tables 
@@ -45,6 +51,11 @@ library(stargazer)
 # type = 'latex'
 # header= FALSE
 ##  Cite stargazer as Hlavac, Marek (2015). stargazer: Well-Formatted Regression and Summary Statistics Tables. R package version 5.2. http://CRAN.R-project.org/package=stargazer 
+
+library(Zelig)
+# King, Tomz, and Wittenberg (2001) argue that post estimation simulations can be used to effectively communicate results from regression models. Post-estimation simulations allow us to effectively communicate our estimates and the uncertainty around them.
+#install Zelig package
+
 
 
 ## export as csv and use that one for the remainder of the course
