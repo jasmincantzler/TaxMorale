@@ -13,9 +13,39 @@ bibliography: References.bib
 
 ```{r}
 library(rio)
+
+# GATHERS DATA
 Round5 <- rio::import("http://afrobarometer.org/sites/default/files/data/round-5/merged_r5_data_0.sav")
 Round4 <- rio::import("http://afrobarometer.org/sites/default/files/data/round-4/merged_r4_data.sav")
 Round3 <- rio::import("http://afrobarometer.org/sites/default/files/data/round-3/merged_r3_data.sav")
+
+# MERGES THE DATA SETS 
+
+
+# CONDUCTS BASIC DESCRIPTIVE STATISTICS 
+
+# CONDUCTS INFERENTIAL STATISTICS
+
+### put in values step by step to show that they are not dependent on just one variable
+hist(Round5$Q48C)
+## convert 998 to NA, see whether rio does that
+## recode variables - see how to do that best (continous, categorical), especially the 998
+summary(Round5$Q48C)
+#convert to factors first and then summary statistics should show also the list of how many answered 1, how many answered 2, etc. 
+
+Reg1 <- lm(Q48C~Q43, data=Round5)
+summary(Reg1)
+
+
+# CREATES DYNAMICALLY GENERATED TABLES AND FIGURES
+##automatized tables 
+##TABLE NOTE: DO NOT SHOW MORE THAN 1 or 2 DIGITS!!!!!!!!
+library(stargazer)
+## when you are creating a pdf use the arguments
+# type = 'latex'
+# header= FALSE
+##  Cite stargazer as Hlavac, Marek (2015). stargazer: Well-Formatted Regression and Summary Statistics Tables. R package version 5.2. http://CRAN.R-project.org/package=stargazer 
+
 
 ## export as csv and use that one for the remainder of the course
 ```
