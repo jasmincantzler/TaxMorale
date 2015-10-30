@@ -1,12 +1,21 @@
 ---
-title: "Tax Morale"
-output: html_document
+title: "Tax Morale in Africa"
+author: "Wiebke Weiger & Jasmin Cantzler"
+date: "13 November 2015"
+output:
+  pdf_document:
+    fig_caption: yes
+  html_document:
+    fig_caption: yes
+bibliography: References.bib
 ---
 
 
 ```{r}
-install.packages("rio")
 library(rio)
-main <- rio::import("http://afrobarometer.org/sites/default/files/data/round-5/merged_r5_data_0.sav")
+Round5 <- rio::import("http://afrobarometer.org/sites/default/files/data/round-5/merged_r5_data_0.sav")
+Round4 <- rio::import("http://afrobarometer.org/sites/default/files/data/round-4/merged_r4_data.sav")
+Round3 <- rio::import("http://afrobarometer.org/sites/default/files/data/round-3/merged_r3_data.sav")
+
 ## export as csv and use that one for the remainder of the course
 ```
