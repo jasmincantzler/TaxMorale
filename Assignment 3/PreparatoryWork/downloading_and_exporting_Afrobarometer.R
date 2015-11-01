@@ -59,3 +59,13 @@ write.csv2(round2, file="round2.csv", quote=FALSE, na="NA")
 # write.csv(round2, file="round2.csv", quote=FALSE, na="NA")
 
 
+# saving data in RData format:
+# this way we can load the data in again into R and the number of observations and
+# variables stays the same, other than with the "read.csv2"- command
+
+save(round5, file="Round5.RData", list="round5")
+save(round4, file="Round4.RData", list="round4")
+save(round3, file="Round3.RData", list="round3")
+save(round2, file="Round2.RData", list="round2")
+
+
