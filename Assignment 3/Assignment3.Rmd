@@ -9,54 +9,34 @@ output:
     fig_caption: yes
 ---
 
+```{r, include=FALSE}
+##################################
+# Assignment 3
+# Jasmin Cantzler & Wiebke Weiger
+# 13 November 2015
+##################################
 
-```{r}
-library(rio)
-
-## in general think about how to design the mark down that it does not take forever to load. 
-
-# GATHERS DATA
-# imports the data 
-Round5 <- rio::import("http://afrobarometer.org/sites/default/files/data/round-5/merged_r5_data_0.sav")
-Round4 <- rio::import("http://afrobarometer.org/sites/default/files/data/round-4/merged_r4_data.sav")
-Round3 <- rio::import("http://afrobarometer.org/sites/default/files/data/round-3/merged_r3_data.sav")
-
-# MERGES THE DATA SETS 
-
-# serve as a CSV file to be used for the remainder of this project (mark the import data and all the rest with # so they don't run anymore)
+#load packages
 
 
-# CONDUCTS BASIC DESCRIPTIVE STATISTICS 
-
-# CONDUCTS INFERENTIAL STATISTICS
-
-### put in values step by step to show that they are not dependent on just one variable
-hist(Round5$Q48C)
-## convert 998 to NA, see whether rio does that
-## recode variables - see how to do that best (continous, categorical), especially the 998
-summary(Round5$Q48C)
-#convert to factors first and then summary statistics should show also the list of how many answered 1, how many answered 2, etc. 
-
-Reg1 <- lm(Q48C~Q43, data=Round5)
-summary(Reg1)
-stargazer::stargazer(Reg1,
-    title = 'Logistic Regression',
-    digits = 2, type = 'html')
-
-# CREATES DYNAMICALLY GENERATED TABLES AND FIGURES
-##automatized tables 
-##TABLE NOTE: DO NOT SHOW MORE THAN 1 or 2 DIGITS!!!!!!!!
-library(stargazer)
-## when you are creating a pdf use the arguments
-# type = 'latex'
-# header= FALSE
-##  Cite stargazer as Hlavac, Marek (2015). stargazer: Well-Formatted Regression and Summary Statistics Tables. R package version 5.2. http://CRAN.R-project.org/package=stargazer 
-
-library(Zelig)
-# King, Tomz, and Wittenberg (2001) argue that post estimation simulations can be used to effectively communicate results from regression models. Post-estimation simulations allow us to effectively communicate our estimates and the uncertainty around them.
-#install Zelig package
-
-
-
-## export as csv and use that one for the remainder of the course
 ```
+
+###1. Introduction
+
+Our research paper aims to shed light on the determinants of tax morale in African countries by conducting a regression analysis using data from the Afrobarometer for the years 2005, 2008 and 2015. Our conceptual framework is based on commonly perceived determinants of tax morale in developed countries, whereby:
+
+$$Tax Morale_i = \alpha_i + \beta_1 Trust in Government_i + $$
+
+This paper briefly outlines the design, operationalization and data selection, before conducting the regression analysis and briefly describing its results. More extensive information will be available in the final report. 
+
+###2. Method
+####2.1 Data Design & Operationalization
+
+$$Tax Morale_i = \alpha_i + \beta_1 Trust in Government_i + $$
+
+$Trust in Government_i$ is the 
+
+####2.2 Data Selection
+**here we can put the summary statistics etc**
+
+###3. Regression Results
