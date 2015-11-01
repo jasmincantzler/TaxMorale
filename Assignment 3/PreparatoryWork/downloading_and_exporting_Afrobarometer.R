@@ -30,8 +30,10 @@ write.csv2(round5, file="round5.csv", quote=FALSE, na="NA")
 # write.csv(round5, file="round5.csv", quote=FALSE, na="NA") # which usese "." for
 # the decimal point and a comma for the seperator
 
-# export into Stata format:
-# write.dta
+# export as table:
+
+write.table(round5, file = "round5_table",
+            sep = " ", na = "NA", row.names = TRUE, col.names = TRUE)
 
 
 
@@ -42,6 +44,11 @@ round4 <- rio::import("http://afrobarometer.org/sites/default/files/data/round-4
 write.csv2(round4, file="round4.csv", quote=FALSE, na="NA")
 # write.csv(round4, file="round4.csv", quote=FALSE, na="NA")
 
+# export as table
+write.table(round4, file = "round4_table",
+            sep = " ", na = "NA", row.names = TRUE, col.names = TRUE)
+
+
 
 # round 3 of the Afrobarometer: 
 round3 <- rio::import("http://afrobarometer.org/sites/default/files/data/round-3/merged_r3_data.sav")
@@ -50,6 +57,10 @@ round3 <- rio::import("http://afrobarometer.org/sites/default/files/data/round-3
 write.csv2(round3, file="round3.csv", quote=FALSE, na="NA")
 # write.csv(round3, file="round3.csv", quote=FALSE, na="NA")
 
+# export as table
+write.table(round3, file = "round3_table",
+            sep = " ", na = "NA", row.names = TRUE, col.names = TRUE)
+
 
 # round 2 of the Afrobarometer:
 round2 <- rio::import("http://afrobarometer.org/sites/default/files/data/round-2/merged_r2_data.sav")
@@ -57,6 +68,10 @@ round2 <- rio::import("http://afrobarometer.org/sites/default/files/data/round-2
 # export data into csv format:
 write.csv2(round2, file="round2.csv", quote=FALSE, na="NA")
 # write.csv(round2, file="round2.csv", quote=FALSE, na="NA")
+
+# export as table
+write.table(round2, file = "round2_table",
+            sep = " ", na = "NA", row.names = TRUE, col.names = TRUE)
 
 
 # saving data in RData format:
