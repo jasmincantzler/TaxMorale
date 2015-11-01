@@ -29,3 +29,9 @@ load("Round4.RData")
 load("Round3.RData")
 load("Round2.RData")
 ## this time the number of observations and variables stayed the same
+
+## another option is via "read.table":
+round5_table <- read.table("round5_table")
+round4_table <- read.table("round4_table")
+round3_table <- read.table("round3_table")
+round2_table <- read.table("round2_table")
