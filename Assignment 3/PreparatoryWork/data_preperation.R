@@ -64,6 +64,28 @@ names(round5.small) [c(1:22)] <- c("Country", "Respondent", "UrbanRural", "Age",
                                    "AvoidHowOften", "TrustTax", "SelfEmployedTax",
                                    "AvoidReason")
 
+# variables that exist in round 3 (and) round 4, but not in round 5:
+# "EconomicPolicies" 
+# --> this variable exists both in round 3 and 4
+# "LocalGvtTaxes"
+# "Enforce1"
+# "Enforce2" 
+# --> all three are only present in round 3 
+# "CorruptionOfficialsLocal"
+# "CorruptionOfficialsNational" 
+# --> this distinction is only made in round 3; in round 4 and 5 there is just 
+# one variable for both which is "CorruptionOfficials" 
+
+
+# create these variables for round 5 with missings
+round5.small$EconomicPolicies <- NA
+round5.small$LocalGvtTaxes <- NA
+round5.small$Enforce1 <- NA
+round5.small$Enforce2 <- NA
+round5.small$CorruptionOfficialsLocal <- NA
+round5.small$CorruptionOfficialsNational <- NA
+
+
 # export data into csv format:
 export(round5.small, file="round5.small.csv")
 
@@ -117,9 +139,37 @@ names(round4.small) [c(1:19)] <- c("Country", "Respondent", "UrbanRural", "Age",
                                    "CorruptionOfficials", "CorruptionTax", "Gender",
                                    "EconomicPolicies")
 
-# change order of variables so that they are identical in all three rounds:
 
-# add variables that are only in the other rounds with missing values:
+
+# variables that exist in round 3 (and) round 5, but not in round 4:
+# "AvoidHowOften"
+# "TrustTax"
+# "SelfEmployedTax"
+# "AvoidReason" 
+# --> all four are only present in round 5 
+# "LocalGvtTaxes"
+# "Enforce1"
+# "Enforce2" 
+# --> all three are only present in round 3 
+# "CorruptionOfficialsLocal"
+# "CorruptionOfficialsNational" 
+# --> this distinction is only made in round 3; in round 4 and 5 there is just 
+# one variable for both which is "CorruptionOfficials" 
+
+# create these variables for round 4 with missings:
+round4.small$AvoidHowOften <- NA
+round4.small$TrustTax <- NA
+round4.small$SelfEmployedTax <- NA
+round4.small$AvoidReason <- NA
+round4.small$LocalGvtTaxes <- NA
+round4.small$Enforce1 <- NA
+round4.small$Enforce2 <- NA
+round4.small$CorruptionOfficialsLocal <- NA
+round4.small$CorruptionOfficialsNational <- NA
+
+# change order of variables so that they are identical to round 5:
+round4.small <- round4.small[,c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,16,15,17,18,20,
+                                21,22,23,19,24,25,26,27,28)]
 
 # export data into csv format:
 export(round4.small, file="round4.small.csv")
@@ -183,9 +233,27 @@ names(round3.small) [c(1:23)] <- c("Country", "Respondent", "UrbanRural", "Age",
                                    "LocalGvtTaxes", "Enforce1", "Enforce2")
 
 
-# change order of variables so that they are identical in all three rounds:
 
-# add variables that are only in the other rounds with missing values:
+# variables that exist in round 4 (and) round 5, but not in round 3:
+# "AvoidHowOften"
+# "TrustTax"
+# "SelfEmployedTax"
+# "AvoidReason" 
+# --> all four are only present in round 5
+# "CorruptionOfficials"
+# --> instead of the distinction made in round 3, round 4 and 5 only have one
+# variable for corruption among government officials
+
+# create these variables for round 4 with missings:
+round3.small$CorruptionOfficials <- NA
+round3.small$AvoidHowOften <- NA
+round3.small$TrustTax <- NA
+round3.small$SelfEmployedTax <- NA
+round3.small$AvoidReason <- NA
+
+# change order of variables so that they are identical to round 5:
+round3.small <- round3.small[,c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,24,15,18,19,25,
+                                26,27,28,20,21,22,23,16,17)]
 
 # export data into csv format:
 export(round3.small, file="round3.small.csv")
