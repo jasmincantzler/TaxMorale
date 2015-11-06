@@ -4,6 +4,9 @@
 # last updated: 6 November 2015           #
 ###########################################
 
+# packages needed:
+library(plyr)
+
 # set working directory (remember to change to your directory)
 setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Assignment 3/PreparatoryWork")
 
