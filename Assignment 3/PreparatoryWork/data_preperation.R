@@ -43,10 +43,10 @@ names(round5)
 # [307] "Q101" - Respondent's gender
 
 # unique to round 5:
-# [159] "Q56I" - How often avoid payin taxes
+# [159] "Q56I" - How often avoid paying taxes
 # [165] "Q59D" - Trust in tax department
 # [249] "Q73E" - self-employer taxes
-# [256] "Q77" - reasins for avoidung taxes
+# [256] "Q77" - reasons for avoiding taxes
 
 keep_vars5 = c(2, 5, 6, 39, 42, 43, 68, 81, 139, 162, 
                163, 171, 172, 173, 174, 175, 177, 307,
@@ -54,7 +54,15 @@ keep_vars5 = c(2, 5, 6, 39, 42, 43, 68, 81, 139, 162,
 
 round5.small <- round5[, keep_vars5]
 
-
+# renaming variables (these will be the variable names for all three subsets):
+names(round5.small) [c(1:22)] <- c("Country", "Respondent", "UrbanRural", "Age",
+                                   "EconomicSituation", "LivingConditions", "Interest",
+                                   "Religion", "TaxMorale", "TrustPresident", 
+                                   "TrustParliament", "TrustCourts", "CorruptionPresident",
+                                   "CorruptionParliament", "CorruptionOfficials",
+                                   "CorruptionCouncilors", "CorruptionTax", "Gender",
+                                   "AvoidHowOften", "TrustTax", "SelfEmployedTax",
+                                   "AvoidReason")
 
 # export data into csv format:
 export(round5.small, file="round5.small.csv")
@@ -99,6 +107,19 @@ keep_vars4 =c(1, 2, 3, 32, 36, 37, 56, 67, 111, 121,
               52)
 
 round4.small <- round4[, keep_vars4]
+
+# renaming variables
+names(round4.small) [c(1:19)] <- c("Country", "Respondent", "UrbanRural", "Age",
+                                   "EconomicSituation", "LivingConditions", "Interest",
+                                   "Religion", "TaxMorale", "TrustPresident", 
+                                   "TrustParliament", "TrustCourts", "CorruptionPresident",
+                                   "CorruptionParliament", "CorruptionCouncilors", 
+                                   "CorruptionOfficials", "CorruptionTax", "Gender",
+                                   "EconomicPolicies")
+
+# change order of variables so that they are identical in all three rounds:
+
+# add variables that are only in the other rounds with missing values:
 
 # export data into csv format:
 export(round4.small, file="round4.small.csv")
@@ -147,9 +168,24 @@ names(round3)
 
 keep_vars3 = c(1, 2, 4, 19, 22, 23, 48, 61, 116, 128, 
                129, 136, 141, 142, 143, 144, 145, 147,
-               261, 41, 183, 193)
+               261, 41, 183, 192, 193)
 
 round3.small <- round3[, keep_vars3]
+
+# renaming variables
+names(round3.small) [c(1:23)] <- c("Country", "Respondent", "UrbanRural", "Age",
+                                   "EconomicSituation", "LivingConditions", "Interest",
+                                   "Religion", "TaxMorale", "TrustPresident", 
+                                   "TrustParliament", "TrustCourts", "CorruptionPresident",
+                                   "CorruptionParliament", "CorruptionCouncilors", 
+                                   "CorruptionOfficialsLocal", "CorruptionOfficialsNational", 
+                                   "CorruptionTax", "Gender", "EconomicPolicies",
+                                   "LocalGvtTaxes", "Enforce1", "Enforce2")
+
+
+# change order of variables so that they are identical in all three rounds:
+
+# add variables that are only in the other rounds with missing values:
 
 # export data into csv format:
 export(round3.small, file="round3.small.csv")
