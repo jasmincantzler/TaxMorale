@@ -1,8 +1,8 @@
-###################################
-#  Loading Afrobarometer Data     #
-#  Wiebke Weiger                  #
-#  last updated: 6 November 2015  #
-# #################################
+#######################################################
+#  Loading, cleaning and exporting Afrobarometer Data #
+#  Wiebke Weiger                                      #
+#  last updated: 6 November 2015                      # 
+# #####################################################
 
 
 # set the working directory:
