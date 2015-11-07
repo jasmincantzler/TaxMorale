@@ -57,7 +57,7 @@ round5.small$RespondentID <-
 
 summary(round5.small) 
 ### shows that there are "-1" and therefore missings in all of the variables except
-### for Country, Year, Respondent and UrbanRural
+### for Country, Year, Respondent, UrbanRural, and Gender
 ### The variables EconomicPolicies, LocalGvtTaxes, Enforce1, Enforce2, 
 ### CorruptionOfficialsLocal and CorruptionOfficialsNational don't contain the value
 ### "-1" but have been coded as containing only missings (NA)
@@ -145,39 +145,34 @@ CorruptionTax.missing <- round5.small[ which(round5.small$CorruptionTax==-1), ]
 # replace these with NA:
 round5.small$CorruptionTax[round5.small$CorruptionTax==-1] <- NA
 
-# o) Gender:
-Gender.missing <- round5.small[ which(round5.small$Gender==-1), ]
-# 0 missings
-# replace these with NA:
-round5.small$Gender[round5.small$Gender==-1] <- NA
-
-# p) AvoidHowOften:
+# o) AvoidHowOften:
 AvoidHowOften.missing <- round5.small[ which(round5.small$AvoidHowOften==-1), ]
 # 33 missings
 # replace these with NA:
 round5.small$AvoidHowOften[round5.small$AvoidHowOften==-1] <- NA
 
-# q) TrustTax:
+# p) TrustTax:
 TrustTax.missing <- round5.small[ which(round5.small$TrustTax==-1), ]
 # 79 missings
 # replace these with NA:
 round5.small$TrustTax[round5.small$TrustTax==-1] <- NA
 
-# r) SelfEmployedTax:
+# q) SelfEmployedTax:
 SelfEmployedTax.missing <- round5.small[ which(round5.small$SelfEmployedTax==-1), ]
 # 14 missings
 # replace these with NA:
 round5.small$SelfEmployedTax[round5.small$SelfEmployedTax==-1] <- NA
 
-# s) AvoidReason:
+# r) AvoidReason:
 AvoidReason.missing <- round5.small[ which(round5.small$AvoidReason==-1), ]
 # 39 missings
 # replace these with NA:
 round5.small$AvoidReason[round5.small$AvoidReason==-1] <- NA
 
-
   
 # Step 2: explore variables for things such as "don't know" "refuse to answer"
+
+
 
 # Step 3: recode these as missings as well:
 
@@ -295,6 +290,132 @@ round4.small$Country <- cut(round4.small$Country,
 
 # create unique identifyer by combining "Respondent" and "Year":
 
+# MISSINGS:
+# at the moment R only recognizes missings, when a question was not asked in one
+# or several countries
+# according to the code books, missings are coded as "-1" which is currently
+# recognized by R as a value
+
+# Step 1: recode all "-1" as missings:
+
+summary(round4.small) 
+### shows that there are "-1" and therefore missings in all of the variables except
+### for Country, Year, Respondent, UrbanRural, and Gender
+### The variables AvoidHowOften, TrustTax, SelfEmployedTax, AvoidReason, 
+### LocalGvtTaxes, Enforce1, Enforce2, CorruptionOfficialsLocal and 
+### CorruptionOfficialsNational don't contain the value "-1" but have been coded 
+### as containing only missings (NA)
+
+# a) Age:
+age.missing <- round4.small[ which(round4.small$Age==-1), ]
+# 6 missings
+# replace these with NA:
+round4.small$Age[round4.small$Age==-1] <- NA 
+
+# b) EconomicSituation:
+EconomicSituation.missing <- round4.small[ which(round4.small$EconomicSituation==-1), ]
+# 4 missings
+# replace these with NA:
+round4.small$EconomicSituation[round4.small$EconomicSituation==-1] <- NA
+
+# c) LivingConditions:
+LivingConditions.missing <- round4.small[ which(round4.small$LivingConditions==-1), ]
+# 25 missings
+# replace these with NA:
+round4.small$LivingConditions[round4.small$LivingConditions==-1] <- NA
+
+# d) Interest:
+Interest.missing <- round4.small[ which(round4.small$Interest==-1), ]
+# 7 missings
+# replace these with NA:
+round4.small$Interest[round4.small$Interest==-1] <- NA
+
+# e) Religion:
+Religion.missing <- round4.small[ which(round4.small$Religion==-1), ]
+# 18 missings
+# replace these with NA:
+round4.small$Religion[round4.small$Religion==-1] <- NA
+
+# f) TaxMorale:
+TaxMorale.missing <- round4.small[ which(round4.small$TaxMorale==-1), ]
+# 19 missings
+# replace these with NA:
+round4.small$TaxMorale[round4.small$TaxMorale==-1] <- NA
+
+# g) TrustPresident:
+TrustPresident.missing <- round4.small[ which(round4.small$TrustPresident==-1), ]
+# 15 missings
+# replace these with NA:
+round4.small$TrustPresident[round4.small$TrustPresident==-1] <- NA
+
+# h) TrustParliament:
+TrustParliament.missing <- round4.small[ which(round4.small$TrustParliament==-1), ]
+# 16 missings
+# replace these with NA:
+round4.small$TrustParliament[round4.small$TrustParliament==-1] <- NA
+
+# i) TrustCourts:
+TrustCourts.missing <- round4.small[ which(round4.small$TrustCourts==-1), ]
+# 16 missings
+# replace these with NA:
+round4.small$TrustCourts[round4.small$TrustCourts==-1] <- NA
+
+# j) CorruptionPresident:
+CorruptionPresident.missing <- round4.small[ which(round4.small$CorruptionPresident==-1), ]
+# 10 missings
+# replace these with NA:
+round4.small$CorruptionPresident[round4.small$CorruptionPresident==-1] <- NA
+
+# k) CorruptionParliament:
+CorruptionParliament.missing <- round4.small[ which(round4.small$CorruptionParliament==-1), ]
+# 13 missings
+# replace these with NA:
+round4.small$CorruptionParliament[round4.small$CorruptionParliament==-1] <- NA
+
+# l) CorruptionOfficials:
+CorruptionOfficials.missing <- round4.small[ which(round4.small$CorruptionOfficials==-1), ]
+# 23 missings
+# replace these with NA:
+round4.small$CorruptionOfficials[round4.small$CorruptionOfficials==-1] <- NA
+
+# m) CorruptionCouncilors:
+CorruptionCouncilors.missing <- round4.small[ which(round4.small$CorruptionCouncilors==-1), ]
+# 22 missings
+# replace these with NA:
+round4.small$CorruptionCouncilors[round4.small$CorruptionCouncilors==-1] <- NA
+
+# n) CorruptionTax:
+CorruptionTax.missing <- round4.small[ which(round4.small$CorruptionTax==-1), ]
+# 14 missings
+# replace these with NA:
+round4.small$CorruptionTax[round4.small$CorruptionTax==-1] <- NA
+
+
+#[...]
+
+# s) EconomicPolicies:
+EconomicPolicies.missing <- round4.small[ which(round4.small$EconomicPolicies==-1), ]
+# 6 missings
+# replace these with NA:
+round4.small$EconomicPolicies[round4.small$EconomicPolicies==-1] <- NA
+
+
+
+# Step 2: explore variables for things such as "don't know" "refuse to answer"
+
+
+
+# Step 3: recode these as missings as well:
+
+
+
+# FACTOR VARIABLES:
+# At the moment R recognizes most of the variables as numeric variables even
+# though they are factor variables.
+# Therefore these will now be coded as factors:
+
+
+
 
 #EXPORTING AND SAVING DATA:
 
@@ -346,6 +467,151 @@ round3.small$Country <- cut(round3.small$Country,
 
 # create unique identifyer by combining "Respondent" and "Year":
 # before that: the abbreviation of Malawi is MLW in round 4 and 5
+
+
+# MISSINGS:
+# at the moment R only recognizes missings, when a question was not asked in one
+# or several countries
+# according to the code books, missings are coded as "-1" which is currently
+# recognized by R as a value
+
+# Step 1: recode all "-1" as missings:
+
+summary(round3.small) 
+### shows that there are "-1" and therefore missings in all of the variables except
+### for Country, Year, Respondent, UrbanRural, Religion and Gender
+### The variables CorruptionOfficials, AvoidHowOften, TrustTax, SelfEmployedTax, 
+### and AvoidReason don't contain the value "-1" but have been coded as containing 
+### only missings (NA)
+
+# a) Age:
+age.missing <- round3.small[ which(round3.small$Age==-1), ]
+# 14 missings
+# replace these with NA:
+round3.small$Age[round3.small$Age==-1] <- NA 
+
+# b) EconomicSituation:
+EconomicSituation.missing <- round3.small[ which(round3.small$EconomicSituation==-1), ]
+# 16 missings
+# replace these with NA:
+round3.small$EconomicSituation[round3.small$EconomicSituation==-1] <- NA
+
+# c) LivingConditions:
+LivingConditions.missing <- round3.small[ which(round3.small$LivingConditions==-1), ]
+# 10 missings
+# replace these with NA:
+round3.small$LivingConditions[round3.small$LivingConditions==-1] <- NA
+
+# d) Interest:
+Interest.missing <- round3.small[ which(round3.small$Interest==-1), ]
+# 5 missings
+# replace these with NA:
+round3.small$Interest[round3.small$Interest==-1] <- NA
+
+#[...]
+
+# f) TaxMorale:
+TaxMorale.missing <- round3.small[ which(round3.small$TaxMorale==-1), ]
+# 3 missings
+# replace these with NA:
+round3.small$TaxMorale[round3.small$TaxMorale==-1] <- NA
+
+# g) TrustPresident:
+TrustPresident.missing <- round3.small[ which(round3.small$TrustPresident==-1), ]
+# 1 missing
+# replace these with NA:
+round3.small$TrustPresident[round3.small$TrustPresident==-1] <- NA
+
+# h) TrustParliament:
+TrustParliament.missing <- round3.small[ which(round3.small$TrustParliament==-1), ]
+# 2 missings
+# replace these with NA:
+round3.small$TrustParliament[round3.small$TrustParliament==-1] <- NA
+
+# i) TrustCourts:
+TrustCourts.missing <- round3.small[ which(round3.small$TrustCourts==-1), ]
+# 13 missings
+# replace these with NA:
+round3.small$TrustCourts[round3.small$TrustCourts==-1] <- NA
+
+# j) CorruptionPresident:
+CorruptionPresident.missing <- round3.small[ which(round3.small$CorruptionPresident==-1), ]
+# 2 missings
+# replace these with NA:
+round3.small$CorruptionPresident[round3.small$CorruptionPresident==-1] <- NA
+
+# k) CorruptionParliament:
+CorruptionParliament.missing <- round3.small[ which(round3.small$CorruptionParliament==-1), ]
+# 2 missings
+# replace these with NA:
+round3.small$CorruptionParliament[round3.small$CorruptionParliament==-1] <- NA
+
+#[...]
+
+# m) CorruptionCouncilors:
+CorruptionCouncilors.missing <- round3.small[ which(round3.small$CorruptionCouncilors==-1), ]
+# 3 missings
+# replace these with NA:
+round3.small$CorruptionCouncilors[round3.small$CorruptionCouncilors==-1] <- NA
+
+# n) CorruptionTax:
+CorruptionTax.missing <- round3.small[ which(round3.small$CorruptionTax==-1), ]
+# 6 missings
+# replace these with NA:
+round3.small$CorruptionTax[round3.small$CorruptionTax==-1] <- NA
+
+
+#[...]
+
+# s) EconomicPolicies:
+EconomicPolicies.missing <- round3.small[ which(round3.small$EconomicPolicies==-1), ]
+# 2 missings
+# replace these with NA:
+round3.small$EconomicPolicies[round3.small$EconomicPolicies==-1] <- NA
+
+# t) LocalGvtTaxes:
+LocalGvtTaxes.missing <- round3.small[ which(round3.small$LocalGvtTaxes==-1), ]
+# 9 missings
+# replace these with NA:
+round3.small$LocalGvtTaxes[round3.small$LocalGvtTaxes==-1] <- NA
+
+# u) Enforce1:
+Enforce1.missing <- round3.small[ which(round3.small$Enforce1==-1), ]
+# 6 missings
+# replace these with NA:
+round3.small$Enforce1[round3.small$Enforce1==-1] <- NA
+
+# v) Enforce2:
+Enforce2.missing <- round3.small[ which(round3.small$Enforce2==-1), ]
+# 7 missings
+# replace these with NA:
+round3.small$Enforce2[round3.small$Enforce2==-1] <- NA
+
+# w) CorruptionOfficialsLocal:
+CorruptionOfficialsLocal.missing <- round3.small[ which(round3.small$CorruptionOfficialsLocal==-1), ]
+# 4 missings
+# replace these with NA:
+round3.small$CorruptionOfficialsLocal[round3.small$CorruptionOfficialsLocal==-1] <- NA
+
+# x) CorruptionOfficialsNational:
+CorruptionOfficialsNational.missing <- round3.small[ which(round3.small$CorruptionOfficialsNational==-1), ]
+# 5 missings
+# replace these with NA:
+round3.small$CorruptionOfficialsNational[round3.small$CorruptionOfficialsNational==-1] <- NA
+
+
+# Step 2: explore variables for things such as "don't know" "refuse to answer"
+
+
+
+# Step 3: recode these as missings as well:
+
+
+
+# FACTOR VARIABLES:
+# At the moment R recognizes most of the variables as numeric variables even
+# though they are factor variables.
+# Therefore these will now be coded as factors:
 
 
 #EXPORTING AND SAVING DATA:
