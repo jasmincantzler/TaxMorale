@@ -1,8 +1,8 @@
-#######################################################
-#  Loading, cleaning and exporting Afrobarometer Data #
-#  Wiebke Weiger                                      #
-#  last updated: 6 November 2015                      # 
-# #####################################################
+##############################################
+#  Loading and exporting Afrobarometer Data  #
+#  Wiebke Weiger                             #
+#  last updated: 7 November 2015             # 
+# ############################################
 
 
 # set the working directory:
@@ -13,6 +13,7 @@ setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Assignment 3/PreparatoryWork")
 # packages used for this Rfile:
 library(rio) # needed to download data from the Afrobarometer website in SPSS format
 library(foreign) # needed to export data from R to other formats
+library(dplyr)
 
 
 # 1) Download Afrobarometer data from website
@@ -55,7 +56,7 @@ keep_vars5 = c(2, 5, 6, 39, 42, 43, 68, 81, 139, 162,
 round5.small <- round5[, keep_vars5]
 
 # renaming variables (these will be the variable names for all three subsets):
-names(round5.small) [c(1:22)] <- c("Country", "Respondent", "UrbanRural", "Age",
+colnames(round5.small) [c(1:22)] <- c("Country", "Respondent", "UrbanRural", "Age",
                                    "EconomicSituation", "LivingConditions", "Interest",
                                    "Religion", "TaxMorale", "TrustPresident", 
                                    "TrustParliament", "TrustCourts", "CorruptionPresident",
@@ -85,6 +86,8 @@ round5.small$Enforce2 <- NA
 round5.small$CorruptionOfficialsLocal <- NA
 round5.small$CorruptionOfficialsNational <- NA
 
+# create year variable:
+round5.small$Year <- 2015
 
 # export data into csv format:
 export(round5.small, file="round5.small.csv")
@@ -93,6 +96,8 @@ export(round5.small, file="round5.small.csv")
 save(round5.small, file="Round5.small.RData", list="round5.small")
 
 
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Downloading round 4 of the Afrobarometer: 
 round4 <- rio::import("http://afrobarometer.org/sites/default/files/data/round-4/merged_r4_data.sav")
@@ -131,7 +136,7 @@ keep_vars4 =c(1, 2, 3, 32, 36, 37, 56, 67, 111, 121,
 round4.small <- round4[, keep_vars4]
 
 # renaming variables
-names(round4.small) [c(1:19)] <- c("Country", "Respondent", "UrbanRural", "Age",
+colnames(round4.small) [c(1:19)] <- c("Country", "Respondent", "UrbanRural", "Age",
                                    "EconomicSituation", "LivingConditions", "Interest",
                                    "Religion", "TaxMorale", "TrustPresident", 
                                    "TrustParliament", "TrustCourts", "CorruptionPresident",
@@ -171,13 +176,17 @@ round4.small$CorruptionOfficialsNational <- NA
 round4.small <- round4.small[,c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,16,15,17,18,20,
                                 21,22,23,19,24,25,26,27,28)]
 
+# create year variable:
+round4.small$Year <- 2008
+
+
 # export data into csv format:
 export(round4.small, file="round4.small.csv")
 
 # save smaller data set in Rdata format:
 save(round4.small, file="Round4.small.RData", list="round4.small")
 
-
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Downloading round 3 of the Afrobarometer: 
 round3 <- rio::import("http://afrobarometer.org/sites/default/files/data/round-3/merged_r3_data.sav")
@@ -223,7 +232,7 @@ keep_vars3 = c(1, 2, 4, 19, 22, 23, 48, 61, 116, 128,
 round3.small <- round3[, keep_vars3]
 
 # renaming variables
-names(round3.small) [c(1:23)] <- c("Country", "Respondent", "UrbanRural", "Age",
+colnames(round3.small) [c(1:23)] <- c("Country", "Respondent", "UrbanRural", "Age",
                                    "EconomicSituation", "LivingConditions", "Interest",
                                    "Religion", "TaxMorale", "TrustPresident", 
                                    "TrustParliament", "TrustCourts", "CorruptionPresident",
@@ -255,11 +264,19 @@ round3.small$AvoidReason <- NA
 round3.small <- round3.small[,c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,24,15,18,19,25,
                                 26,27,28,20,21,22,23,16,17)]
 
+# create year variable:
+round3.small$Year <- 2005
+
+
 # export data into csv format:
 export(round3.small, file="round3.small.csv")
 
 # save smaller data set in Rdata format:
 save(round3.small, file="Round3.small.RData", list="round3.small")
+
+################################################################################
+# end of file
+################################################################################
 
 
 
