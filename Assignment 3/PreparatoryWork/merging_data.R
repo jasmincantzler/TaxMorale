@@ -54,6 +54,128 @@ round5.small$RespondentID <-
 # recognized by R as a value
   
 # Step 1: recode all "-1" as missings:
+
+summary(round5.small) 
+### shows that there are "-1" and therefore missings in all of the variables except
+### for Country, Year, Respondent and UrbanRural
+### The variables EconomicPolicies, LocalGvtTaxes, Enforce1, Enforce2, 
+### CorruptionOfficialsLocal and CorruptionOfficialsNational don't contain the value
+### "-1" but have been coded as containing only missings (NA)
+
+# a) Age:
+age.missing <- round5.small[ which(round5.small$Age==-1), ]# 14 missings
+# replace these with NA:
+round5.small$Age[round5.small$Age==-1] <- NA 
+
+# b) EconomicSituation:
+EconomicSituation.missing <- round5.small[ which(round5.small$EconomicSituation==-1), ]
+# 13 missings
+# replace these with NA:
+round5.small$EconomicSituation[round5.small$EconomicSituation==-1] <- NA
+
+# c) LivingConditions:
+LivingConditions.missing <- round5.small[ which(round5.small$LivingConditions==-1), ]
+# 58 missings
+# replace these with NA:
+round5.small$LivingConditions[round5.small$LivingConditions==-1] <- NA
+
+# d) Interest:
+Interest.missing <- round5.small[ which(round5.small$Interest==-1), ]
+# 14 missings
+# replace these with NA:
+round5.small$Interest[round5.small$Interest==-1] <- NA
+
+# e) Religion:
+Religion.missing <- round5.small[ which(round5.small$Religion==-1), ]
+# 28 missings
+# replace these with NA:
+round5.small$Religion[round5.small$Religion==-1] <- NA
+
+# f) TaxMorale:
+TaxMorale.missing <- round5.small[ which(round5.small$TaxMorale==-1), ]
+# 28 missings
+# replace these with NA:
+round5.small$TaxMorale[round5.small$TaxMorale==-1] <- NA
+
+# g) TrustPresident:
+TrustPresident.missing <- round5.small[ which(round5.small$TrustPresident==-1), ]
+# 16 missings
+# replace these with NA:
+round5.small$TrustPresident[round5.small$TrustPresident==-1] <- NA
+
+# h) TrustParliament:
+TrustParliament.missing <- round5.small[ which(round5.small$TrustParliament==-1), ]
+# 23 missings
+# replace these with NA:
+round5.small$TrustParliament[round5.small$TrustParliament==-1] <- NA
+
+# i) TrustCourts:
+TrustCourts.missing <- round5.small[ which(round5.small$TrustCourts==-1), ]
+# 46 missings
+# replace these with NA:
+round5.small$TrustCourts[round5.small$TrustCourts==-1] <- NA
+
+# j) CorruptionPresident:
+CorruptionPresident.missing <- round5.small[ which(round5.small$CorruptionPresident==-1), ]
+# 11 missings
+# replace these with NA:
+round5.small$CorruptionPresident[round5.small$CorruptionPresident==-1] <- NA
+
+# k) CorruptionParliament:
+CorruptionParliament.missing <- round5.small[ which(round5.small$CorruptionParliament==-1), ]
+# 31 missings
+# replace these with NA:
+round5.small$CorruptionParliament[round5.small$CorruptionParliament==-1] <- NA
+
+# l) CorruptionOfficials:
+CorruptionOfficials.missing <- round5.small[ which(round5.small$CorruptionOfficials==-1), ]
+# 41 missings
+# replace these with NA:
+round5.small$CorruptionOfficials[round5.small$CorruptionOfficials==-1] <- NA
+
+# m) CorruptionCouncilors:
+CorruptionCouncilors.missing <- round5.small[ which(round5.small$CorruptionCouncilors==-1), ]
+# 2400 missings
+# replace these with NA:
+round5.small$CorruptionCouncilors[round5.small$CorruptionCouncilors==-1] <- NA
+
+# n) CorruptionTax:
+CorruptionTax.missing <- round5.small[ which(round5.small$CorruptionTax==-1), ]
+# 28 missings
+# replace these with NA:
+round5.small$CorruptionTax[round5.small$CorruptionTax==-1] <- NA
+
+# o) Gender:
+Gender.missing <- round5.small[ which(round5.small$Gender==-1), ]
+# 0 missings
+# replace these with NA:
+round5.small$Gender[round5.small$Gender==-1] <- NA
+
+# p) AvoidHowOften:
+AvoidHowOften.missing <- round5.small[ which(round5.small$AvoidHowOften==-1), ]
+# 33 missings
+# replace these with NA:
+round5.small$AvoidHowOften[round5.small$AvoidHowOften==-1] <- NA
+
+# q) TrustTax:
+TrustTax.missing <- round5.small[ which(round5.small$TrustTax==-1), ]
+# 79 missings
+# replace these with NA:
+round5.small$TrustTax[round5.small$TrustTax==-1] <- NA
+
+# r) SelfEmployedTax:
+SelfEmployedTax.missing <- round5.small[ which(round5.small$SelfEmployedTax==-1), ]
+# 14 missings
+# replace these with NA:
+round5.small$SelfEmployedTax[round5.small$SelfEmployedTax==-1] <- NA
+
+# s) AvoidReason:
+AvoidReason.missing <- round5.small[ which(round5.small$AvoidReason==-1), ]
+# 39 missings
+# replace these with NA:
+round5.small$AvoidReason[round5.small$AvoidReason==-1] <- NA
+
+
   
 # Step 2: explore variables for things such as "don't know" "refuse to answer"
 
@@ -66,8 +188,60 @@ round5.small$RespondentID <-
 # though they are factor variables.
 # Therefore these will now be coded as factors:
 
-
-
+round5.small <- mutate(round5.small,
+                       UrbanRural = factor(UrbanRural, levels = 1:2, 
+                                           labels = c("urban", "rural")),
+                       EconomicSituation = factor(EconomicSituation,levels = 1:5, 
+                                                  labels = c("Very bad", "Fairly bad", "Neither good nor bad", "Fairly good", "Very good")),
+                       LivingConditions = factor(LivingConditions, levels = 1:5,
+                                                 labels = c("Very bad", "Fairly bad", "Neither good nor bad", "Fairly good", "Very good")),
+                       Interest = factor(Interest, levels = 0:3,
+                                         labels = c("Not at all interested", "Not very interested", "Somewhat interested", "Very interested")),
+                       Religion = factor(Religion, levels = 0:3,
+                                         labels = c("Not a member", "Inactive member", "Active member", "Official Leader")),
+                       TaxMorale = factor(TaxMorale, levels = 1:5,
+                                          labels = c("Strongly Disagree", "Disagree", "Neither agree nor disagree", "Agree", "Strongly Agree")),
+                       TrustPresident = factor(TrustPresident, levels = 0:3, 
+                                               labels = c("Not at all", "Just a little", "Somewhat", "A lot")),
+                       TrustParliament = factor(TrustParliament, levels = 0:3, 
+                                                labels = c("Not at all", "Just a little", "Somewhat", "A lot")),
+                       TrustCourts = factor(TrustCourts, levels = 0:3, 
+                                            labels = c("Not at all", "Just a little", "Somewhat", "A lot")),
+                       CorruptionPresident = factor(CorruptionPresident, levels = 0:3,
+                                                    labels = c("None", "Some of them", "Most of them", "All of them")),
+                       CorruptionParliament = factor(CorruptionParliament, levels = 0:3,
+                                                     labels = c("None", "Some of them", "Most of them", "All of them")),
+                       CorruptionOfficials = factor(CorruptionOfficials, levels = 0:3,
+                                                    labels = c("None", "Some of them", "Most of them", "All of them")),
+                       CorruptionCouncilors = factor(CorruptionCouncilors, levels = 0:3,
+                                                     labels = c("None", "Some of them", "Most of them", "All of them")),
+                       CorruptionTax = factor(CorruptionTax, levels = 0:3,
+                                              labels = c("None", "Some of them", "Most of them", "All of them")),
+                       Gender = factor(Gender, levels = 1:2, 
+                                       labels = c("male", "female")),
+                       AvoidHowOften = factor(AvoidHowOften, levels = 0:3,
+                                              labels = c("Never", "Rarely", "Often", "Allways")),
+                       TrustTax = factor(TrustTax, levels = 0:3, 
+                                         labels = c("Not at all", "Just a little", "Somewhat", "A lot")),
+                       SelfEmployedTax = factor(SelfEmployedTax, levels = 0:1, 
+                                                labels = c("Not required to pay", "Required to pay")),
+                       AvoidReason = factor(AvoidReason, levels = ,
+                                            labels = c("")),## still need to figure out how to label this one
+                       EconomicPolicies = factor(EconomicPolicies, levels = ,
+                                                 labels = c("")),
+                       LocalGvtTaxes = factor(LocalGvtTaxes, levels = ,
+                                              labels = c("")),
+                       Enforce1 = factor(Enforce1, levels = ,
+                                         labels = c("")),
+                       Enforce2 = factor(Enforce2, levels = ,
+                                         labels = c("")),
+                       CorruptionOfficialsLocal = factor(CorruptionOfficialsLocal,
+                                                         levels = ,
+                                                         labels = c("")),
+                       CorruptionOfficialsNational = factor(CorruptionOfficialsNational,
+                                                            levels = ,
+                                                            labels = c("")),
+                       Year = factor(Year))
 
 
 #EXPORTING AND SAVING DATA:
@@ -171,6 +345,7 @@ round3.small$Country <- cut(round3.small$Country,
 
 
 # create unique identifyer by combining "Respondent" and "Year":
+# before that: the abbreviation of Malawi is MLW in round 4 and 5
 
 
 #EXPORTING AND SAVING DATA:
