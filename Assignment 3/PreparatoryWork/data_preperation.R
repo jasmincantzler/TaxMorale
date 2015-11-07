@@ -89,6 +89,10 @@ round5.small$CorruptionOfficialsNational <- NA
 # create year variable:
 round5.small$Year <- 2015
 
+# change order of variables, Year variable as second column:
+round5.small <- round5.small[,c(1,29,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,
+                                20,21,22,23,24,25,26,27,28)]
+
 # export data into csv format:
 export(round5.small, file="round5.small.csv")
 
@@ -172,12 +176,14 @@ round4.small$Enforce2 <- NA
 round4.small$CorruptionOfficialsLocal <- NA
 round4.small$CorruptionOfficialsNational <- NA
 
-# change order of variables so that they are identical to round 5:
-round4.small <- round4.small[,c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,16,15,17,18,20,
-                                21,22,23,19,24,25,26,27,28)]
-
 # create year variable:
 round4.small$Year <- 2008
+
+# change order of variables so that they are identical to round 5:
+round4.small <- round4.small[,c(1,29,2,3,4,5,6,7,8,9,10,11,12,13,14,16,15,17,18,20,
+                                21,22,23,19,24,25,26,27,28)]
+
+
 
 
 # export data into csv format:
@@ -260,12 +266,14 @@ round3.small$TrustTax <- NA
 round3.small$SelfEmployedTax <- NA
 round3.small$AvoidReason <- NA
 
-# change order of variables so that they are identical to round 5:
-round3.small <- round3.small[,c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,24,15,18,19,25,
-                                26,27,28,20,21,22,23,16,17)]
-
 # create year variable:
 round3.small$Year <- 2005
+
+# change order of variables so that they are identical to round 5:
+round3.small <- round3.small[,c(1,29,2,3,4,5,6,7,8,9,10,11,12,13,14,24,15,18,19,25,
+                                26,27,28,20,21,22,23,16,17)]
+
+
 
 
 # export data into csv format:
