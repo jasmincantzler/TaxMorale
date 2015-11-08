@@ -49,9 +49,10 @@ Tax Morale is instrumented by a variable [^1] that asks the participants to agre
 
 ```{r,}
 #include Table
+
 ```
 
-The average values in Table 1 gives a first overview about tax morale in African countries; in general .... seems to have higher tax morale than...
+The average values in Table 1 give a first overview about tax morale in African countries; in general .... seems to have higher tax morale than...
 
 #Regression Results
 
