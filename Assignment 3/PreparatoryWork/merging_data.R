@@ -1,6 +1,6 @@
 ###########################################
 # Cleaning and merging Afrobarometer Data #
-# Wiebke Weiger                           #
+# Wiebke Weiger & Jasmin Cantzler         #
 # last updated: 8 November 2015           #
 ###########################################
 
@@ -171,7 +171,7 @@ round5.small$SelfEmployedTax[round5.small$SelfEmployedTax==-1] <- NA
 round5.small$AvoidReason[round5.small$AvoidReason==-1] <- NA
 
   
-# Step 2: "9" 
+# Step 2: recode all "9" 
 # 9 indicates "don't know"
 
 # a) Age:
@@ -281,7 +281,7 @@ AvoidReason.notknown <- round5.small[ which(round5.small$AvoidReason==9), ]
 # replace these with NA:
 #round5.small$AvoidReason[round5.small$AvoidReason==9] <- NA
 
-# Step 3: "98" 
+# Step 3: recode all "98" as missings
 # 98 indicates "refuse to answer"
 
 # a) Age:
@@ -582,14 +582,166 @@ round4.small$CorruptionTax[round4.small$CorruptionTax==-1] <- NA
 # replace these with NA:
 round4.small$EconomicPolicies[round4.small$EconomicPolicies==-1] <- NA
 
+# Step 2: recode all "9" 
+# 9 indicates "don't know"
+
+# a) Age:
+# age.notknown <- round4.small[ which(round4.small$Age==9), ]
+# 0 don't know
+
+# b) EconomicSituation:
+# EconomicSituation.notknown <- round4.small[ which(round4.small$EconomicSituation==9), ]
+# 548 don't know
+# replace these with NA:
+round4.small$EconomicSituation[round4.small$EconomicSituation==9] <- NA
+
+# c) LivingConditions:
+# LivingConditions.notknown <- round4.small[ which(round4.small$LivingConditions==9), ]
+# 125 don't know
+# replace these with NA:
+round4.small$LivingConditions[round4.small$LivingConditions==9] <- NA
+
+# d) Interest:
+# Interest.notknown <- round4.small[ which(round4.small$Interest==9), ]
+# 260 don't know
+# replace these with NA:
+round4.small$Interest[round4.small$Interest==9] <- NA
+
+# e) Religion:
+# Religion.notknown <- round4.small[ which(round4.small$Religion==9), ]
+# 94 don't know
+# replace these with NA:
+round4.small$Religion[round4.small$Religion==9] <- NA
+
+# f) TaxMorale:
+# TaxMorale.notknown <- round4.small[ which(round4.small$TaxMorale==9), ]
+# 1854 don't know
+# replace these with NA:
+round4.small$TaxMorale[round4.small$TaxMorale==9] <- NA
+
+# g) TrustPresident:
+# TrustPresident.notknown <- round4.small[ which(round4.small$TrustPresident==9), ]
+# 1556 don't know
+# replace these with NA:
+round4.small$TrustPresident[round4.small$TrustPresident==9] <- NA
+
+# h) TrustParliament:
+# TrustParliament.notknown <- round4.small[ which(round4.small$TrustParliament==9), ]
+# 2091 don't know
+# replace these with NA:
+round4.small$TrustParliament[round4.small$TrustParliament==9] <- NA
+
+# i) TrustCourts:
+# TrustCourts.notknown <- round4.small[ which(round4.small$TrustCourts==9), ]
+# 1590 don't know
+# replace these with NA:
+round4.small$TrustCourts[round4.small$TrustCourts==9] <- NA
+
+# j) CorruptionPresident:
+# CorruptionPresident.notknown <- round4.small[ which(round4.small$CorruptionPresident==9), ]
+# 6130 don't know
+# replace these with NA:
+round4.small$CorruptionPresident[round4.small$CorruptionPresident==9] <- NA
+
+# k) CorruptionParliament:
+# CorruptionParliament.notknown <- round4.small[ which(round4.small$CorruptionParliament==9), ]
+# 5411 don't know
+# replace these with NA:
+round4.small$CorruptionParliament[round4.small$CorruptionParliament==9] <- NA
+
+# l) CorruptionOfficials:
+# CorruptionOfficials.notknown <- round4.small[ which(round4.small$CorruptionOfficials==9), ]
+# 4612 don't know
+# replace these with NA:
+round4.small$CorruptionOfficials[round4.small$CorruptionOfficials==9] <- NA
+
+# m) CorruptionCouncilors:
+# CorruptionCouncilors.notknown <- round4.small[ which(round4.small$CorruptionCouncilors==9), ]
+# 4783 don't know
+# replace these with NA:
+round4.small$CorruptionCouncilors[round4.small$CorruptionCouncilors==9] <- NA
+
+# n) CorruptionTax:
+# CorruptionTax.notknown <- round4.small[ which(round4.small$CorruptionTax==9), ]
+# 5575 don't know
+# replace these with NA:
+round4.small$CorruptionTax[round4.small$CorruptionTax==9] <- NA
 
 
-# Step 2: explore variables for things such as "don't know" "refuse to answer"
+#[...]
+
+# s) EconomicPolicies:
+# EconomicPolicies.notknown <- round4.small[ which(round4.small$EconomicPolicies==9), ]
+# 1019 don't know
+# replace these with NA:
+round4.small$EconomicPolicies[round4.small$EconomicPolicies==9] <- NA
 
 
+# Step 3: recode 98 to missings:
+# 98 stands for "refused to answer"
+# a) Age:
+# age.refused <- round4.small[ which(round4.small$Age==98), ]
+# 1 refused
+# replace these with NA:
+round4.small$Age[round4.small$Age==98] <- NA
 
-# Step 3: recode these as missings as well:
+# b) EconomicSituation:
+# EconomicSituation.refuse <- round4.small[ which(round4.small$EconomicSituation==98), ]
+# 0 refuse
 
+# c) LivingConditions:
+# LivingConditions.refuse <- round4.small[ which(round4.small$LivingConditions==98), ]
+# 0 refuse
+
+# d) Interest:
+#Interest.refuse <- round4.small[ which(round4.small$Interest==98), ]
+# 0 refuse
+
+# e) Religion:
+#Religion.refuse <- round4.small[ which(round4.small$Religion==98), ]
+# 0 refuse
+
+# f) TaxMorale:
+#TaxMorale.refuse <- round4.small[ which(round4.small$TaxMorale==98), ]
+# 0 refuse
+
+# g) TrustPresident:
+#TrustPresident.refuse <- round4.small[ which(round4.small$TrustPresident==98), ]
+# 0 refuse
+
+# h) TrustParliament:
+# TrustParliament.refuse <- round4.small[ which(round4.small$TrustParliament==98), ]
+# 0 refuse
+
+# i) TrustCourts:
+# TrustCourts.refuse <- round4.small[ which(round4.small$TrustCourts==98), ]
+# 0 refuse
+
+# j) CorruptionPresident:
+#CorruptionPresident.refuse <- round4.small[ which(round4.small$CorruptionPresident==98), ]
+# 0 refuse
+
+# k) CorruptionParliament:
+# CorruptionParliament.refuse <- round4.small[ which(round4.small$CorruptionParliament==98), ]
+# 0 refuse
+
+# l) CorruptionOfficials:
+# CorruptionOfficials.refuse <- round4.small[ which(round4.small$CorruptionOfficials==98), ]
+# 0 refuse
+
+# m) CorruptionCouncilors:
+# CorruptionCouncilors.refuse <- round4.small[ which(round4.small$CorruptionCouncilors==98), ]
+# 0 refuse
+
+# n) CorruptionTax:
+# CorruptionTax.refuse <- round4.small[ which(round4.small$CorruptionTax==98), ]
+# 0 refuse
+
+#[...]
+
+# s) EconomicPolicies:
+# EconomicPolicies.refuse <- round4.small[ which(round4.small$EconomicPolicies==98), ]
+# 0 refuse
 
 
 # FACTOR VARIABLES:
