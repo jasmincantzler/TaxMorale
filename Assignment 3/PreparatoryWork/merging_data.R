@@ -44,7 +44,7 @@ round5.small$Country <- cut(round5.small$Country,
 
 
 # create unique identifyer by combining "Respondent" and "Year": 
-round5.small$RespondentID <- 
+round5.small$Respondent <- paste0(round5.small$Respondent, '_', round5.small$Year)
   
   
 # MISSINGS:
@@ -63,114 +63,115 @@ summary(round5.small)
 ### "-1" but have been coded as containing only missings (NA)
 
 # a) Age:
-age.missing <- round5.small[ which(round5.small$Age==-1), ]# 14 missings
+#age.missing <- round5.small[ which(round5.small$Age==-1), ]# 14 missings
 # replace these with NA:
 round5.small$Age[round5.small$Age==-1] <- NA 
 
 # b) EconomicSituation:
-EconomicSituation.missing <- round5.small[ which(round5.small$EconomicSituation==-1), ]
+#EconomicSituation.missing <- round5.small[ which(round5.small$EconomicSituation==-1), ]
 # 13 missings
 # replace these with NA:
 round5.small$EconomicSituation[round5.small$EconomicSituation==-1] <- NA
 
 # c) LivingConditions:
-LivingConditions.missing <- round5.small[ which(round5.small$LivingConditions==-1), ]
+#LivingConditions.missing <- round5.small[ which(round5.small$LivingConditions==-1), ]
 # 58 missings
 # replace these with NA:
 round5.small$LivingConditions[round5.small$LivingConditions==-1] <- NA
 
 # d) Interest:
-Interest.missing <- round5.small[ which(round5.small$Interest==-1), ]
+#Interest.missing <- round5.small[ which(round5.small$Interest==-1), ]
 # 14 missings
 # replace these with NA:
 round5.small$Interest[round5.small$Interest==-1] <- NA
 
 # e) Religion:
-Religion.missing <- round5.small[ which(round5.small$Religion==-1), ]
+#Religion.missing <- round5.small[ which(round5.small$Religion==-1), ]
 # 28 missings
 # replace these with NA:
 round5.small$Religion[round5.small$Religion==-1] <- NA
 
 # f) TaxMorale:
-TaxMorale.missing <- round5.small[ which(round5.small$TaxMorale==-1), ]
+#TaxMorale.missing <- round5.small[ which(round5.small$TaxMorale==-1), ]
 # 28 missings
 # replace these with NA:
 round5.small$TaxMorale[round5.small$TaxMorale==-1] <- NA
 
 # g) TrustPresident:
-TrustPresident.missing <- round5.small[ which(round5.small$TrustPresident==-1), ]
+#TrustPresident.missing <- round5.small[ which(round5.small$TrustPresident==-1), ]
 # 16 missings
 # replace these with NA:
 round5.small$TrustPresident[round5.small$TrustPresident==-1] <- NA
 
 # h) TrustParliament:
-TrustParliament.missing <- round5.small[ which(round5.small$TrustParliament==-1), ]
+#TrustParliament.missing <- round5.small[ which(round5.small$TrustParliament==-1), ]
 # 23 missings
 # replace these with NA:
 round5.small$TrustParliament[round5.small$TrustParliament==-1] <- NA
 
 # i) TrustCourts:
-TrustCourts.missing <- round5.small[ which(round5.small$TrustCourts==-1), ]
+#TrustCourts.missing <- round5.small[ which(round5.small$TrustCourts==-1), ]
 # 46 missings
 # replace these with NA:
 round5.small$TrustCourts[round5.small$TrustCourts==-1] <- NA
 
 # j) CorruptionPresident:
-CorruptionPresident.missing <- round5.small[ which(round5.small$CorruptionPresident==-1), ]
+#CorruptionPresident.missing <- round5.small[ which(round5.small$CorruptionPresident==-1), ]
 # 11 missings
 # replace these with NA:
 round5.small$CorruptionPresident[round5.small$CorruptionPresident==-1] <- NA
 
 # k) CorruptionParliament:
-CorruptionParliament.missing <- round5.small[ which(round5.small$CorruptionParliament==-1), ]
+#CorruptionParliament.missing <- round5.small[ which(round5.small$CorruptionParliament==-1), ]
 # 31 missings
 # replace these with NA:
 round5.small$CorruptionParliament[round5.small$CorruptionParliament==-1] <- NA
 
 # l) CorruptionOfficials:
-CorruptionOfficials.missing <- round5.small[ which(round5.small$CorruptionOfficials==-1), ]
+#CorruptionOfficials.missing <- round5.small[ which(round5.small$CorruptionOfficials==-1), ]
 # 41 missings
 # replace these with NA:
 round5.small$CorruptionOfficials[round5.small$CorruptionOfficials==-1] <- NA
 
 # m) CorruptionCouncilors:
-CorruptionCouncilors.missing <- round5.small[ which(round5.small$CorruptionCouncilors==-1), ]
+#CorruptionCouncilors.missing <- round5.small[ which(round5.small$CorruptionCouncilors==-1), ]
 # 2400 missings
 # replace these with NA:
 round5.small$CorruptionCouncilors[round5.small$CorruptionCouncilors==-1] <- NA
 
 # n) CorruptionTax:
-CorruptionTax.missing <- round5.small[ which(round5.small$CorruptionTax==-1), ]
+#CorruptionTax.missing <- round5.small[ which(round5.small$CorruptionTax==-1), ]
 # 28 missings
 # replace these with NA:
 round5.small$CorruptionTax[round5.small$CorruptionTax==-1] <- NA
 
 # o) AvoidHowOften:
-AvoidHowOften.missing <- round5.small[ which(round5.small$AvoidHowOften==-1), ]
+#AvoidHowOften.missing <- round5.small[ which(round5.small$AvoidHowOften==-1), ]
 # 33 missings
 # replace these with NA:
 round5.small$AvoidHowOften[round5.small$AvoidHowOften==-1] <- NA
 
 # p) TrustTax:
-TrustTax.missing <- round5.small[ which(round5.small$TrustTax==-1), ]
+#TrustTax.missing <- round5.small[ which(round5.small$TrustTax==-1), ]
 # 79 missings
 # replace these with NA:
 round5.small$TrustTax[round5.small$TrustTax==-1] <- NA
 
 # q) SelfEmployedTax:
-SelfEmployedTax.missing <- round5.small[ which(round5.small$SelfEmployedTax==-1), ]
+#SelfEmployedTax.missing <- round5.small[ which(round5.small$SelfEmployedTax==-1), ]
 # 14 missings
 # replace these with NA:
 round5.small$SelfEmployedTax[round5.small$SelfEmployedTax==-1] <- NA
 
 # r) AvoidReason:
-AvoidReason.missing <- round5.small[ which(round5.small$AvoidReason==-1), ]
+#AvoidReason.missing <- round5.small[ which(round5.small$AvoidReason==-1), ]
 # 39 missings
 # replace these with NA:
 round5.small$AvoidReason[round5.small$AvoidReason==-1] <- NA
 
   
 # Step 2: explore variables for things such as "don't know" "refuse to answer"
+
 
 
 
@@ -289,6 +290,7 @@ round4.small$Country <- cut(round4.small$Country,
                                        'South Africa', 'Tanzania','Uganda', 'Zambia', 'Zimbabwe'))
 
 # create unique identifyer by combining "Respondent" and "Year":
+round4.small$Respondent <- paste0(round4.small$Respondent, '_', round4.small$Year)
 
 # MISSINGS:
 # at the moment R only recognizes missings, when a question was not asked in one
@@ -307,85 +309,85 @@ summary(round4.small)
 ### as containing only missings (NA)
 
 # a) Age:
-age.missing <- round4.small[ which(round4.small$Age==-1), ]
+#age.missing <- round4.small[ which(round4.small$Age==-1), ]
 # 6 missings
 # replace these with NA:
 round4.small$Age[round4.small$Age==-1] <- NA 
 
 # b) EconomicSituation:
-EconomicSituation.missing <- round4.small[ which(round4.small$EconomicSituation==-1), ]
+#EconomicSituation.missing <- round4.small[ which(round4.small$EconomicSituation==-1), ]
 # 4 missings
 # replace these with NA:
 round4.small$EconomicSituation[round4.small$EconomicSituation==-1] <- NA
 
 # c) LivingConditions:
-LivingConditions.missing <- round4.small[ which(round4.small$LivingConditions==-1), ]
+#LivingConditions.missing <- round4.small[ which(round4.small$LivingConditions==-1), ]
 # 25 missings
 # replace these with NA:
 round4.small$LivingConditions[round4.small$LivingConditions==-1] <- NA
 
 # d) Interest:
-Interest.missing <- round4.small[ which(round4.small$Interest==-1), ]
+#Interest.missing <- round4.small[ which(round4.small$Interest==-1), ]
 # 7 missings
 # replace these with NA:
 round4.small$Interest[round4.small$Interest==-1] <- NA
 
 # e) Religion:
-Religion.missing <- round4.small[ which(round4.small$Religion==-1), ]
+#Religion.missing <- round4.small[ which(round4.small$Religion==-1), ]
 # 18 missings
 # replace these with NA:
 round4.small$Religion[round4.small$Religion==-1] <- NA
 
 # f) TaxMorale:
-TaxMorale.missing <- round4.small[ which(round4.small$TaxMorale==-1), ]
+#TaxMorale.missing <- round4.small[ which(round4.small$TaxMorale==-1), ]
 # 19 missings
 # replace these with NA:
 round4.small$TaxMorale[round4.small$TaxMorale==-1] <- NA
 
 # g) TrustPresident:
-TrustPresident.missing <- round4.small[ which(round4.small$TrustPresident==-1), ]
+#TrustPresident.missing <- round4.small[ which(round4.small$TrustPresident==-1), ]
 # 15 missings
 # replace these with NA:
 round4.small$TrustPresident[round4.small$TrustPresident==-1] <- NA
 
 # h) TrustParliament:
-TrustParliament.missing <- round4.small[ which(round4.small$TrustParliament==-1), ]
+#TrustParliament.missing <- round4.small[ which(round4.small$TrustParliament==-1), ]
 # 16 missings
 # replace these with NA:
 round4.small$TrustParliament[round4.small$TrustParliament==-1] <- NA
 
 # i) TrustCourts:
-TrustCourts.missing <- round4.small[ which(round4.small$TrustCourts==-1), ]
+#TrustCourts.missing <- round4.small[ which(round4.small$TrustCourts==-1), ]
 # 16 missings
 # replace these with NA:
 round4.small$TrustCourts[round4.small$TrustCourts==-1] <- NA
 
 # j) CorruptionPresident:
-CorruptionPresident.missing <- round4.small[ which(round4.small$CorruptionPresident==-1), ]
+#CorruptionPresident.missing <- round4.small[ which(round4.small$CorruptionPresident==-1), ]
 # 10 missings
 # replace these with NA:
 round4.small$CorruptionPresident[round4.small$CorruptionPresident==-1] <- NA
 
 # k) CorruptionParliament:
-CorruptionParliament.missing <- round4.small[ which(round4.small$CorruptionParliament==-1), ]
+#CorruptionParliament.missing <- round4.small[ which(round4.small$CorruptionParliament==-1), ]
 # 13 missings
 # replace these with NA:
 round4.small$CorruptionParliament[round4.small$CorruptionParliament==-1] <- NA
 
 # l) CorruptionOfficials:
-CorruptionOfficials.missing <- round4.small[ which(round4.small$CorruptionOfficials==-1), ]
+#CorruptionOfficials.missing <- round4.small[ which(round4.small$CorruptionOfficials==-1), ]
 # 23 missings
 # replace these with NA:
 round4.small$CorruptionOfficials[round4.small$CorruptionOfficials==-1] <- NA
 
 # m) CorruptionCouncilors:
-CorruptionCouncilors.missing <- round4.small[ which(round4.small$CorruptionCouncilors==-1), ]
+#CorruptionCouncilors.missing <- round4.small[ which(round4.small$CorruptionCouncilors==-1), ]
 # 22 missings
 # replace these with NA:
 round4.small$CorruptionCouncilors[round4.small$CorruptionCouncilors==-1] <- NA
 
 # n) CorruptionTax:
-CorruptionTax.missing <- round4.small[ which(round4.small$CorruptionTax==-1), ]
+#CorruptionTax.missing <- round4.small[ which(round4.small$CorruptionTax==-1), ]
 # 14 missings
 # replace these with NA:
 round4.small$CorruptionTax[round4.small$CorruptionTax==-1] <- NA
@@ -394,7 +396,7 @@ round4.small$CorruptionTax[round4.small$CorruptionTax==-1] <- NA
 #[...]
 
 # s) EconomicPolicies:
-EconomicPolicies.missing <- round4.small[ which(round4.small$EconomicPolicies==-1), ]
+#EconomicPolicies.missing <- round4.small[ which(round4.small$EconomicPolicies==-1), ]
 # 6 missings
 # replace these with NA:
 round4.small$EconomicPolicies[round4.small$EconomicPolicies==-1] <- NA
@@ -466,7 +468,9 @@ round3.small$Country <- cut(round3.small$Country,
 
 
 # create unique identifyer by combining "Respondent" and "Year":
-# before that: the abbreviation of Malawi is MLW in round 4 and 5
+round3.small$Respondent <- paste0(round3.small$Respondent, '_', round3.small$Year)
+# additionally: the abbreviation of Malawi is MLW in round 4 and 5, but MWI in
+# round 3, therefore this has to be changed to MLW 
 
 
 # MISSINGS:
@@ -485,25 +489,25 @@ summary(round3.small)
 ### only missings (NA)
 
 # a) Age:
-age.missing <- round3.small[ which(round3.small$Age==-1), ]
+#age.missing <- round3.small[ which(round3.small$Age==-1), ]
 # 14 missings
 # replace these with NA:
 round3.small$Age[round3.small$Age==-1] <- NA 
 
 # b) EconomicSituation:
-EconomicSituation.missing <- round3.small[ which(round3.small$EconomicSituation==-1), ]
+#EconomicSituation.missing <- round3.small[ which(round3.small$EconomicSituation==-1), ]
 # 16 missings
 # replace these with NA:
 round3.small$EconomicSituation[round3.small$EconomicSituation==-1] <- NA
 
 # c) LivingConditions:
-LivingConditions.missing <- round3.small[ which(round3.small$LivingConditions==-1), ]
+#LivingConditions.missing <- round3.small[ which(round3.small$LivingConditions==-1), ]
 # 10 missings
 # replace these with NA:
 round3.small$LivingConditions[round3.small$LivingConditions==-1] <- NA
 
 # d) Interest:
-Interest.missing <- round3.small[ which(round3.small$Interest==-1), ]
+#Interest.missing <- round3.small[ which(round3.small$Interest==-1), ]
 # 5 missings
 # replace these with NA:
 round3.small$Interest[round3.small$Interest==-1] <- NA
@@ -511,37 +515,37 @@ round3.small$Interest[round3.small$Interest==-1] <- NA
 #[...]
 
 # f) TaxMorale:
-TaxMorale.missing <- round3.small[ which(round3.small$TaxMorale==-1), ]
+#TaxMorale.missing <- round3.small[ which(round3.small$TaxMorale==-1), ]
 # 3 missings
 # replace these with NA:
 round3.small$TaxMorale[round3.small$TaxMorale==-1] <- NA
 
 # g) TrustPresident:
-TrustPresident.missing <- round3.small[ which(round3.small$TrustPresident==-1), ]
+#TrustPresident.missing <- round3.small[ which(round3.small$TrustPresident==-1), ]
 # 1 missing
 # replace these with NA:
 round3.small$TrustPresident[round3.small$TrustPresident==-1] <- NA
 
 # h) TrustParliament:
-TrustParliament.missing <- round3.small[ which(round3.small$TrustParliament==-1), ]
+#TrustParliament.missing <- round3.small[ which(round3.small$TrustParliament==-1), ]
 # 2 missings
 # replace these with NA:
 round3.small$TrustParliament[round3.small$TrustParliament==-1] <- NA
 
 # i) TrustCourts:
-TrustCourts.missing <- round3.small[ which(round3.small$TrustCourts==-1), ]
+#TrustCourts.missing <- round3.small[ which(round3.small$TrustCourts==-1), ]
 # 13 missings
 # replace these with NA:
 round3.small$TrustCourts[round3.small$TrustCourts==-1] <- NA
 
 # j) CorruptionPresident:
-CorruptionPresident.missing <- round3.small[ which(round3.small$CorruptionPresident==-1), ]
+#CorruptionPresident.missing <- round3.small[ which(round3.small$CorruptionPresident==-1), ]
 # 2 missings
 # replace these with NA:
 round3.small$CorruptionPresident[round3.small$CorruptionPresident==-1] <- NA
 
 # k) CorruptionParliament:
-CorruptionParliament.missing <- round3.small[ which(round3.small$CorruptionParliament==-1), ]
+#CorruptionParliament.missing <- round3.small[ which(round3.small$CorruptionParliament==-1), ]
 # 2 missings
 # replace these with NA:
 round3.small$CorruptionParliament[round3.small$CorruptionParliament==-1] <- NA
@@ -549,13 +553,13 @@ round3.small$CorruptionParliament[round3.small$CorruptionParliament==-1] <- NA
 #[...]
 
 # m) CorruptionCouncilors:
-CorruptionCouncilors.missing <- round3.small[ which(round3.small$CorruptionCouncilors==-1), ]
+#CorruptionCouncilors.missing <- round3.small[ which(round3.small$CorruptionCouncilors==-1), ]
 # 3 missings
 # replace these with NA:
 round3.small$CorruptionCouncilors[round3.small$CorruptionCouncilors==-1] <- NA
 
 # n) CorruptionTax:
-CorruptionTax.missing <- round3.small[ which(round3.small$CorruptionTax==-1), ]
+#CorruptionTax.missing <- round3.small[ which(round3.small$CorruptionTax==-1), ]
 # 6 missings
 # replace these with NA:
 round3.small$CorruptionTax[round3.small$CorruptionTax==-1] <- NA
@@ -564,37 +568,37 @@ round3.small$CorruptionTax[round3.small$CorruptionTax==-1] <- NA
 #[...]
 
 # s) EconomicPolicies:
-EconomicPolicies.missing <- round3.small[ which(round3.small$EconomicPolicies==-1), ]
+#EconomicPolicies.missing <- round3.small[ which(round3.small$EconomicPolicies==-1), ]
 # 2 missings
 # replace these with NA:
 round3.small$EconomicPolicies[round3.small$EconomicPolicies==-1] <- NA
 
 # t) LocalGvtTaxes:
-LocalGvtTaxes.missing <- round3.small[ which(round3.small$LocalGvtTaxes==-1), ]
+#LocalGvtTaxes.missing <- round3.small[ which(round3.small$LocalGvtTaxes==-1), ]
 # 9 missings
 # replace these with NA:
 round3.small$LocalGvtTaxes[round3.small$LocalGvtTaxes==-1] <- NA
 
 # u) Enforce1:
-Enforce1.missing <- round3.small[ which(round3.small$Enforce1==-1), ]
+#Enforce1.missing <- round3.small[ which(round3.small$Enforce1==-1), ]
 # 6 missings
 # replace these with NA:
 round3.small$Enforce1[round3.small$Enforce1==-1] <- NA
 
 # v) Enforce2:
-Enforce2.missing <- round3.small[ which(round3.small$Enforce2==-1), ]
+#Enforce2.missing <- round3.small[ which(round3.small$Enforce2==-1), ]
 # 7 missings
 # replace these with NA:
 round3.small$Enforce2[round3.small$Enforce2==-1] <- NA
 
 # w) CorruptionOfficialsLocal:
-CorruptionOfficialsLocal.missing <- round3.small[ which(round3.small$CorruptionOfficialsLocal==-1), ]
+#CorruptionOfficialsLocal.missing <- round3.small[ which(round3.small$CorruptionOfficialsLocal==-1), ]
 # 4 missings
 # replace these with NA:
 round3.small$CorruptionOfficialsLocal[round3.small$CorruptionOfficialsLocal==-1] <- NA
 
 # x) CorruptionOfficialsNational:
-CorruptionOfficialsNational.missing <- round3.small[ which(round3.small$CorruptionOfficialsNational==-1), ]
+#CorruptionOfficialsNational.missing <- round3.small[ which(round3.small$CorruptionOfficialsNational==-1), ]
 # 5 missings
 # replace these with NA:
 round3.small$CorruptionOfficialsNational[round3.small$CorruptionOfficialsNational==-1] <- NA
@@ -630,6 +634,12 @@ save(round3.final, file="Round3.final.RData", list="round3.final")
 # # # # # # # #
 
 
-
 # for merging use rbind.fill (from plyr-package)
+# Afrobarometer.final <- rbind(round3.final, round4.final, round5.final)
+
+# export merged data into csv format:
+export(Afrobarometer.final, file="Afrobarometer.final.csv")
+
+# save smaller data set in Rdata format:
+save(Afrobarometer.final, file="Afrobarometer.final.RData", list="Afrobarometer.final")
 
