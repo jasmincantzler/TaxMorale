@@ -5,8 +5,10 @@ date: "13 November 2015"
 output:
   html_document:
     fig_caption: yes
+    number_sections: true
   pdf_document:
     fig_caption: yes
+    number_sections: true
 ---
 
 ```{r, include=FALSE}
@@ -21,22 +23,39 @@ output:
 
 ```
 
-###1. Introduction
+#Introduction
 
-Our research paper aims to shed light on the determinants of tax morale in African countries by conducting a regression analysis using data from the Afrobarometer for the years 2005, 2008 and 2015. Our conceptual framework is based on commonly perceived determinants of tax morale in developed countries, whereby:
+Our research paper aims to shed light on the determinants of tax morale in African countries by conducting a regression analysis using data from the Afrobarometer for the years 2005-2006, 2008-2010 and 2011-2013. Our conceptual framework is based on commonly perceived determinants of tax morale in developed countries, whereby:
 
 $$Tax Morale_i = \alpha_i + \beta_1 Trust in Government_i + $$
 
 This paper briefly outlines the design, operationalization and data selection, before conducting the regression analysis and briefly describing its results. More extensive information will be available in the final report. 
 
-###2. Method
-####2.1 Data Design & Operationalization
+#Method
 
-$$Tax Morale_i = \alpha_i + \beta_1 Trust in Government_i + $$
+##Design
+A regression analysis is used to investigate the determinants of tax morale in African countries:
 
-$Trust in Government_i$ is the 
+$$Tax Morale_i = \alpha_i + \beta_1 Trust in Government_i + \beta_2 Level of Corruption_i + \beta_3 Interactions with other taxpayers_i + \beta_4 Tax Burden_i +  \beta_5 Social Norms_i + \epsilon_1$$
 
-####2.2 Data Selection
-**here we can put the summary statistics etc**
+whereby, $Trust in Government_i$ is the 
 
-###3. Regression Results
+##Data Selection & Operationalization
+As outlined in Assignment 1, we make use of the Afrobarometer Surveys to investigate the determinants of tax morale in African countries. We merged the survey results from Round 3, 4 and 5, resulting in a data set that spans the years 2005-2006, 2008-2010 and 2011-2013.
+
+Tax Morale is instrumented by a variable [^1] that asks the participants to agree or disagree with the statement "The tax department always has the right to make people pay taxes." The variable is measured from 1=Strongly Disagree, 2=Disagree, 3=Neither Agree Nor Disagree, 4=Agree, 5=Strongly Agree. 
+
+**Table 1 in the columns 2, 3 and 4 shows for each country the percentage of individuals saying that tax evasion is never justifiable. Columns 5, 6, and 7 give the mean value for all countries based on a scale from 0 to 3, were 3 is the highest tax morale (value 0 integrates the values 4 to 10).**
+
+```{r,}
+#include Table
+```
+
+The average values in Table 1 gives a first overview about tax morale in African countries; in general .... seems to have higher tax morale than...
+
+#Regression Results
+
+
+
+
+[^1]: For Round 3 (Codebook 2005) it is variable Q52D, for Round 4 (Codebook 2008) it is Q44C, and for Round 5 (2015) it is Q48C.
