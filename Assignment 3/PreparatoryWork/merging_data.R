@@ -1,14 +1,15 @@
 ###########################################
 # Cleaning and merging Afrobarometer Data #
 # Wiebke Weiger                           #
-# last updated: 6 November 2015           #
+# last updated: 8 November 2015           #
 ###########################################
 
 # packages needed:
 library(plyr)
 
 # set working directory (remember to change to your directory)
-setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Assignment 3/PreparatoryWork")
+#setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Assignment 3/PreparatoryWork")
+setwd("/Users/jasmincantzler/Documents/TaxMorale/Assignment 3/PreparatoryWork")
 
 # load the data into R from the previously created csv-files:
 
@@ -170,13 +171,115 @@ round5.small$SelfEmployedTax[round5.small$SelfEmployedTax==-1] <- NA
 round5.small$AvoidReason[round5.small$AvoidReason==-1] <- NA
 
   
-# Step 2: explore variables for things such as "don't know" "refuse to answer"
+# Step 2: explore variables for things such as "don't know" & "refuse to answer" 
+# & recode these as missings as well
 
+# a) Age:
+#age.notknown <- round5.small[ which(round5.small$Age==9), ]
+# 0 missings
 
+# b) EconomicSituation:
+#summary(round5.small$EconomicSituation)
+EconomicSituation.notknown <- round5.small[ which(round5.small$EconomicSituation==9), ]
+# 847 don't know
+# replace these with NA:
+#round5.small$EconomicSituation[round5.small$EconomicSituation==9] <- NA
 
+# c) LivingConditions:
+LivingConditions.notknown <- round5.small[ which(round5.small$LivingConditions==9), ]
+# 142 don't know
+# replace these with NA:
+#round5.small$LivingConditions[round5.small$LivingConditions==9] <- NA
 
-# Step 3: recode these as missings as well:
+# d) Interest:
+Interest.notknown <- round5.small[ which(round5.small$Interest==9), ]
+# 531 don't know
+# replace these with NA:
+#round5.small$Interest[round5.small$Interest==9] <- NA
 
+# e) Religion:
+Religion.notknown <- round5.small[ which(round5.small$Religion==9), ]
+# 354 don't know
+# replace these with NA:
+#round5.small$Religion[round5.small$Religion==9] <- NA
+
+# f) TaxMorale:
+TaxMorale.notknown <- round5.small[ which(round5.small$TaxMorale==9), ]
+# 2297 don't know
+# replace these with NA:
+#round5.small$TaxMorale[round5.small$TaxMorale==9] <- NA
+
+# g) TrustPresident:
+TrustPresident.notknown <- round5.small[ which(round5.small$TrustPresident==9), ]
+# 1779 don't know
+# replace these with NA:
+#round5.small$TrustPresident[round5.small$TrustPresident==9] <- NA
+
+# h) TrustParliament:
+TrustParliament.notknown <- round5.small[ which(round5.small$TrustParliament==9), ]
+# 2568 don't know
+# replace these with NA:
+#round5.small$TrustParliament[round5.small$TrustParliament==9] <- NA
+
+# i) TrustCourts:
+TrustCourts.notknown <- round5.small[ which(round5.small$TrustCourts==9), ]
+# 2452 don't know
+# replace these with NA:
+#round5.small$TrustCourts[round5.small$TrustCourts==9] <- NA
+
+# j) CorruptionPresident:
+CorruptionPresident.notknown <- round5.small[ which(round5.small$CorruptionPresident==9), ]
+# 8030 don't know
+# replace these with NA:
+#round5.small$CorruptionPresident[round5.small$CorruptionPresident==9] <- NA
+
+# k) CorruptionParliament:
+CorruptionParliament.notknown <- round5.small[ which(round5.small$CorruptionParliament==9), ]
+# 6826 don't know
+# replace these with NA:
+#round5.small$CorruptionParliament[round5.small$CorruptionParliament==9] <- NA
+
+# l) CorruptionOfficials:
+CorruptionOfficials.notknown <- round5.small[ which(round5.small$CorruptionOfficials==9), ]
+# 6072 don't know
+# replace these with NA:
+#round5.small$CorruptionOfficials[round5.small$CorruptionOfficials==9] <- NA
+
+# m) CorruptionCouncilors:
+CorruptionCouncilors.notknown <- round5.small[ which(round5.small$CorruptionCouncilors==9), ]
+# 5324 don't knows
+# replace these with NA:
+# round5.small$CorruptionCouncilors[round5.small$CorruptionCouncilors==9] <- NA
+
+# n) CorruptionTax:
+CorruptionTax.notknown <- round5.small[ which(round5.small$CorruptionTax==9), ]
+# 8237 don't knows
+# replace these with NA:
+#round5.small$CorruptionTax[round5.small$CorruptionTax==9] <- NA
+
+# o) AvoidHowOften:
+AvoidHowOften.notknown <- round5.small[ which(round5.small$AvoidHowOften==9), ]
+# 6210 don't knows
+# replace these with NA:
+#round5.small$AvoidHowOften[round5.small$AvoidHowOften==9] <- NA
+
+# p) TrustTax:
+TrustTax.notknown <- round5.small[ which(round5.small$TrustTax==9), ]
+# 5829 don't knows
+# replace these with NA:
+#round5.small$TrustTax[round5.small$TrustTax==-9] <- NA
+
+# q) SelfEmployedTax:
+SelfEmployedTax.notknown <- round5.small[ which(round5.small$SelfEmployedTax==9), ]
+# 2024 don't knows
+# replace these with NA:
+#round5.small$SelfEmployedTax[round5.small$SelfEmployedTax==9] <- NA
+
+# r) AvoidReason:
+AvoidReason.notknown <- round5.small[ which(round5.small$AvoidReason==9), ]
+# 644 don't knows
+# replace these with NA:
+#round5.small$AvoidReason[round5.small$AvoidReason==9] <- NA
 
 
 # FACTOR VARIABLES:
