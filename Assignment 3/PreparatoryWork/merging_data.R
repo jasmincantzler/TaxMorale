@@ -171,8 +171,8 @@ round5.small$SelfEmployedTax[round5.small$SelfEmployedTax==-1] <- NA
 round5.small$AvoidReason[round5.small$AvoidReason==-1] <- NA
 
   
-# Step 2: explore variables for things such as "don't know" & "refuse to answer" 
-# & recode these as missings as well
+# Step 2: "9" 
+# 9 indicates "don't know"
 
 # a) Age:
 #age.notknown <- round5.small[ which(round5.small$Age==9), ]
@@ -280,6 +280,84 @@ AvoidReason.notknown <- round5.small[ which(round5.small$AvoidReason==9), ]
 # 644 don't knows
 # replace these with NA:
 #round5.small$AvoidReason[round5.small$AvoidReason==9] <- NA
+
+# Step 3: "98" 
+# 98 indicates "refuse to answer"
+
+# a) Age:
+# age.refuse <- round5.small[ which(round5.small$Age==98), ]
+# 1 refuse
+# replace these with NA:
+round5.small$Age[round5.small$Age==98] <- NA
+
+# b) EconomicSituation:
+#EconomicSituation.refuse <- round5.small[ which(round5.small$EconomicSituation==98), ]
+# 0 refuse
+
+# c) LivingConditions:
+#LivingConditions.refuse <- round5.small[ which(round5.small$LivingConditions==98), ]
+# 0 refuse
+
+# d) Interest:
+#Interest.refuse <- round5.small[ which(round5.small$Interest==98), ]
+# 0 refuse
+
+# e) Religion:
+#Religion.refuse <- round5.small[ which(round5.small$Religion==98), ]
+# 0 refuse
+
+# f) TaxMorale:
+#TaxMorale.refuse <- round5.small[ which(round5.small$TaxMorale==98), ]
+# 0 refuse
+
+# g) TrustPresident:
+# TrustPresident.refuse <- round5.small[ which(round5.small$TrustPresident==98), ]
+# 0 refuse
+
+# h) TrustParliament:
+#TrustParliament.refuse <- round5.small[ which(round5.small$TrustParliament==98), ]
+# 0 refuse
+
+# i) TrustCourts:
+#TrustCourts.refuse <- round5.small[ which(round5.small$TrustCourts==98), ]
+# 0 refuse
+
+# j) CorruptionPresident:
+CorruptionPresident.refuse <- round5.small[ which(round5.small$CorruptionPresident==98), ]
+# 0 refuse
+
+# k) CorruptionParliament:
+# CorruptionParliament.refuse <- round5.small[ which(round5.small$CorruptionParliament==98), ]
+# 0 refuse
+
+# l) CorruptionOfficials:
+# CorruptionOfficials.refuse <- round5.small[ which(round5.small$CorruptionOfficials==98), ]
+# 0 refuse
+
+# m) CorruptionCouncilors:
+#CorruptionCouncilors.refuse <- round5.small[ which(round5.small$CorruptionCouncilors==98), ]
+# 0 refuse
+
+# n) CorruptionTax:
+# CorruptionTax.refuse <- round5.small[ which(round5.small$CorruptionTax==98), ]
+# 0 refuse
+
+# o) AvoidHowOften:
+#AvoidHowOften.refuse <- round5.small[ which(round5.small$AvoidHowOften==98), ]
+# 0 refuse
+
+# p) TrustTax:
+#TrustTax.refuse <- round5.small[ which(round5.small$TrustTax==98), ]
+# 0 refuse
+
+# q) SelfEmployedTax:
+# SelfEmployedTax.refuse <- round5.small[ which(round5.small$SelfEmployedTax==98), ]
+# 0 refuse
+
+# r) AvoidReason:
+# AvoidReason.refuse <- round5.small[ which(round5.small$AvoidReason==98), ]
+# 0 refuse
+
 
 
 # FACTOR VARIABLES:
