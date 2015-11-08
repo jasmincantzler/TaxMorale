@@ -376,6 +376,9 @@ AvoidReason.notknown <- round5.small[ which(round5.small$AvoidReason==9999), ]
 # replace these with NA:
 round5.small$AvoidReason[round5.small$AvoidReason==9999] <- NA
 
+# s) EconomicPolicies:
+# missing for this year
+
 
 # FACTOR VARIABLES:
 # At the moment R recognizes most of the variables as numeric variables even
@@ -755,7 +758,13 @@ round4.small$CorruptionTax[round4.small$CorruptionTax==-1] <- NA
 # replace these with NA:
 round4.small$CorruptionTax[round4.small$CorruptionTax==9] <- NA
 
-#[...] 
+# o) AvoidHowOften: not included in this Round
+
+# p) TrustTax: not included in this Round
+
+# q) SelfEmployedTax: not included in this Round
+
+# r) AvoidReason: not included in this Round
 
 # s) EconomicPolicies:
 # Question Number: Q11
@@ -930,7 +939,20 @@ round3.small$Interest[round3.small$Interest==-1] <- NA
 # replace these with NA:
 round3.small$Interest[round3.small$Interest==9] <- NA
 
-#[...] (what is e?)
+#e) Religion:
+#Question Number: Q28A
+# Question: Let’s turn to your role in the community. Now I am going to read out a list of groups that people join or
+# attend. For each one, could you tell me whether you are an official leader, an active member, an inactive member, or
+# not a member: A religious group (e.g. church, mosque)?
+# Variable Label: Member of religious group
+# Values: 0-3, 9, 98, -1
+# Value Labels: 0=Not a Member, 1=Inactive Member, 2=Active Member, 3=Official Leader, 9=Don’t Know,
+# 98=Refused to Answer, -1=Missing Data
+# summary(round3.small$Religion)
+# Religion.notknown <- round3.small[ which(round3.small$Religion==9), ]
+# 59 don't know
+# replace these with NA:
+round3.small$Religion[round3.small$Interest==9] <- NA
 
 # f) TaxMorale:
 # Question Number: Q52D
@@ -1041,7 +1063,7 @@ round3.small$CorruptionParliament[round3.small$CorruptionParliament==-1] <- NA
 # replace these with NA:
 round3.small$CorruptionParliament[round3.small$CorruptionParliament==9] <- NA
 
-#[...] insert l, o, p, q, r
+#l) CorruptionOfficials:
 
 # m) CorruptionCouncilors:
 # Question Number: Q56C
@@ -1079,8 +1101,13 @@ round3.small$CorruptionTax[round3.small$CorruptionTax==-1] <- NA
 # replace these with NA:
 round3.small$CorruptionTax[round3.small$CorruptionTax==9] <- NA
 
+# o) AvoidHowOften: not included in this Round
 
-#[...] insert o, p, q, r 
+# p) TrustTax: not included in this Round
+
+# q) SelfEmployedTax: not included in this Round
+
+# r) AvoidReason: not included in this Round
 
 # s) EconomicPolicies:
 # Question Number: Q13
