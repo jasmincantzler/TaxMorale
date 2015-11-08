@@ -47,14 +47,19 @@ round5.small$Country <- cut(round5.small$Country,
 # create unique identifyer by combining "Respondent" and "Year": 
 round5.small$Respondent <- paste0(round5.small$Respondent, '_', round5.small$Year)
   
-  
+##CLEANING DATA
+
 # MISSINGS:
 # at the moment R only recognizes missings, when a question was not asked in one
 # or several countries
 # according to the code books, missings are coded as "-1" which is currently
 # recognized by R as a value
+
+#DON'T KNOWS:
+
+#REFUSE TO ANSWER:
   
-# Step 1: recode all "-1" as missings:
+# RECODING OF VARIABLES INTO "NA" WHEN APPROPRIATE
 
 summary(round5.small) 
 ### shows that there are "-1" and therefore missings in all of the variables except
@@ -64,300 +69,312 @@ summary(round5.small)
 ### "-1" but have been coded as containing only missings (NA)
 
 # a) Age:
-#age.missing <- round5.small[ which(round5.small$Age==-1), ]# 14 missings
+# Question Number: Q1
+# Question: How old are you?
+# Variable Label: Age
+# Values: 18-100, 105, 998-999, -1
+# Value Labels: 998=Refused to answer, 999=Don‟t know, -1=Missing
+#summary(round5.small$Age)
+#age.missing <- round5.small[ which(round5.small$Age==-1), ]
+# 14 missings
 # replace these with NA:
 round5.small$Age[round5.small$Age==-1] <- NA 
+age.notknown <- round5.small[ which(round5.small$Age==999), ]
+# 400 not knowns
+# replace these with NA:
+round5.small$Age[round5.small$Age==999] <- NA 
+# age.refuse <- round5.small[ which(round5.small$Age==998), ]
+# 30 refuse
+# replace these with NA:
+round5.small$Age[round5.small$Age==998] <- NA
 
 # b) EconomicSituation:
+# Question Number: Q3A
+# Question: In general, how would you describe: The present economic condition of this country?
+# Variable Label: Country‟s present economic condition
+# Values: 1-5, 9, 998, -1
+# Value Labels: 1=Very bad, 2=Fairly bad, 3=Neither good nor bad, 4=Fairly good, 5=Very good, 9=Don‟t know, 998=Refused to answer, -1=Missing
+# summary(round5.small$EconomicSituation)
 #EconomicSituation.missing <- round5.small[ which(round5.small$EconomicSituation==-1), ]
 # 13 missings
 # replace these with NA:
 round5.small$EconomicSituation[round5.small$EconomicSituation==-1] <- NA
+# EconomicSituation.notknown <- round5.small[ which(round5.small$EconomicSituation==9), ]
+# 847 don't know
+# replace these with NA:
+round5.small$EconomicSituation[round5.small$EconomicSituation==9] <- NA
 
 # c) LivingConditions:
+# Question Number: Q3B
+# Question: In general, how would you describe: Your own present living conditions?
+# Variable Label: Your present living conditions
+# Values: 1-5, 9, 998, -1
+# Value Labels: 1=Very bad, 2=Fairly bad, 3=Neither good nor bad, 4=Fairly good, 5=Very good, 9=Don‟t know, 998=Refused to answer, -1=Missing
+# summary(round5.small$LivingConditions)
 #LivingConditions.missing <- round5.small[ which(round5.small$LivingConditions==-1), ]
 # 58 missings
 # replace these with NA:
 round5.small$LivingConditions[round5.small$LivingConditions==-1] <- NA
+# LivingConditions.notknown <- round5.small[ which(round5.small$LivingConditions==9), ]
+# 142 don't know
+# replace these with NA:
+round5.small$LivingConditions[round5.small$LivingConditions==9] <- NA
 
 # d) Interest:
+# Question Number: Q14
+# Question: How interested would you say you are in public affairs?
+# Variable Label: Interest in public affairs
+# Values: 0-3, 9, 998, -1
+# Value Labels: 0=Not at all interested, 1=Not very interested, 2=Somewhat interested, 3=Very interested, 9=Don‟t know, 998=Refused to answer, -1=Missing
+# summary(round5.small$Interest)
 #Interest.missing <- round5.small[ which(round5.small$Interest==-1), ]
 # 14 missings
 # replace these with NA:
 round5.small$Interest[round5.small$Interest==-1] <- NA
+# Interest.refused <- round5.small[ which(round5.small$Interest==998), ]
+# 1 refuse
+# replace these with NA:
+round5.small$Interest[round5.small$Interest==998] <- NA
+# Interest.notknown <- round5.small[ which(round5.small$Interest==9), ]
+# 531 don't know
+# replace these with NA:
+round5.small$Interest[round5.small$Interest==9] <- NA
 
 # e) Religion:
-#Religion.missing <- round5.small[ which(round5.small$Religion==-1), ]
+# Question Number: Q25A
+# Question: Let‟s turn to your role in the community. Now I am going to read out a list of groups that people join or attend. For each one, could you tell me whether you are an official leader, an active member, an inactive member, or not a member: A religious group that meets outside of regular worship services?
+# Variable Label: Member of religious group
+# Values: 0-3, 9, 998, -1
+# Value Labels: 0=Not a Member, 1=Inactive member, 2=Active member, 3=Official leader, 9=Don‟t know, 998=Refused to answer, -1=Missing
+# summary(round5.small$Religion)
+# Religion.missing <- round5.small[ which(round5.small$Religion==-1), ]
 # 28 missings
 # replace these with NA:
 round5.small$Religion[round5.small$Religion==-1] <- NA
+# Religion.notknown <- round5.small[ which(round5.small$Religion==9), ]
+# 354 don't know
+# replace these with NA:
+round5.small$Religion[round5.small$Religion==9] <- NA
 
 # f) TaxMorale:
+# Question Number: Q48C
+# Question: For each of the following statements, please tell me whether you disagree or agree: The tax authorities always have the right to make people pay taxes.
+# Variable Label: People must pay taxes
+# Values: 1-5, 9, 998, -1
+# Value Labels: 1=Strongly disagree, 2=Disagree, 3=Neither agree nor disagree, 4=Agree, 5=Strongly agree, 9=Don‟t know, 998=Refused to answer, -1=Missing
+# summary(round5.small$TaxMorale)
 #TaxMorale.missing <- round5.small[ which(round5.small$TaxMorale==-1), ]
 # 28 missings
 # replace these with NA:
 round5.small$TaxMorale[round5.small$TaxMorale==-1] <- NA
+# TaxMorale.notknown <- round5.small[ which(round5.small$TaxMorale==9), ]
+# 2297 don't know
+# replace these with NA:
+round5.small$TaxMorale[round5.small$TaxMorale==9] <- NA
 
 # g) TrustPresident:
+# Question Number: Q59A
+# **Question: How much do you trust each of the following, or haven‟t you heard enough about them to say: The President/Prime Minister?
+# Variable Label: Trust key leadership figure (President/Prime Minister)
+# Values: 0-3, 9, 998, -1
+# Value Labels: 0=Not at all, 1=Just a little, 2=Somewhat, 3=A lot, 9=Don‟t know/Haven‟t heard enough, 997=Not asked, 998=Refused to answer, -1=Missing
+# summary(round5.small$TrustPresident)
 #TrustPresident.missing <- round5.small[ which(round5.small$TrustPresident==-1), ]
 # 16 missings
 # replace these with NA:
 round5.small$TrustPresident[round5.small$TrustPresident==-1] <- NA
+# TrustPresident.notknown <- round5.small[ which(round5.small$TrustPresident==9), ]
+# 1779 don't know
+# replace these with NA:
+round5.small$TrustPresident[round5.small$TrustPresident==9] <- NA
 
 # h) TrustParliament:
+# Question Number: Q59B
+# **Question: How much do you trust each of the following, or haven‟t you heard enough about them to say: Parliament?
+# Variable Label: Trust parliament/national assembly
+# Values: 0-3, 9, 998, -1
+# Value Labels: 0=Not at all, 1=Just a little, 2=Somewhat, 3=A lot, 9=Don‟t know/Haven‟t heard enough, 997=Not asked, 998=Refused to answer, -1=Missing
+# summary(round5.small$TrustParliament)
 #TrustParliament.missing <- round5.small[ which(round5.small$TrustParliament==-1), ]
 # 23 missings
 # replace these with NA:
 round5.small$TrustParliament[round5.small$TrustParliament==-1] <- NA
+# TrustParliament.notknown <- round5.small[ which(round5.small$TrustParliament==9), ]
+# 2568 don't know
+# replace these with NA:
+round5.small$TrustParliament[round5.small$TrustParliament==9] <- NA
 
 # i) TrustCourts:
+# Question Number: Q59J
+# Question: How much do you trust each of the following, or haven‟t you heard enough about them to say: Courts of law?
+# Variable Label: Trust courts of law
+# Values: 0-3, 9, 998, -1
+# Value Labels: 0=Not at all, 1=Just a little, 2=Somewhat, 3=A lot, 9=Don‟t know/Haven‟t heard enough, 998=Refused to answer, -1=Missing
+# summary(round5.small$TrustCourts)
 #TrustCourts.missing <- round5.small[ which(round5.small$TrustCourts==-1), ]
 # 46 missings
 # replace these with NA:
 round5.small$TrustCourts[round5.small$TrustCourts==-1] <- NA
+# TrustCourts.notknown <- round5.small[ which(round5.small$TrustCourts==9), ]
+# 2452 don't know
+# replace these with NA:
+round5.small$TrustCourts[round5.small$TrustCourts==9] <- NA
 
 # j) CorruptionPresident:
+# Question Number: Q60A
+# **Question: How many of the following people do you think are involved in corruption, or haven‟t you heard enough about them to say: The President/Prime Minister and Officials in his Office?
+# Variable Label: Corruption: office of the President/Prime Minister
+# Values: 0-3, 9, 997, 998, -1
+# Value Labels: 0=None, 1=Some of them, 2=Most of them, 3=All of them, 9=Don‟t know, 997=Not asked, 998=Refused to answer,
+# -1=Missing
+# summary(round5.small$CorruptionPresident)
 #CorruptionPresident.missing <- round5.small[ which(round5.small$CorruptionPresident==-1), ]
 # 11 missings
 # replace these with NA:
 round5.small$CorruptionPresident[round5.small$CorruptionPresident==-1] <- NA
+# CorruptionPresident.notknown <- round5.small[ which(round5.small$CorruptionPresident==9), ]
+# 8030 don't know
+# replace these with NA:
+round5.small$CorruptionPresident[round5.small$CorruptionPresident==9] <- NA
 
 # k) CorruptionParliament:
+# Question Number: Q60B
+# **Question: How many of the following people do you think are involved in corruption, or haven‟t you heard enough about them to say: Members of Parliament?
+# Variable Label: Corruption: Members of Parliament
+# Values: 0-3, 9, 998, -1
+# Value Labels: 0=None, 1=Some of them, 2=Most of them, 3=All of them, 9=Don‟t know, 997=Not asked, 998=Refused to answer,
+# -1=Missing.
+# summary(round5.small$CorruptionParliament)
 #CorruptionParliament.missing <- round5.small[ which(round5.small$CorruptionParliament==-1), ]
 # 31 missings
 # replace these with NA:
 round5.small$CorruptionParliament[round5.small$CorruptionParliament==-1] <- NA
+# CorruptionParliament.notknown <- round5.small[ which(round5.small$CorruptionParliament==9), ]
+# 6826 don't know
+# replace these with NA:
+round5.small$CorruptionParliament[round5.small$CorruptionParliament==9] <- NA
 
 # l) CorruptionOfficials:
+# Question Number: Q60C
+# Question: How many of the following people do you think are involved in corruption, or haven‟t you heard enough about them to say: Government Officials?
+# Variable Label: Corruption: government officials
+# Values: 0-3, 9, 998, -1
+# Value Labels: 0=None, 1=Some of them, 2=Most of them, 3=All of them, 9=Don‟t know, 998=Refused to answer,
+# -1=Missing.
+# summary(round5.small$CorruptionOfficials)
 #CorruptionOfficials.missing <- round5.small[ which(round5.small$CorruptionOfficials==-1), ]
 # 41 missings
 # replace these with NA:
 round5.small$CorruptionOfficials[round5.small$CorruptionOfficials==-1] <- NA
+# CorruptionOfficials.notknown <- round5.small[ which(round5.small$CorruptionOfficials==9), ]
+# 6072 don't know
+# replace these with NA:
+round5.small$CorruptionOfficials[round5.small$CorruptionOfficials==9] <- NA
 
 # m) CorruptionCouncilors:
+# Question Number: Q60D
+# **Question: How many of the following people do you think are involved in corruption, or haven‟t you heard enough about them to say: Local government councilors?
+# Variable Label: Corruption: local government councilors
+# Values: 0-3, 9, 998, -1
+# Value Labels: 0=None, 1=Some of them, 2=Most of them, 3=All of them, 9=Don‟t know, 997=Not asked, 998=Refused to answer,
+# -1=Missing
+# summary(round5.small$CorruptionCouncilors)
 #CorruptionCouncilors.missing <- round5.small[ which(round5.small$CorruptionCouncilors==-1), ]
 # 2400 missings
 # replace these with NA:
 round5.small$CorruptionCouncilors[round5.small$CorruptionCouncilors==-1] <- NA
+# CorruptionCouncilors.notknown <- round5.small[ which(round5.small$CorruptionCouncilors==9), ]
+# 5324 don't knows
+# replace these with NA:
+round5.small$CorruptionCouncilors[round5.small$CorruptionCouncilors==9] <- NA
 
 # n) CorruptionTax:
+# Question Number: Q60F
+# **Question: How many of the following people do you think are involved in corruption, or haven‟t you heard enough about them to say: Tax Officials (e.g. Ministry of Finance officials or Local Government tax collectors)
+# Variable Label: Corruption: tax officials
+# Values: 0-3, 9, 998, -1
+# Value Labels: 0=None, 1=Some of them, 2=Most of them, 3=All of them, 9=Don‟t know, 998=Refused to answer,
+# -1=Missing
+# summary(round5.small$CorruptionTax)
 #CorruptionTax.missing <- round5.small[ which(round5.small$CorruptionTax==-1), ]
 # 28 missings
 # replace these with NA:
 round5.small$CorruptionTax[round5.small$CorruptionTax==-1] <- NA
+# CorruptionTax.notknown <- round5.small[ which(round5.small$CorruptionTax==9), ]
+# 8237 don't knows
+# replace these with NA:
+round5.small$CorruptionTax[round5.small$CorruptionTax==9] <- NA
 
 # o) AvoidHowOften:
+# Question Number: Q56I
+# Question: In your opinion, how often, in this country: Do people avoid paying the taxes that they owe the government?
+# Variable Label: How often avoid paying taxes
+# Values: 0-3, 9, 998, -1
+# Value Labels: 0=Never, 1=Rarely, 2=Often, 3=Always, 9=Don‟t know, 998=Refused to answer, -1=Missing
+# summary(round5.small$AvoidHowOften)
 #AvoidHowOften.missing <- round5.small[ which(round5.small$AvoidHowOften==-1), ]
 # 33 missings
 # replace these with NA:
 round5.small$AvoidHowOften[round5.small$AvoidHowOften==-1] <- NA
+# AvoidHowOften.notknown <- round5.small[ which(round5.small$AvoidHowOften==9), ]
+# 6210 don't knows
+# replace these with NA:
+round5.small$AvoidHowOften[round5.small$AvoidHowOften==9] <- NA
 
 # p) TrustTax:
+# Question Number: Q59D
+# **Question: How much do you trust each of the following, or haven‟t you heard enough about them to say: The [Tax Department]?
+# Variable Label: Trust tax department
+# Values: 0-3, 9, 998, -1
+# Value Labels: 0=Not at all, 1=Just a little, 2=Somewhat, 3=A lot, 9=Don‟t know/Haven‟t heard enough, 998=Refused to answer, -1=Missing
+# summary(round5.small$AvoidHowOften)
 #TrustTax.missing <- round5.small[ which(round5.small$TrustTax==-1), ]
 # 79 missings
 # replace these with NA:
 round5.small$TrustTax[round5.small$TrustTax==-1] <- NA
+#TrustTax.notknown <- round5.small[ which(round5.small$TrustTax==9), ]
+# 5829 don't knows
+# replace these with NA:
+round5.small$TrustTax[round5.small$TrustTax==-9] <- NA
 
 # q) SelfEmployedTax:
+# Question Number: Q73E
+# Question: Regardless of whether you are able to pay them, are you required to pay each of the following, or haven‟t you been able to find out about this: If you are self employed, are you required to pay a tax on the earnings from your business or job?
+# Variable Label: Payments required: self-employer taxes
+# Values: 0, 1, 7, 9, 998, -1
+# Value Labels: 0= No, I am not required to pay, 1= Yes, I am required to pay, 7= Not applicable, 9= Don‟t know / Haven‟t had a chance to find out, 997=Not asked, 998=Refused to answer, -1=Missing
+# summary(round5.small$SelfEmployedTax)
 #SelfEmployedTax.missing <- round5.small[ which(round5.small$SelfEmployedTax==-1), ]
 # 14 missings
 # replace these with NA:
 round5.small$SelfEmployedTax[round5.small$SelfEmployedTax==-1] <- NA
+# SelfEmployedTax.notknown <- round5.small[ which(round5.small$SelfEmployedTax==9), ]
+# 2024 don't knows
+# replace these with NA:
+round5.small$SelfEmployedTax[round5.small$SelfEmployedTax==9] <- NA
 
 # r) AvoidReason:
+# Question Number: Q77
+# Question: What do you think is the main reason that some people avoid paying government the taxes and fees that they owe?
+# Variable Label: Why avoid paying taxes
+# **Values: 0-10, 661, 780, 1622, 9995, 9997, 9998, 9999, -1
+# **Value Labels: 0=People don't avoid paying, 1=The tax system is unfair, 2=The taxes are too high, 3=People cannot afford to pay, 4=The poor services they receive from government, 5=Government does not listen to them, 6=Government wastes tax money, 7=Government officials steal tax money, 8=They know they will not be caught, 9=Greed / selfishness, 10=Ignorance, don't know how to pay or don‟t understand need to pay, 661=Negligence, 780=Government stopped people from paying the tax(s), 1622=Employers don't deduct or don't give to government, 9995=Other, 9997=Not asked, 9998=Refused, 9999=Don't know, -1=Missing
+# * Not asked in ALG, EGY, MRC, SUD, TUN
+summary(round5.small$AvoidReason)
 #AvoidReason.missing <- round5.small[ which(round5.small$AvoidReason==-1), ]
 # 39 missings
 # replace these with NA:
 round5.small$AvoidReason[round5.small$AvoidReason==-1] <- NA
-
-  
-# Step 2: recode all "9" 
-# 9 indicates "don't know"
-
-# a) Age:
-#age.notknown <- round5.small[ which(round5.small$Age==9), ]
-# 0 missings
-
-# b) EconomicSituation:
-#summary(round5.small$EconomicSituation)
-EconomicSituation.notknown <- round5.small[ which(round5.small$EconomicSituation==9), ]
-# 847 don't know
+#AvoidReason.notasked <- round5.small[ which(round5.small$AvoidReason==9997), ]
+# 0 notasked
+#AvoidReason.refused <- round5.small[ which(round5.small$AvoidReason==9998), ]
+# 30 notasked
 # replace these with NA:
-#round5.small$EconomicSituation[round5.small$EconomicSituation==9] <- NA
-
-# c) LivingConditions:
-LivingConditions.notknown <- round5.small[ which(round5.small$LivingConditions==9), ]
-# 142 don't know
+round5.small$AvoidReason[round5.small$AvoidReason==9998] <- NA
+AvoidReason.notknown <- round5.small[ which(round5.small$AvoidReason==9999), ]
+# 4425 not known
 # replace these with NA:
-#round5.small$LivingConditions[round5.small$LivingConditions==9] <- NA
-
-# d) Interest:
-Interest.notknown <- round5.small[ which(round5.small$Interest==9), ]
-# 531 don't know
-# replace these with NA:
-#round5.small$Interest[round5.small$Interest==9] <- NA
-
-# e) Religion:
-Religion.notknown <- round5.small[ which(round5.small$Religion==9), ]
-# 354 don't know
-# replace these with NA:
-#round5.small$Religion[round5.small$Religion==9] <- NA
-
-# f) TaxMorale:
-TaxMorale.notknown <- round5.small[ which(round5.small$TaxMorale==9), ]
-# 2297 don't know
-# replace these with NA:
-#round5.small$TaxMorale[round5.small$TaxMorale==9] <- NA
-
-# g) TrustPresident:
-TrustPresident.notknown <- round5.small[ which(round5.small$TrustPresident==9), ]
-# 1779 don't know
-# replace these with NA:
-#round5.small$TrustPresident[round5.small$TrustPresident==9] <- NA
-
-# h) TrustParliament:
-TrustParliament.notknown <- round5.small[ which(round5.small$TrustParliament==9), ]
-# 2568 don't know
-# replace these with NA:
-#round5.small$TrustParliament[round5.small$TrustParliament==9] <- NA
-
-# i) TrustCourts:
-TrustCourts.notknown <- round5.small[ which(round5.small$TrustCourts==9), ]
-# 2452 don't know
-# replace these with NA:
-#round5.small$TrustCourts[round5.small$TrustCourts==9] <- NA
-
-# j) CorruptionPresident:
-CorruptionPresident.notknown <- round5.small[ which(round5.small$CorruptionPresident==9), ]
-# 8030 don't know
-# replace these with NA:
-#round5.small$CorruptionPresident[round5.small$CorruptionPresident==9] <- NA
-
-# k) CorruptionParliament:
-CorruptionParliament.notknown <- round5.small[ which(round5.small$CorruptionParliament==9), ]
-# 6826 don't know
-# replace these with NA:
-#round5.small$CorruptionParliament[round5.small$CorruptionParliament==9] <- NA
-
-# l) CorruptionOfficials:
-CorruptionOfficials.notknown <- round5.small[ which(round5.small$CorruptionOfficials==9), ]
-# 6072 don't know
-# replace these with NA:
-#round5.small$CorruptionOfficials[round5.small$CorruptionOfficials==9] <- NA
-
-# m) CorruptionCouncilors:
-CorruptionCouncilors.notknown <- round5.small[ which(round5.small$CorruptionCouncilors==9), ]
-# 5324 don't knows
-# replace these with NA:
-# round5.small$CorruptionCouncilors[round5.small$CorruptionCouncilors==9] <- NA
-
-# n) CorruptionTax:
-CorruptionTax.notknown <- round5.small[ which(round5.small$CorruptionTax==9), ]
-# 8237 don't knows
-# replace these with NA:
-#round5.small$CorruptionTax[round5.small$CorruptionTax==9] <- NA
-
-# o) AvoidHowOften:
-AvoidHowOften.notknown <- round5.small[ which(round5.small$AvoidHowOften==9), ]
-# 6210 don't knows
-# replace these with NA:
-#round5.small$AvoidHowOften[round5.small$AvoidHowOften==9] <- NA
-
-# p) TrustTax:
-TrustTax.notknown <- round5.small[ which(round5.small$TrustTax==9), ]
-# 5829 don't knows
-# replace these with NA:
-#round5.small$TrustTax[round5.small$TrustTax==-9] <- NA
-
-# q) SelfEmployedTax:
-SelfEmployedTax.notknown <- round5.small[ which(round5.small$SelfEmployedTax==9), ]
-# 2024 don't knows
-# replace these with NA:
-#round5.small$SelfEmployedTax[round5.small$SelfEmployedTax==9] <- NA
-
-# r) AvoidReason:
-AvoidReason.notknown <- round5.small[ which(round5.small$AvoidReason==9), ]
-# 644 don't knows
-# replace these with NA:
-#round5.small$AvoidReason[round5.small$AvoidReason==9] <- NA
-
-# Step 3: recode all "98" as missings
-# 98 indicates "refuse to answer"
-
-# a) Age:
-# age.refuse <- round5.small[ which(round5.small$Age==98), ]
-# 1 refuse
-# replace these with NA:
-round5.small$Age[round5.small$Age==98] <- NA
-
-# b) EconomicSituation:
-#EconomicSituation.refuse <- round5.small[ which(round5.small$EconomicSituation==98), ]
-# 0 refuse
-
-# c) LivingConditions:
-#LivingConditions.refuse <- round5.small[ which(round5.small$LivingConditions==98), ]
-# 0 refuse
-
-# d) Interest:
-#Interest.refuse <- round5.small[ which(round5.small$Interest==98), ]
-# 0 refuse
-
-# e) Religion:
-#Religion.refuse <- round5.small[ which(round5.small$Religion==98), ]
-# 0 refuse
-
-# f) TaxMorale:
-#TaxMorale.refuse <- round5.small[ which(round5.small$TaxMorale==98), ]
-# 0 refuse
-
-# g) TrustPresident:
-# TrustPresident.refuse <- round5.small[ which(round5.small$TrustPresident==98), ]
-# 0 refuse
-
-# h) TrustParliament:
-#TrustParliament.refuse <- round5.small[ which(round5.small$TrustParliament==98), ]
-# 0 refuse
-
-# i) TrustCourts:
-#TrustCourts.refuse <- round5.small[ which(round5.small$TrustCourts==98), ]
-# 0 refuse
-
-# j) CorruptionPresident:
-CorruptionPresident.refuse <- round5.small[ which(round5.small$CorruptionPresident==98), ]
-# 0 refuse
-
-# k) CorruptionParliament:
-# CorruptionParliament.refuse <- round5.small[ which(round5.small$CorruptionParliament==98), ]
-# 0 refuse
-
-# l) CorruptionOfficials:
-# CorruptionOfficials.refuse <- round5.small[ which(round5.small$CorruptionOfficials==98), ]
-# 0 refuse
-
-# m) CorruptionCouncilors:
-#CorruptionCouncilors.refuse <- round5.small[ which(round5.small$CorruptionCouncilors==98), ]
-# 0 refuse
-
-# n) CorruptionTax:
-# CorruptionTax.refuse <- round5.small[ which(round5.small$CorruptionTax==98), ]
-# 0 refuse
-
-# o) AvoidHowOften:
-#AvoidHowOften.refuse <- round5.small[ which(round5.small$AvoidHowOften==98), ]
-# 0 refuse
-
-# p) TrustTax:
-#TrustTax.refuse <- round5.small[ which(round5.small$TrustTax==98), ]
-# 0 refuse
-
-# q) SelfEmployedTax:
-# SelfEmployedTax.refuse <- round5.small[ which(round5.small$SelfEmployedTax==98), ]
-# 0 refuse
-
-# r) AvoidReason:
-# AvoidReason.refuse <- round5.small[ which(round5.small$AvoidReason==98), ]
-# 0 refuse
-
+round5.small$AvoidReason[round5.small$AvoidReason==9999] <- NA
 
 
 # FACTOR VARIABLES:
