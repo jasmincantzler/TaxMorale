@@ -80,7 +80,7 @@ summary(round5.small)
 # 14 missings
 # replace these with NA:
 round5.small$Age[round5.small$Age==-1] <- NA 
-age.notknown <- round5.small[ which(round5.small$Age==999), ]
+#age.notknown <- round5.small[ which(round5.small$Age==999), ]
 # 400 not knowns
 # replace these with NA:
 round5.small$Age[round5.small$Age==999] <- NA 
@@ -141,6 +141,12 @@ round5.small$Interest[round5.small$Interest==998] <- NA
 # replace these with NA:
 round5.small$Interest[round5.small$Interest==9] <- NA
 
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round5.small$Interest[round5.small$Interest==3] <- 4
+round5.small$Interest[round5.small$Interest==2] <- 3
+round5.small$Interest[round5.small$Interest==1] <- 2
+round5.small$Interest[round5.small$Interest==0] <- 1
+
 # e) Religion:
 # Question Number: Q25A
 # Question: Let‟s turn to your role in the community. Now I am going to read out a list of groups that people join or attend. For each one, could you tell me whether you are an official leader, an active member, an inactive member, or not a member: A religious group that meets outside of regular worship services?
@@ -156,6 +162,12 @@ round5.small$Religion[round5.small$Religion==-1] <- NA
 # 354 don't know
 # replace these with NA:
 round5.small$Religion[round5.small$Religion==9] <- NA
+
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round5.small$Religion[round5.small$Religion==3] <- 4
+round5.small$Religion[round5.small$Religion==2] <- 3
+round5.small$Religion[round5.small$Religion==1] <- 2
+round5.small$Religion[round5.small$Religion==0] <- 1
 
 # f) TaxMorale:
 # Question Number: Q48C
@@ -189,6 +201,12 @@ round5.small$TrustPresident[round5.small$TrustPresident==-1] <- NA
 # replace these with NA:
 round5.small$TrustPresident[round5.small$TrustPresident==9] <- NA
 
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round5.small$TrustPresident[round5.small$TrustPresident==3] <- 4
+round5.small$TrustPresident[round5.small$TrustPresident==2] <- 3
+round5.small$TrustPresident[round5.small$TrustPresident==1] <- 2
+round5.small$TrustPresident[round5.small$TrustPresident==0] <- 1
+
 # h) TrustParliament:
 # Question Number: Q59B
 # **Question: How much do you trust each of the following, or haven‟t you heard enough about them to say: Parliament?
@@ -205,6 +223,12 @@ round5.small$TrustParliament[round5.small$TrustParliament==-1] <- NA
 # replace these with NA:
 round5.small$TrustParliament[round5.small$TrustParliament==9] <- NA
 
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round5.small$TrustParliament[round5.small$TrustParliament==3] <- 4
+round5.small$TrustParliament[round5.small$TrustParliament==2] <- 3
+round5.small$TrustParliament[round5.small$TrustParliament==1] <- 2
+round5.small$TrustParliament[round5.small$TrustParliament==0] <- 1
+
 # i) TrustCourts:
 # Question Number: Q59J
 # Question: How much do you trust each of the following, or haven‟t you heard enough about them to say: Courts of law?
@@ -220,6 +244,12 @@ round5.small$TrustCourts[round5.small$TrustCourts==-1] <- NA
 # 2452 don't know
 # replace these with NA:
 round5.small$TrustCourts[round5.small$TrustCourts==9] <- NA
+
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round5.small$TrustCourts[round5.small$TrustCourts==3] <- 4
+round5.small$TrustCourts[round5.small$TrustCourts==2] <- 3
+round5.small$TrustCourts[round5.small$TrustCourts==1] <- 2
+round5.small$TrustCourts[round5.small$TrustCourts==0] <- 1
 
 # j) CorruptionPresident:
 # Question Number: Q60A
@@ -238,6 +268,12 @@ round5.small$CorruptionPresident[round5.small$CorruptionPresident==-1] <- NA
 # replace these with NA:
 round5.small$CorruptionPresident[round5.small$CorruptionPresident==9] <- NA
 
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round5.small$CorruptionPresident[round5.small$CorruptionPresident==3] <- 4
+round5.small$CorruptionPresident[round5.small$CorruptionPresident==2] <- 3
+round5.small$CorruptionPresident[round5.small$CorruptionPresident==1] <- 2
+round5.small$CorruptionPresident[round5.small$CorruptionPresident==0] <- 1
+
 # k) CorruptionParliament:
 # Question Number: Q60B
 # **Question: How many of the following people do you think are involved in corruption, or haven‟t you heard enough about them to say: Members of Parliament?
@@ -254,6 +290,12 @@ round5.small$CorruptionParliament[round5.small$CorruptionParliament==-1] <- NA
 # 6826 don't know
 # replace these with NA:
 round5.small$CorruptionParliament[round5.small$CorruptionParliament==9] <- NA
+
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round5.small$CorruptionParliament[round5.small$CorruptionParliament==3] <- 4
+round5.small$CorruptionParliament[round5.small$CorruptionParliament==2] <- 3
+round5.small$CorruptionParliament[round5.small$CorruptionParliament==1] <- 2
+round5.small$CorruptionParliament[round5.small$CorruptionParliament==0] <- 1
 
 # l) CorruptionOfficials:
 # Question Number: Q60C
@@ -272,6 +314,12 @@ round5.small$CorruptionOfficials[round5.small$CorruptionOfficials==-1] <- NA
 # replace these with NA:
 round5.small$CorruptionOfficials[round5.small$CorruptionOfficials==9] <- NA
 
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round5.small$CorruptionOfficials[round5.small$CorruptionOfficials==3] <- 4
+round5.small$CorruptionOfficials[round5.small$CorruptionOfficials==2] <- 3
+round5.small$CorruptionOfficials[round5.small$CorruptionOfficials==1] <- 2
+round5.small$CorruptionOfficials[round5.small$CorruptionOfficials==0] <- 1
+
 # m) CorruptionCouncilors:
 # Question Number: Q60D
 # **Question: How many of the following people do you think are involved in corruption, or haven‟t you heard enough about them to say: Local government councilors?
@@ -289,6 +337,12 @@ round5.small$CorruptionCouncilors[round5.small$CorruptionCouncilors==-1] <- NA
 # replace these with NA:
 round5.small$CorruptionCouncilors[round5.small$CorruptionCouncilors==9] <- NA
 
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round5.small$CorruptionCouncilors[round5.small$CorruptionCouncilors==3] <- 4
+round5.small$CorruptionCouncilors[round5.small$CorruptionCouncilors==2] <- 3
+round5.small$CorruptionCouncilors[round5.small$CorruptionCouncilors==1] <- 2
+round5.small$CorruptionCouncilors[round5.small$CorruptionCouncilors==0] <- 1
+
 # n) CorruptionTax:
 # Question Number: Q60F
 # **Question: How many of the following people do you think are involved in corruption, or haven‟t you heard enough about them to say: Tax Officials (e.g. Ministry of Finance officials or Local Government tax collectors)
@@ -305,6 +359,12 @@ round5.small$CorruptionTax[round5.small$CorruptionTax==-1] <- NA
 # 8237 don't knows
 # replace these with NA:
 round5.small$CorruptionTax[round5.small$CorruptionTax==9] <- NA
+
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round5.small$CorruptionTax[round5.small$CorruptionTax==3] <- 4
+round5.small$CorruptionTax[round5.small$CorruptionTax==2] <- 3
+round5.small$CorruptionTax[round5.small$CorruptionTax==1] <- 2
+round5.small$CorruptionTax[round5.small$CorruptionTax==0] <- 1
 
 # o) AvoidHowOften:
 # Question Number: Q56I
@@ -324,6 +384,12 @@ round5.small$AvoidHowOften[round5.small$AvoidHowOften==9] <- NA
 #AvoidHowOften.refused <- round5.small[ which(round5.small$AvoidHowOften==998), ]
 # 0 refused
 
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round5.small$AvoidHowOften[round5.small$AvoidHowOften==3] <- 4
+round5.small$AvoidHowOften[round5.small$AvoidHowOften==2] <- 3
+round5.small$AvoidHowOften[round5.small$AvoidHowOften==1] <- 2
+round5.small$AvoidHowOften[round5.small$AvoidHowOften==0] <- 1
+
 # p) TrustTax:
 # Question Number: Q59D
 # **Question: How much do you trust each of the following, or haven‟t you heard enough about them to say: The [Tax Department]?
@@ -341,6 +407,12 @@ round5.small$TrustTax[round5.small$TrustTax==-1] <- NA
 round5.small$TrustTax[round5.small$TrustTax==-9] <- NA
 #TrustTax.refused <- round5.small[ which(round5.small$TrustTax==998), ]
 # 0 refused
+
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round5.small$TrustTax[round5.small$TrustTax==3] <- 4
+round5.small$TrustTax[round5.small$TrustTax==2] <- 3
+round5.small$TrustTax[round5.small$TrustTax==1] <- 2
+round5.small$TrustTax[round5.small$TrustTax==0] <- 1
 
 
 # q) SelfEmployedTax:
@@ -375,8 +447,6 @@ summary(round5.small$AvoidReason)
 # 39 missings
 # replace these with NA:
 round5.small$AvoidReason[round5.small$AvoidReason==-1] <- NA
-#AvoidReason.other <- round5.small[ which(round5.small$AvoidReason==9995), ]
-# 254 other reasons
 #AvoidReason.notasked <- round5.small[ which(round5.small$AvoidReason==9997), ]
 # 0 notasked
 #AvoidReason.refused <- round5.small[ which(round5.small$AvoidReason==9998), ]
@@ -388,6 +458,17 @@ round5.small$AvoidReason[round5.small$AvoidReason==9998] <- NA
 # replace these with NA:
 round5.small$AvoidReason[round5.small$AvoidReason==9999] <- NA
 
+# Recode the following values: 
+# 661=Negligence to 11:
+round5.small$AvoidReason[round5.small$AvoidReason==661] <- 11
+# 780=Government stopped people from paying the tax(s) to 12:
+round5.small$AvoidReason[round5.small$AvoidReason==780] <- 12
+# 1622=Employers don't deduct or don't give to government
+round5.small$AvoidReason[round5.small$AvoidReason==1622] <- 13
+# 9995=Other reasons to 14:
+round5.small$AvoidReason[round5.small$AvoidReason==9995] <- 14
+
+
 # s) EconomicPolicies:
 # missing for this year
 
@@ -397,60 +478,44 @@ round5.small$AvoidReason[round5.small$AvoidReason==9999] <- NA
 # though they are factor variables.
 # Therefore these will now be coded as factors:
 
+#library(dplyr)
 round5.small <- mutate(round5.small,
-                       UrbanRural = factor(UrbanRural, levels = 1:2, 
-                                           labels = c("urban", "rural")),
-                       EconomicSituation = factor(EconomicSituation,levels = 1:5, 
-                                                  labels = c("Very bad", "Fairly bad", "Neither good nor bad", "Fairly good", "Very good")),
-                       LivingConditions = factor(LivingConditions, levels = 1:5,
-                                                 labels = c("Very bad", "Fairly bad", "Neither good nor bad", "Fairly good", "Very good")),
-                       Interest = factor(Interest, levels = 0:3,
-                                         labels = c("Not at all interested", "Not very interested", "Somewhat interested", "Very interested")),
-                       Religion = factor(Religion, levels = 0:3,
-                                         labels = c("Not a member", "Inactive member", "Active member", "Official Leader")),
-                       TaxMorale = factor(TaxMorale, levels = 1:5,
-                                          labels = c("Strongly Disagree", "Disagree", "Neither agree nor disagree", "Agree", "Strongly Agree")),
-                       TrustPresident = factor(TrustPresident, levels = 0:3, 
-                                               labels = c("Not at all", "Just a little", "Somewhat", "A lot")),
-                       TrustParliament = factor(TrustParliament, levels = 0:3, 
-                                                labels = c("Not at all", "Just a little", "Somewhat", "A lot")),
-                       TrustCourts = factor(TrustCourts, levels = 0:3, 
-                                            labels = c("Not at all", "Just a little", "Somewhat", "A lot")),
-                       CorruptionPresident = factor(CorruptionPresident, levels = 0:3,
-                                                    labels = c("None", "Some of them", "Most of them", "All of them")),
-                       CorruptionParliament = factor(CorruptionParliament, levels = 0:3,
-                                                     labels = c("None", "Some of them", "Most of them", "All of them")),
-                       CorruptionOfficials = factor(CorruptionOfficials, levels = 0:3,
-                                                    labels = c("None", "Some of them", "Most of them", "All of them")),
-                       CorruptionCouncilors = factor(CorruptionCouncilors, levels = 0:3,
-                                                     labels = c("None", "Some of them", "Most of them", "All of them")),
-                       CorruptionTax = factor(CorruptionTax, levels = 0:3,
-                                              labels = c("None", "Some of them", "Most of them", "All of them")),
-                       Gender = factor(Gender, levels = 1:2, 
-                                       labels = c("male", "female")),
-                       AvoidHowOften = factor(AvoidHowOften, levels = 0:3,
-                                              labels = c("Never", "Rarely", "Often", "Allways")),
-                       TrustTax = factor(TrustTax, levels = 0:3, 
-                                         labels = c("Not at all", "Just a little", "Somewhat", "A lot")),
-                       SelfEmployedTax = factor(SelfEmployedTax, levels = 0:1, 
-                                                labels = c("Not required to pay", "Required to pay")),
-                       AvoidReason = factor(AvoidReason, levels = ,
-                                            labels = c("")),## still need to figure out how to label this one
-                       EconomicPolicies = factor(EconomicPolicies, levels = ,
-                                                 labels = c("")),
-                       LocalGvtTaxes = factor(LocalGvtTaxes, levels = ,
-                                              labels = c("")),
-                       Enforce1 = factor(Enforce1, levels = ,
-                                         labels = c("")),
-                       Enforce2 = factor(Enforce2, levels = ,
-                                         labels = c("")),
-                       CorruptionOfficialsLocal = factor(CorruptionOfficialsLocal,
-                                                         levels = ,
-                                                         labels = c("")),
-                       CorruptionOfficialsNational = factor(CorruptionOfficialsNational,
-                                                            levels = ,
-                                                            labels = c("")),
-                       Year = factor(Year))
+                Year = factor(Year),
+                UrbanRural = factor(UrbanRural, levels = 1:2, labels = c("Urban", "Rural")),
+                EconomicSituation = factor(EconomicSituation, levels = 1:5, labels = c("Very bad", "Fairly bad", "Neither good nor bad", "Fairly good", "Very good")),
+                LivingConditions = factor(LivingConditions, levels = 1:5, labels = c("Very bad", "Fairly bad", "Neither good nor bad", "Fairly good", "Very good")),
+                Interest = factor(Interest, levels = 1:4, labels = c("Not at all interested", "Not very interested", "Somewhat interested", "Very interested")),
+                Religion = factor(Religion, levels = 1:4, labels = c("Not a member", "Inactive member", "Active member", "Official Leader")),
+                TaxMorale = factor(TaxMorale, levels = 1:5, labels = c("Strongly Disagree", "Disagree", "Neither agree nor disagree", "Agree", "Strongly Agree")),
+                TrustPresident = factor(TrustPresident, levels = 1:4, labels = c("Not at all", "Just a little", "Somewhat", "A lot")),
+                TrustParliament = factor(TrustParliament, levels = 1:4, labels = c("Not at all", "Just a little", "Somewhat", "A lot")),
+                TrustCourts = factor(TrustCourts, levels = 1:4, labels = c("Not at all", "Just a little", "Somewhat", "A lot")),
+                CorruptionPresident = factor(CorruptionPresident, levels = 1:4, labels = c("None", "Some of them", "Most of them", "All of them")),
+                CorruptionParliament = factor(CorruptionParliament, levels = 1:4, labels = c("None", "Some of them", "Most of them", "All of them")),
+                CorruptionOfficials = factor(CorruptionOfficials, levels = 1:4, labels = c("None", "Some of them", "Most of them", "All of them")),
+                CorruptionCouncilors = factor(CorruptionCouncilors, levels = 1:4, labels = c("None", "Some of them", "Most of them", "All of them")),
+                CorruptionTax = factor(CorruptionTax, levels = 1:4, labels = c("None", "Some of them", "Most of them", "All of them")),
+                Gender = factor(Gender, levels = 1:2, labels = c("male", "female")),
+                AvoidHowOften = factor(AvoidHowOften, levels = 1:4, labels = c("Never", "Rarely", "Often", "Allways")),
+                TrustTax = factor(TrustTax, levels = 1:4, labels = c("Not at all", "Just a little", "Somewhat", "A lot")),
+                SelfEmployedTax = factor(SelfEmployedTax, levels = 0:1, labels = c("Not required to pay", "Required to pay")),
+                AvoidReason = factor(AvoidReason, levels = 0:14, labels = c("People don't avoid paying", "The tax system is unfair", "The taxes are too high",
+                                                                            "People cannot afford to pay", "The poor services they receive from government", 
+                                                                            "Government does not listen to them", "Government wastes tax money", "Government officials steal tax money",
+                                                                            "They know they will not be caught", "Greed/selfishness", "Ignorance", "Negligence", 
+                                                                            "Government stopped people from paying", "Employers don't deduct", "Other reasons"))
+)
+
+# The newly created variables that only have values in the other rounds have to 
+# be turned into factor variables as well:
+
+#EconomicPolicies = factor(EconomicPolicies, levels = , labels = c("")),
+ LocalGvtTaxes = factor(LocalGvtTaxes, levels = , labels = c("")),
+ Enforce1 = factor(Enforce1, levels = , labels = c("")),
+ Enforce2 = factor(Enforce2, levels = , labels = c("")),
+ CorruptionOfficialsLocal = factor(CorruptionOfficialsLocal,levels = ,labels = c("")),
+ CorruptionOfficialsNational = factor(CorruptionOfficialsNational,levels = ,labels = c("")),
+               
 
 
 #EXPORTING AND SAVING DATA:
@@ -592,6 +657,12 @@ round4.small$Interest[round4.small$Interest==-1] <- NA
 # replace these with NA:
 round4.small$Interest[round4.small$Interest==9] <- NA
 
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round4.small$Interest[round4.small$Interest==3] <- 4
+round4.small$Interest[round4.small$Interest==2] <- 3
+round4.small$Interest[round4.small$Interest==1] <- 2
+round4.small$Interest[round4.small$Interest==0] <- 1
+
 # e) Religion:
 # Question Number: Q22A
 # Question: Let’s turn to your role in the community. Now I am going to read out a list of groups that people join or
@@ -610,6 +681,13 @@ round4.small$Religion[round4.small$Religion==-1] <- NA
 # 94 don't know
 # replace these with NA:
 round4.small$Religion[round4.small$Religion==9] <- NA
+
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round4.small$Religion[round4.small$Religion==3] <- 4
+round4.small$Religion[round4.small$Religion==2] <- 3
+round4.small$Religion[round4.small$Religion==1] <- 2
+round4.small$Religion[round4.small$Religion==0] <- 1
+
 
 # f) TaxMorale:
 # Question Number: Q44C
@@ -647,6 +725,12 @@ round4.small$TrustPresident[round4.small$TrustPresident==-1] <- NA
 # replace these with NA:
 round4.small$TrustPresident[round4.small$TrustPresident==9] <- NA
 
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round4.small$TrustPresident[round4.small$TrustPresident==3] <- 4
+round4.small$TrustPresident[round4.small$TrustPresident==2] <- 3
+round4.small$TrustPresident[round4.small$TrustPresident==1] <- 2
+round4.small$TrustPresident[round4.small$TrustPresident==0] <- 1
+
 # h) TrustParliament:
 # Question Number: Q49B
 # Question: How much do you trust each of the following, or haven’t you heard enough about them to say:
@@ -664,6 +748,13 @@ round4.small$TrustParliament[round4.small$TrustParliament==-1] <- NA
 # 2091 don't know
 # replace these with NA:
 round4.small$TrustParliament[round4.small$TrustParliament==9] <- NA
+
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round4.small$TrustParliament[round4.small$TrustParliament==3] <- 4
+round4.small$TrustParliament[round4.small$TrustParliament==2] <- 3
+round4.small$TrustParliament[round4.small$TrustParliament==1] <- 2
+round4.small$TrustParliament[round4.small$TrustParliament==0] <- 1
+
 
 # i) TrustCourts:
 # Question Number: Q49H
@@ -683,6 +774,12 @@ round4.small$TrustCourts[round4.small$TrustCourts==-1] <- NA
 # replace these with NA:
 round4.small$TrustCourts[round4.small$TrustCourts==9] <- NA
 
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round4.small$TrustCourts[round4.small$TrustCourts==3] <- 4
+round4.small$TrustCourts[round4.small$TrustCourts==2] <- 3
+round4.small$TrustCourts[round4.small$TrustCourts==1] <- 2
+round4.small$TrustCourts[round4.small$TrustCourts==0] <- 1
+
 # j) CorruptionPresident:
 # Question Number: Q50A
 # Question: How many of the following people do you think are involved in corruption, or haven’t you heard enough
@@ -700,6 +797,13 @@ round4.small$CorruptionPresident[round4.small$CorruptionPresident==-1] <- NA
 # 6130 don't know
 # replace these with NA:
 round4.small$CorruptionPresident[round4.small$CorruptionPresident==9] <- NA
+
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round4.small$CorruptionPresident[round4.small$CorruptionPresident==3] <- 4
+round4.small$CorruptionPresident[round4.small$CorruptionPresident==2] <- 3
+round4.small$CorruptionPresident[round4.small$CorruptionPresident==1] <- 2
+round4.small$CorruptionPresident[round4.small$CorruptionPresident==0] <- 1
+
 
 # k) CorruptionParliament:
 # Question Number: Q50B
@@ -719,6 +823,13 @@ round4.small$CorruptionParliament[round4.small$CorruptionParliament==-1] <- NA
 # replace these with NA:
 round4.small$CorruptionParliament[round4.small$CorruptionParliament==9] <- NA
 
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round4.small$CorruptionParliament[round4.small$CorruptionParliament==3] <- 4
+round4.small$CorruptionParliament[round4.small$CorruptionParliament==2] <- 3
+round4.small$CorruptionParliament[round4.small$CorruptionParliament==1] <- 2
+round4.small$CorruptionParliament[round4.small$CorruptionParliament==0] <- 1
+
+
 # l) CorruptionOfficials:
 # Question Number: Q50D
 # Question: How many of the following people do you think are involved in corruption, or haven’t you heard enough
@@ -733,6 +844,13 @@ round4.small$CorruptionOfficials[round4.small$CorruptionOfficials==-1] <- NA
 # 4612 don't know
 # replace these with NA:
 round4.small$CorruptionOfficials[round4.small$CorruptionOfficials==9] <- NA
+
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round4.small$CorruptionOfficials[round4.small$CorruptionOfficials==3] <- 4
+round4.small$CorruptionOfficials[round4.small$CorruptionOfficials==2] <- 3
+round4.small$CorruptionOfficials[round4.small$CorruptionOfficials==1] <- 2
+round4.small$CorruptionOfficials[round4.small$CorruptionOfficials==0] <- 1
+
 
 # m) CorruptionCouncilors:
 # Question Number: Q50C
@@ -752,6 +870,13 @@ round4.small$CorruptionCouncilors[round4.small$CorruptionCouncilors==-1] <- NA
 # replace these with NA:
 round4.small$CorruptionCouncilors[round4.small$CorruptionCouncilors==9] <- NA
 
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round4.small$CorruptionCouncilors[round4.small$CorruptionCouncilors==3] <- 4
+round4.small$CorruptionCouncilors[round4.small$CorruptionCouncilors==2] <- 3
+round4.small$CorruptionCouncilors[round4.small$CorruptionCouncilors==1] <- 2
+round4.small$CorruptionCouncilors[round4.small$CorruptionCouncilors==0] <- 1
+
+
 # n) CorruptionTax:
 # Question Number: Q50F
 # Question: How many of the following people do you think are involved in corruption, or haven’t you heard enough
@@ -769,6 +894,13 @@ round4.small$CorruptionTax[round4.small$CorruptionTax==-1] <- NA
 # 5575 don't know
 # replace these with NA:
 round4.small$CorruptionTax[round4.small$CorruptionTax==9] <- NA
+
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round4.small$CorruptionTax[round4.small$CorruptionTax==3] <- 4
+round4.small$CorruptionTax[round4.small$CorruptionTax==2] <- 3
+round4.small$CorruptionTax[round4.small$CorruptionTax==1] <- 2
+round4.small$CorruptionTax[round4.small$CorruptionTax==0] <- 1
+
 
 # o) AvoidHowOften: not included in this Round
 
@@ -797,7 +929,7 @@ round4.small$EconomicPolicies[round4.small$EconomicPolicies==-1] <- NA
 # 1019 don't know
 # replace these with NA:
 round4.small$EconomicPolicies[round4.small$EconomicPolicies==9] <- NA
-EconomicPolicies.agreewneither <- round4.small[ which(round4.small$EconomicPolicies==5), ]
+#EconomicPolicies.agreewneither <- round4.small[ which(round4.small$EconomicPolicies==5), ]
 # 604 agree with neither
 # replace these with NA:
 round4.small$EconomicPolicies[round4.small$EconomicPolicies==5] <- NA
@@ -808,7 +940,34 @@ round4.small$EconomicPolicies[round4.small$EconomicPolicies==5] <- NA
 # though they are factor variables.
 # Therefore these will now be coded as factors:
 
-
+#library(dplyr)
+round4.small <- mutate(round4.small,
+                       Year = factor(Year),
+                       UrbanRural = factor(UrbanRural, levels = 1:2, labels = c("Urban", "Rural")),
+                       EconomicSituation = factor(EconomicSituation, levels = 1:5, labels = c("Very bad", "Fairly bad", "Neither good nor bad", "Fairly good", "Very good")),
+                       LivingConditions = factor(LivingConditions, levels = 1:5, labels = c("Very bad", "Fairly bad", "Neither good nor bad", "Fairly good", "Very good")),
+                       Interest = factor(Interest, levels = 1:4, labels = c("Not at all interested", "Not very interested", "Somewhat interested", "Very interested")),
+                       Religion = factor(Religion, levels = 1:4, labels = c("Not a member", "Inactive member", "Active member", "Official Leader")),
+                       TaxMorale = factor(TaxMorale, levels = 1:5, labels = c("Strongly Disagree", "Disagree", "Neither agree nor disagree", "Agree", "Strongly Agree")),
+                       TrustPresident = factor(TrustPresident, levels = 1:4, labels = c("Not at all", "Just a little", "Somewhat", "A lot")),
+                       TrustParliament = factor(TrustParliament, levels = 1:4, labels = c("Not at all", "Just a little", "Somewhat", "A lot")),
+                       TrustCourts = factor(TrustCourts, levels = 1:4, labels = c("Not at all", "Just a little", "Somewhat", "A lot")),
+                       CorruptionPresident = factor(CorruptionPresident, levels = 1:4, labels = c("None", "Some of them", "Most of them", "All of them")),
+                       CorruptionParliament = factor(CorruptionParliament, levels = 1:4, labels = c("None", "Some of them", "Most of them", "All of them")),
+                       CorruptionOfficials = factor(CorruptionOfficials, levels = 1:4, labels = c("None", "Some of them", "Most of them", "All of them")),
+                       CorruptionCouncilors = factor(CorruptionCouncilors, levels = 1:4, labels = c("None", "Some of them", "Most of them", "All of them")),
+                       CorruptionTax = factor(CorruptionTax, levels = 1:4, labels = c("None", "Some of them", "Most of them", "All of them")),
+                       Gender = factor(Gender, levels = 1:2, labels = c("male", "female")),
+                       AvoidHowOften = factor(AvoidHowOften, levels = 1:4, labels = c("Never", "Rarely", "Often", "Allways")),
+                       TrustTax = factor(TrustTax, levels = 1:4, labels = c("Not at all", "Just a little", "Somewhat", "A lot")),
+                       SelfEmployedTax = factor(SelfEmployedTax, levels = 0:1, labels = c("Not required to pay", "Required to pay")),
+                       AvoidReason = factor(AvoidReason, levels = 0:14, labels = c("People don't avoid paying", "The tax system is unfair", "The taxes are too high",
+                                                                                   "People cannot afford to pay", "The poor services they receive from government", 
+                                                                                   "Government does not listen to them", "Government wastes tax money", "Government officials steal tax money",
+                                                                                   "They know they will not be caught", "Greed/selfishness", "Ignorance", "Negligence", 
+                                                                                   "Government stopped people from paying", "Employers don't deduct", "Other reasons")),
+                       EconomicPolicies = factor(EconomicPolicies, levels = 1:4, labels = c("Agree very strongly with Statement1", "Agree with Statement1", "Agree with Statement2", "Agree very strongly with Statement2"))
+)
 
 
 #EXPORTING AND SAVING DATA:
@@ -934,6 +1093,7 @@ round3.small$LivingConditions[round3.small$LivingConditions==-1] <- NA
 # replace these with NA:
 round3.small$LivingConditions[round3.small$LivingConditions==9] <- NA
 
+
 # d) Interest:
 # Question Number: Q16
 # Question: How interested would you say you are in public affairs?
@@ -951,6 +1111,13 @@ round3.small$Interest[round3.small$Interest==-1] <- NA
 # replace these with NA:
 round3.small$Interest[round3.small$Interest==9] <- NA
 
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round3.small$Interest[round3.small$Interest==3] <- 4
+round3.small$Interest[round3.small$Interest==2] <- 3
+round3.small$Interest[round3.small$Interest==1] <- 2
+round3.small$Interest[round3.small$Interest==0] <- 1
+
+
 #e) Religion:
 #Question Number: Q28A
 # Question: Let’s turn to your role in the community. Now I am going to read out a list of groups that people join or
@@ -965,6 +1132,13 @@ round3.small$Interest[round3.small$Interest==9] <- NA
 # 59 don't know
 # replace these with NA:
 round3.small$Religion[round3.small$Interest==9] <- NA
+
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round3.small$Religion[round3.small$Religion==3] <- 4
+round3.small$Religion[round3.small$Religion==2] <- 3
+round3.small$Religion[round3.small$Religion==1] <- 2
+round3.small$Religion[round3.small$Religion==0] <- 1
+
 
 # f) TaxMorale:
 # Question Number: Q52D
@@ -1003,6 +1177,13 @@ round3.small$TrustPresident[round3.small$TrustPresident==-1] <- NA
 # replace these with NA:
 round3.small$TrustPresident[round3.small$TrustPresident==9] <- NA
 
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round3.small$TrustPresident[round3.small$TrustPresident==3] <- 4
+round3.small$TrustPresident[round3.small$TrustPresident==2] <- 3
+round3.small$TrustPresident[round3.small$TrustPresident==1] <- 2
+round3.small$TrustPresident[round3.small$TrustPresident==0] <- 1
+
+
 # h) TrustParliament:
 # Question Number: Q55B
 # Question: How much do you trust each of the following, or haven’t you heard enough about them to say: The
@@ -1020,6 +1201,13 @@ round3.small$TrustParliament[round3.small$TrustParliament==-1] <- NA
 # 1894 don't know
 # replace these with NA:
 round3.small$TrustParliament[round3.small$TrustParliament==9] <- NA
+
+# Recode so that the values range from 1 to 4 instead of 0 to 3:
+round3.small$TrustParliament[round3.small$TrustParliament==3] <- 4
+round3.small$TrustParliament[round3.small$TrustParliament==2] <- 3
+round3.small$TrustParliament[round3.small$TrustParliament==1] <- 2
+round3.small$TrustParliament[round3.small$TrustParliament==0] <- 1
+
 
 # i) TrustCourts:
 # Question Number: Q55I
