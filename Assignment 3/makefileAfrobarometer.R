@@ -1,7 +1,7 @@
 ##########################################################
 # Makefile Afrobarometer Data for analysis of tax morale #
 # Wiebke Weiger & Jasmin Cantzler                        # 
-# last updated: 6 NOvember 2015                          #
+# last updated: 9 NOvember 2015                          #
 ##########################################################
 
 # Set working directory

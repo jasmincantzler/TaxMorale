@@ -1,12 +1,12 @@
 ##############################################
 #  Loading and exporting Afrobarometer Data  #
 #  Wiebke Weiger                             #
-#  last updated: 7 November 2015             # 
+#  last updated: 9 November 2015             # 
 # ############################################
 
 
 # set the working directory:
-setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Assignment 3/PreparatoryWork")
+#setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Assignment 3/PreparatoryWork")
 # in this case really important, because it specifies where the csv-files are stored
 # unless you specify the file-path in the write.cvs command
 
@@ -94,7 +94,7 @@ round5.small <- round5.small[,c(1,29,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,
                                 20,21,22,23,24,25,26,27,28)]
 
 # export data into csv format:
-export(round5.small, file="round5.small.csv")
+rio::export(round5.small, file="round5.small.csv")
 
 # save smaller data set in Rdata format:
 save(round5.small, file="Round5.small.RData", list="round5.small")
@@ -187,7 +187,7 @@ round4.small <- round4.small[,c(1,29,2,3,4,5,6,7,8,9,10,11,12,13,14,16,15,17,18,
 
 
 # export data into csv format:
-export(round4.small, file="round4.small.csv")
+rio::export(round4.small, file="round4.small.csv")
 
 # save smaller data set in Rdata format:
 save(round4.small, file="Round4.small.RData", list="round4.small")
@@ -277,7 +277,7 @@ round3.small <- round3.small[,c(1,29,2,3,4,5,6,7,8,9,10,11,12,13,14,24,15,18,19,
 
 
 # export data into csv format:
-export(round3.small, file="round3.small.csv")
+rio::export(round3.small, file="round3.small.csv")
 
 # save smaller data set in Rdata format:
 save(round3.small, file="Round3.small.RData", list="round3.small")
