@@ -1,15 +1,16 @@
 ###########################################
 # Cleaning and merging Afrobarometer Data #
 # Wiebke Weiger & Jasmin Cantzler         #
-# last updated: 8 November 2015           #
+# last updated: 9 November 2015           #
 ###########################################
 
 # packages needed:
 library(plyr)
+library(dplyr)
 
 # set working directory (remember to change to your directory)
 #setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Assignment 3/PreparatoryWork")
-setwd("/Users/jasmincantzler/Documents/TaxMorale/Assignment 3/PreparatoryWork")
+#setwd("/Users/jasmincantzler/Documents/TaxMorale/Assignment 3/PreparatoryWork")
 
 # load the data into R from the previously created csv-files:
 
@@ -320,6 +321,8 @@ round5.small$AvoidHowOften[round5.small$AvoidHowOften==-1] <- NA
 # 6210 don't knows
 # replace these with NA:
 round5.small$AvoidHowOften[round5.small$AvoidHowOften==9] <- NA
+#AvoidHowOften.refused <- round5.small[ which(round5.small$AvoidHowOften==998), ]
+# 0 refused
 
 # p) TrustTax:
 # Question Number: Q59D
@@ -336,6 +339,9 @@ round5.small$TrustTax[round5.small$TrustTax==-1] <- NA
 # 5829 don't knows
 # replace these with NA:
 round5.small$TrustTax[round5.small$TrustTax==-9] <- NA
+#TrustTax.refused <- round5.small[ which(round5.small$TrustTax==998), ]
+# 0 refused
+
 
 # q) SelfEmployedTax:
 # Question Number: Q73E
@@ -348,6 +354,10 @@ round5.small$TrustTax[round5.small$TrustTax==-9] <- NA
 # 14 missings
 # replace these with NA:
 round5.small$SelfEmployedTax[round5.small$SelfEmployedTax==-1] <- NA
+#SelfEmployedTax.notapplicable <- round5.small[ which(round5.small$SelfEmployedTax==7), ]
+# 21998 not applicable
+# replace these with NA:
+round5.small$SelfEmployedTax[round5.small$SelfEmployedTax==7] <- NA
 # SelfEmployedTax.notknown <- round5.small[ which(round5.small$SelfEmployedTax==9), ]
 # 2024 don't knows
 # replace these with NA:
@@ -365,13 +375,15 @@ summary(round5.small$AvoidReason)
 # 39 missings
 # replace these with NA:
 round5.small$AvoidReason[round5.small$AvoidReason==-1] <- NA
+#AvoidReason.other <- round5.small[ which(round5.small$AvoidReason==9995), ]
+# 254 other reasons
 #AvoidReason.notasked <- round5.small[ which(round5.small$AvoidReason==9997), ]
 # 0 notasked
 #AvoidReason.refused <- round5.small[ which(round5.small$AvoidReason==9998), ]
 # 30 notasked
 # replace these with NA:
 round5.small$AvoidReason[round5.small$AvoidReason==9998] <- NA
-AvoidReason.notknown <- round5.small[ which(round5.small$AvoidReason==9999), ]
+#AvoidReason.notknown <- round5.small[ which(round5.small$AvoidReason==9999), ]
 # 4425 not known
 # replace these with NA:
 round5.small$AvoidReason[round5.small$AvoidReason==9999] <- NA
