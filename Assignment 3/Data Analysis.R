@@ -19,6 +19,8 @@ library(dplyr)
 #creates Tax Morale as a numeric variable
 TaxMoraleNumeric <- as.numeric(mydata$TaxMorale)
 
+
+
 # CONDUCTS BASIC DESCRIPTIVE STATISTICS 
 summary(mydata) 
 summary(mydata$TaxMorale)
@@ -31,24 +33,34 @@ qplot(mydata$TaxMorale,
       xlab="The tax department always has the right to make people pay taxes.",
       fill=I("lightblue"))
 
+# creates a summary per country with mean of Tax Morale
+TaxMorale<-data.frame(TaxMoraleNumeric, mydata$Country)
+summary_Morale <-TaxMorale %>%
+  group_by(mydata.Country) %>%
+  summarise(
+    mean = mean(TaxMoraleNumeric, na.rm=TRUE)
+  )
+
+#renames column header
+names(summary_Morale) <- c('Tax Morale', 'Country')
+
+# creates a summary per country with mean of age
+summary_df <- mydata %>%
+  group_by(Country) %>%
+  summarise(
+    mean = mean(Age,na.rm=TRUE)
+  )
+
 #creating summary statistics table
+###not yet sure how to do that
+sum2_table <- merge(summary_Morale, summary_df)
 
 
-meanage <- mean(mydata$Age, na.rm=TRUE)
-meanAge<- data.frame(meanage,mydata$Country)
-meantax <-mean(TaxMoraleNumeric, na.rm = TRUE)
-meanTax<-data.frame(meantax, mydata$Country)
-
-
-fitted <- with(mydata,
-               data.frame(Mean = mean(Age, na.rm = TRUE),
-                          Country = Country))
                   
 
 
 
-sum2_table <- merge(obs, Pop09.13,
-                    by = c('year'))
+
 percent <- (obs$n / Pop09.13$WorkPop)*100
 percent_of_working <- data.frame(year, percent)
 

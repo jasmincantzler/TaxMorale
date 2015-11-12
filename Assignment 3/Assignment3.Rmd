@@ -5,10 +5,10 @@ date: "13 November 2015"
 output:
   html_document:
     fig_caption: yes
-    number_sections: true
+    number_sections: yes
   pdf_document:
     fig_caption: yes
-    number_sections: true
+    number_sections: yes
 ---
 
 ```{r, include=FALSE}
@@ -56,10 +56,6 @@ kable(table)
 
 ```
 
-
-```{r}
-kable(table)
-```
 #Introduction
 
 Our research paper aims to shed light on the determinants of tax morale in African countries by conducting a regression analysis using data from the Afrobarometer for the years 2005-2006, 2008-2010 and 2011-2013. Our conceptual framework is based on commonly perceived determinants of tax morale in developed countries, whereby:
@@ -70,28 +66,37 @@ This paper briefly outlines the design, operationalization and data selection, b
 
 #Method
 
-##Design
-A regression analysis is used to investigate the determinants of tax morale in African countries:
+##Data Selection and Operationalization
 
-$$Tax Morale_i = \alpha_i + \beta_1 Trust in Government_i + \beta_2 Level of Corruption_i + \beta_3 Interactions with other taxpayers_i + \beta_4 Tax Burden_i +  \beta_5 Social Norms_i + \epsilon_1$$
-
-whereby, $Trust in Government_i$ is the 
-
-##Data Selection & Operationalization
 As outlined in Assignment 1, we make use of the Afrobarometer Surveys to investigate the determinants of tax morale in African countries. We merged the survey results from Round 3, 4 and 5, resulting in a data set that spans the years 2005-2006, 2008-2010 and 2011-2013.
+
+##Descriptive Statistics of Our Data
 
 Tax Morale is instrumented by a variable [^1] that asks the participants to agree or disagree with the statement "The tax department always has the right to make people pay taxes." The variable is measured from 1=Strongly Disagree, 2=Disagree, 3=Neither Agree Nor Disagree, 4=Agree, 5=Strongly Agree. 
 
+
 **Table 1 in the columns 2, 3 and 4 shows for each country the percentage of individuals saying that tax evasion is never justifiable. Columns 5, 6, and 7 give the mean value for all countries based on a scale from 0 to 3, were 3 is the highest tax morale (value 0 integrates the values 4 to 10).**
 
-```{r,}
-#include Table
-
+```{r, echo=FALSE}
+qplot(mydata$TaxMorale,
+      geom="histogram",
+      binwidth=8,
+      main="Summary Statistic",
+      xlab="The tax department always has the right to make people pay taxes.",
+      fill=I("lightblue"))
 ```
 
 The average values in Table 1 give a first overview about tax morale in African countries; in general .... seems to have higher tax morale than...
 
-#Regression Results
+##Inferential Statistics
+
+A regression analysis is used to investigate the determinants of tax morale in African countries:
+
+$$Tax Morale_i = \alpha_i + \beta_1 Trust in Government_i + \beta_2 Level of Corruption_i + \beta_3 Interactions with other taxpayers_i + \beta_4 Tax Burden_i +  \beta_5 Social Norms_i + \epsilon_1$$
+
+#Conclusion
+
+
 
 
 
