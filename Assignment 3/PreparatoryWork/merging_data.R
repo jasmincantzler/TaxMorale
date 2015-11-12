@@ -478,6 +478,14 @@ round5.small$AvoidReason[round5.small$AvoidReason==9995] <- 14
 # s) EconomicPolicies:
 # missing for this year
 
+# save version without factor variables:
+round5.nofactors <- round5.small 
+
+# export data into csv format:
+rio::export(round5.nofactors, file="round5.nofactors.csv")
+
+# save smaller data set in Rdata format:
+save(round5.nofactors, file="Round5.nofactors.RData", list="round5.nofactors")
 
 # FACTOR VARIABLES:
 # At the moment R recognizes most of the variables as numeric variables even
@@ -938,6 +946,14 @@ round4.small$EconomicPolicies[round4.small$EconomicPolicies==9] <- NA
 # replace these with NA:
 round4.small$EconomicPolicies[round4.small$EconomicPolicies==5] <- NA
 
+# save version without factor variables:
+round4.nofactors <- round4.small 
+
+# export data into csv format:
+rio::export(round4.nofactors, file="round4.nofactors.csv")
+
+# save smaller data set in Rdata format:
+save(round4.nofactors, file="Round4.nofactors.RData", list="round4.nofactors")
 
 # FACTOR VARIABLES:
 # At the moment R recognizes most of the variables as numeric variables even
@@ -1482,6 +1498,14 @@ round3.small$CorruptionOfficialsNational[round3.small$CorruptionOfficialsNationa
 round3.small$CorruptionOfficialsNational[round3.small$CorruptionOfficialsNational==1] <- 2
 round3.small$CorruptionOfficialsNational[round3.small$CorruptionOfficialsNational==0] <- 1
 
+# save version without factor variables:
+round3.nofactors <- round3.small 
+
+# export data into csv format:
+rio::export(round3.nofactors, file="round3.nofactors.csv")
+
+# save smaller data set in Rdata format:
+save(round3.nofactors, file="Round3.nofactors.RData", list="round3.nofactors")
 
 # FACTOR VARIABLES:
 # At the moment R recognizes most of the variables as numeric variables even
@@ -1547,3 +1571,13 @@ rio::export(Afrobarometer.final, file="Afrobarometer.final.csv")
 # save smaller data set in Rdata format:
 save(Afrobarometer.final, file="Afrobarometer.final.RData", list="Afrobarometer.final")
 
+
+
+# merge version without factor variables:
+Afrobarometer.nofactors <- rbind(round3.nofactors, round4.nofactors, round5.nofactors)
+
+# export merged data into csv format:
+rio::export(Afrobarometer.nofactors, file="Afrobarometer.nofactors.csv")
+
+# save smaller data set in Rdata format:
+save(Afrobarometer.nofactors, file="Afrobarometer.nofactors.RData", list="Afrobarometer.nofactors")

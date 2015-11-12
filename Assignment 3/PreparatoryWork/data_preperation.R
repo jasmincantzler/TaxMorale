@@ -6,7 +6,7 @@
 
 
 # set the working directory:
-#setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Assignment 3/PreparatoryWork")
+setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Assignment 3/PreparatoryWork")
 # in this case really important, because it specifies where the csv-files are stored
 # unless you specify the file-path in the write.cvs command
 
