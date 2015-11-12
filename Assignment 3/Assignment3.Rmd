@@ -1,13 +1,13 @@
 ---
-title: "Tax Morale in Africa"
+title: "Opening the Black Box - Determinants of Tax Morale in Africa"
 author: "Wiebke Weiger & Jasmin Cantzler"
 date: "13 November 2015"
 output:
-  html_document:
+  pdf_document:
     fig_caption: yes
     number_sections: yes
     toc: yes
-  pdf_document:
+  html_document:
     fig_caption: yes
     number_sections: yes
     toc: yes
@@ -32,6 +32,7 @@ setwd("/Users/jasmincantzler/Documents/TaxMorale/Assignment 3/PreparatoryWork")
 mydata <- read.csv('Afrobarometer.final.csv')
 
 # Load packages
+library(MASS)
 library(ggplot2)
 library(knitr)
 library(dplyr)
@@ -42,6 +43,11 @@ TaxMoraleNumeric <- as.numeric(mydata$TaxMorale)
 # STEP 2 OF ASSIGNMENT: CONDUCTS BASIC DESCRIPTIVE STATISTICS 
 summary(mydata) 
 summary(mydata$TaxMorale)
+summary(TaxMoraleNumeric)
+# Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+# 1.000   1.000   2.000   2.351   4.000   5.000    6539 
+sd(TaxMoraleNumeric, na.rm=TRUE)
+#[1] 1.445466
 
 #creates a histogram of our dependent variable Tax Morale
 qplot(mydata$TaxMorale,
@@ -59,22 +65,44 @@ summary_df <- mydata %>%
   )
 
 # STEP 3: CONDUCTS INFERENTIAL STATISTICS
-mylogit <- glm(TaxMorale ~ TrustPresident, data=mydata, family=binomial)
-summary(mylogit)
+# Comment: as you see in the histogram, our variable is skewed, which is also the case if we transform it to natural log. 
+# summary(TaxMoraleNumeric)
+# hist(TaxMoraleNumeric)
+# log(TaxMoraleNumeric) %>% hist(main = "TaxMoraleNumeric")
 
+# use the polr command from the MASS package to estimate an ordered logistic regression model. 
+# specify HESS=TRUE to have the model return the observed information matrix from optimization which is used to get standard errors
+
+reg1<-polr(TaxMorale ~ CorruptionPresident, data=mydata, Hess = TRUE)
+summary(reg1)
+
+#store table
+(ctable <- coef(summary(reg1)))
+
+#calculate and store p values
+p <- pnorm(abs(ctable[, "t value"]), lower.tail = FALSE) * 2
+
+## combined table
+(ctable <- cbind(ctable, "p value" = p))
 ```
 
 #Introduction
 
-A country's ability to efficientyl mobilize its national resources is a topic that has recently been gaining traction in the discussion surrounding development. Since the Monterrey Consensus was adopted in 2002, in which countries recognized the importance of raising domestic revenues, development aid has been increasingly shifting from direct financial assistance to improving tax system and national resource management. This shift in strategy was officially stated in 2008, in the Doha Declaration on Financing for Development, which pledged to enhance national tax revenues; one of the recognized strategies pledged to achieve this was combating tax evasion.
+A country's ability to efficiently mobilize its national resources is a topic that has recently been gaining traction in the discussion surrounding development. Since the Monterrey Consensus was adopted in 2002, in which countries recognized the importance of raising domestic revenues, development aid has been increasingly shifting from direct financial assistance to improving tax system and national resource management. This shift in strategy was officially stated in 2008, in the Doha Declaration on Financing for Development, which pledged to enhance national tax revenues; one of the recognized strategies pledged to achieve this was combating tax evasion.
   
 High levels of tax evasion lead to a misallocation of resources and hinder the ability of the government to invest in the provision of public goods. Therefore, understanding the rationale behind tax evaders becomes essential to national development and state building. Tradtionally, the standard way to explain tax compliance has been the economics-of-crime approach, which assumes a rational taxpayer maximizing his or her utility by balancing the risk of detection and punishment with the benefit of tax evasion. Today, this approach is increasingly regarded as too narrow to fully explain tax compliance, and many argue for the need to include social factors, which are said to explain why people conform to paying taxes even in the absence of strong deterrence mechanisms. These social factors constitute and influence the individual's "intrinsic motivation to pay taxes", hereafter referred to as tax morale, by increasing moral costs of tax evasion and thus increasing tax compliance.
 
 Against this background, the purpose of our research paper is to identify the determinants of tax morale in African countries, thereby opening the door for new policies fostering tax morale and thus tax compliance and increased public revenues in African countries. Using data from the Afrobarometer, we conduct a regression analysis using the commonly identified determinants of tax morale to test whether these also hold in developing countries; or more specifically, in African countries. Generally, the few studies that do look inside the black box of tax morale find that factors such as trust in government, the level of corruption, interactions with other taxpayers and tax administrators, tax burden, perception about benefits of public spending, social norms, detection, and punishment, gender all determine tax morale and hence influence tax compliance. Our conceptual framework is therefore based on the determinants of tax morale in developed countries, whereby:
 
-$Tax Morale_i = \alpha_i + \beta_1 Trust in Government/Public Officials_i + \beta_2 Level of Corruption_i + \beta_3 interactions with other taxpayers_i \beta_4 tax burden_i \beta_5 detection and punishment_i \beta_5 Social Norms_i + \epsilon_i$
+\begin{equation}
+\begin{aligned}
+Tax Morale_i = & \alpha_i + \beta_1 Trust in Government/Public Officials_i + \beta_2 Level of Corruption_i \\
+& + \beta_3 interactions with other taxpayers_i + \beta_4 tax burden_i \\
+& + \beta_5 detection and punishment_i + \beta_5 Social Norms_i + \epsilon_i
+\end{aligned}
+\end{equation}
 
-This paper briefly outlines the design, operationalization and data selection, before conducting the regression analysis and briefly describing its results. More extensive information will be available in the final report. 
+This paper briefly outlines the design, operationalization and data selection, before conducting a first regression analysis and briefly describing its results. More extensive information will be available in the final report. 
 
 #Method
 
@@ -83,9 +111,6 @@ This paper briefly outlines the design, operationalization and data selection, b
 As outlined in Assignment 1, we make use of the Afrobarometer Surveys to investigate the determinants of tax morale in African countries. We merged the survey results from Round 3, 4 and 5, resulting in a data set that spans the years 2005-2006, 2008-2010 and 2011-2013.
 
 ##Descriptive Statistics of Our Data
-
-Tax Morale is instrumented by a variable [^1] that asks the participants to agree or disagree with the statement "The tax department always has the right to make people pay taxes." The variable is measured from 1=Strongly Disagree, 2=Disagree, 3=Neither Agree Nor Disagree, 4=Agree, 5=Strongly Agree. 
-
 
 **Table 1 in the columns 2, 3 and 4 shows for each country the percentage of individuals saying that tax evasion is never justifiable. Columns 5, 6, and 7 give the mean value for all countries based on a scale from 0 to 3, were 3 is the highest tax morale (value 0 integrates the values 4 to 10).**
 
@@ -105,9 +130,9 @@ The average values in Table 1 give a first overview about tax morale in African 
 
 ##Inferential Statistics
 
-A regression analysis is used to investigate the determinants of tax morale in African countries:
+A regression analysis is used to investigate the determinants of tax morale in African countries. Our dependent variable[^1] asks the participants to agree or disagree with the statement "The tax department always has the right to make people pay taxes." The variable is measured from  "Strongly Disagree", "Disagree", "Neither Agree or Disagree", "Agree", "Strongly Agree". Since we believe that the "distances" between these five points are not equal, an OLS regression in this case is problematic because the assumptions of OLS are violated when used with a non-interval outcome variable. Instead, we opted for an ordered logistic regression. 
 
-$$Tax Morale_i = \alpha_i + \beta_1 Trust in Government_i + \beta_2 Level of Corruption_i + \beta_3 Interactions with other taxpayers_i + \beta_4 Tax Burden_i +  \beta_5 Social Norms_i + \epsilon_1$$
+
 
 #Conclusion
 
