@@ -3,14 +3,16 @@ title: "Tax Morale in Africa"
 author: "Wiebke Weiger & Jasmin Cantzler"
 date: "13 November 2015"
 output:
-  html_document:
-    fig_caption: yes
-    number_sections: yes
   pdf_document:
     fig_caption: yes
     number_sections: yes
+    toc: yes
+  html_document:
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
 ---
-
+\pagebreak
 ```{r, include=FALSE}
 ##################################
 # Assignment 3
@@ -22,7 +24,11 @@ output:
 #setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Assignment 3/PreparatoryWork")
 setwd("/Users/jasmincantzler/Documents/TaxMorale/Assignment 3/PreparatoryWork")
 
-# Load data
+#STEP 1 OF ASSIGNMENT: GATHER WEB BASED DATA FROM AT LEAST TWO SOURCES, MERGE THE DATA SETS 
+#to load the R file that contains the merging of the different data sets please
+# source('merging_data.R') 
+
+# for sake of ease we directly load the final dataset that is the result of the file above
 mydata <- read.csv('Afrobarometer.final.csv')
 
 # Load packages
@@ -57,6 +63,9 @@ kable(table)
 ```
 
 #Introduction
+
+A country's ability to efficientyl mobilize its national resources is a topic that has recently been gaining traction in the discussion surrounding development. Since the Monterrey Consensus was adopted in 2002, in which countries recognized the importance of raising domestic revenues, development aid has been increasingly shifting from direct financial assistance to improving tax system and national resource management. This shift in strategy was officially stated in 2008, in the Doha Declaration on Financing for Development, which pledged to enhance national tax revenues; one of the recognized strategies pledged to achieve this was combating tax evasion.
+  High levels of tax evasion lead to a misallocation of resources and hinder the ability of the government to invest in the provision of public goods. Therefore, understanding the rationale behind tax evaders becomes essential to national development and state building. Tradtionally, the standard way to explain tax compliance has been the economics-of-crime approach, which assumes a rational taxpayer maximizing his or her utility by balancing the risk of detection and punishment with the benefit of tax evasion. Today, this approach is increasingly regarded as too narrow to fully explain tax compliance, and many argue for the need to include social factors, which are said to explain why people conform to paying taxes even in the absence of strong deterrence mechanisms. These social factors constitute and influence the individual's "intrinsic motivation to pay taxes", hereafter referred to as tax morale, by increasing moral costs of tax evasion and thus increasing tax compliance.
 
 Our research paper aims to shed light on the determinants of tax morale in African countries by conducting a regression analysis using data from the Afrobarometer for the years 2005-2006, 2008-2010 and 2011-2013. Our conceptual framework is based on commonly perceived determinants of tax morale in developed countries, whereby:
 
