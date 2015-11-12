@@ -7,3 +7,5 @@
 # Set working directory
 #setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Assignment 3/PreparatoryWork")
 setwd("/Users/jasmincantzler/Documents/TaxMorale/Assignment 3/PreparatoryWork")
+
+mydata <- read.csv('Afrobarometer.final.csv')
