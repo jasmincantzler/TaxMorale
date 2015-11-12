@@ -36,6 +36,7 @@ library(MASS)
 library(ggplot2)
 library(knitr)
 library(dplyr)
+library(stargazer)
 
 #creates Tax Morale as a numeric variable
 TaxMoraleNumeric <- as.numeric(mydata$TaxMorale)
@@ -75,6 +76,7 @@ summary_df <- mydata %>%
 
 reg1<-polr(TaxMorale ~ CorruptionPresident, data=mydata, Hess = TRUE)
 summary(reg1)
+?stargazer
 
 #store table
 (ctable <- coef(summary(reg1)))
@@ -115,6 +117,9 @@ As outlined in Assignment 1, we make use of the Afrobarometer Surveys to investi
 **Table 1 in the columns 2, 3 and 4 shows for each country the percentage of individuals saying that tax evasion is never justifiable. Columns 5, 6, and 7 give the mean value for all countries based on a scale from 0 to 3, were 3 is the highest tax morale (value 0 integrates the values 4 to 10).**
 
 ```{r, echo=FALSE}
+stargazer::stargazer(reg1,
+    title = 'Logistic Regression Estimates of Grad School Acceptance',
+    digits = 2, type='latex', header=FALSE)
 
 kable(summary_df)
 
