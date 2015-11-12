@@ -9,3 +9,15 @@
 setwd("/Users/jasmincantzler/Documents/TaxMorale/Assignment 3/PreparatoryWork")
 
 mydata <- read.csv('Afrobarometer.final.csv')
+
+# CONDUCTS BASIC DESCRIPTIVE STATISTICS 
+summary(mydata) 
+summary(Afrobarometer.final$TaxMorale)
+table(mydata$TaxMorale)
+
+install.packages("pastecs")
+library(pastecs)
+stat.desc(mydata)
+
+# CONDUCTS INFERENTIAL STATISTICS
+Reg1 <- lm(TaxMorale~TrustPresident, data=mydata)
