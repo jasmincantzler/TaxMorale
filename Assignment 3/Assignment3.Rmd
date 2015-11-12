@@ -3,11 +3,11 @@ title: "Tax Morale in Africa"
 author: "Wiebke Weiger & Jasmin Cantzler"
 date: "13 November 2015"
 output:
-  pdf_document:
+  html_document:
     fig_caption: yes
     number_sections: yes
     toc: yes
-  html_document:
+  pdf_document:
     fig_caption: yes
     number_sections: yes
     toc: yes
@@ -24,7 +24,7 @@ output:
 #setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Assignment 3/PreparatoryWork")
 setwd("/Users/jasmincantzler/Documents/TaxMorale/Assignment 3/PreparatoryWork")
 
-#STEP 1 OF ASSIGNMENT: GATHER WEB BASED DATA FROM AT LEAST TWO SOURCES, MERGE THE DATA SETS 
+#STEP 1 OF ASSIGNMENT: GATHERS WEB BASED DATA FROM AT LEAST TWO SOURCES, MERGES THE DATA SETS 
 #to load the R file that contains the merging of the different data sets please
 # source('merging_data.R') 
 
@@ -39,7 +39,7 @@ library(dplyr)
 #creates Tax Morale as a numeric variable
 TaxMoraleNumeric <- as.numeric(mydata$TaxMorale)
 
-# CONDUCTS BASIC DESCRIPTIVE STATISTICS 
+# STEP 2 OF ASSIGNMENT: CONDUCTS BASIC DESCRIPTIVE STATISTICS 
 summary(mydata) 
 summary(mydata$TaxMorale)
 
@@ -51,14 +51,16 @@ qplot(mydata$TaxMorale,
       xlab="The tax department always has the right to make people pay taxes.",
       fill=I("lightblue"))
 
-meanage <- mean(mydata$Age, na.rm=TRUE)
-meanAge<- data.frame(meanage,mydata$Country)
+summary_df <- mydata %>% 
+  group_by(Country) %>% 
+  summarise(
+    meanage = mean(Age,na.rm=TRUE), 
+    meantaxmorale = mean(TaxMoraleNumeric, na.rm=TRUE)
+  )
 
-
-table <- with(mydata,
-              data.frame(Mean=mean(mydata$Age, na.rm = TRUE)),
-              Country=factor(mydata$Country))
-kable(table)
+# STEP 3: CONDUCTS INFERENTIAL STATISTICS
+mylogit <- glm(TaxMorale ~ TrustPresident, data=mydata, family=binomial)
+summary(mylogit)
 
 ```
 
@@ -68,9 +70,9 @@ A country's ability to efficientyl mobilize its national resources is a topic th
   
 High levels of tax evasion lead to a misallocation of resources and hinder the ability of the government to invest in the provision of public goods. Therefore, understanding the rationale behind tax evaders becomes essential to national development and state building. Tradtionally, the standard way to explain tax compliance has been the economics-of-crime approach, which assumes a rational taxpayer maximizing his or her utility by balancing the risk of detection and punishment with the benefit of tax evasion. Today, this approach is increasingly regarded as too narrow to fully explain tax compliance, and many argue for the need to include social factors, which are said to explain why people conform to paying taxes even in the absence of strong deterrence mechanisms. These social factors constitute and influence the individual's "intrinsic motivation to pay taxes", hereafter referred to as tax morale, by increasing moral costs of tax evasion and thus increasing tax compliance.
 
-Against this background, the purpose of our research paper is to identify the determinants of tax morale in African countries, thereby opening the door for new policies fostering tax morale and thus tax compliance and increased public revenues in African countries. Using data from the Afrobarometer, we conduct a regression analysis using the commonly identified determinants of tax morale to test whether these also hold in developing countries; or more specifically, in African countries. Our conceptual framework is therefore based on the determinants of tax morale in developed countries, whereby:
+Against this background, the purpose of our research paper is to identify the determinants of tax morale in African countries, thereby opening the door for new policies fostering tax morale and thus tax compliance and increased public revenues in African countries. Using data from the Afrobarometer, we conduct a regression analysis using the commonly identified determinants of tax morale to test whether these also hold in developing countries; or more specifically, in African countries. Generally, the few studies that do look inside the black box of tax morale find that factors such as trust in government, the level of corruption, interactions with other taxpayers and tax administrators, tax burden, perception about benefits of public spending, social norms, detection, and punishment, gender all determine tax morale and hence influence tax compliance. Our conceptual framework is therefore based on the determinants of tax morale in developed countries, whereby:
 
-$$Tax Morale_i = \alpha_i + \beta_1 Trust in Government_i + $$
+$Tax Morale_i = \alpha_i + \beta_1 Trust in Government/Public Officials_i + \beta_2 Level of Corruption_i + \beta_3 interactions with other taxpayers_i \beta_4 tax burden_i \beta_5 detection and punishment_i \beta_5 Social Norms_i + \epsilon_i$
 
 This paper briefly outlines the design, operationalization and data selection, before conducting the regression analysis and briefly describing its results. More extensive information will be available in the final report. 
 
@@ -88,6 +90,9 @@ Tax Morale is instrumented by a variable [^1] that asks the participants to agre
 **Table 1 in the columns 2, 3 and 4 shows for each country the percentage of individuals saying that tax evasion is never justifiable. Columns 5, 6, and 7 give the mean value for all countries based on a scale from 0 to 3, were 3 is the highest tax morale (value 0 integrates the values 4 to 10).**
 
 ```{r, echo=FALSE}
+
+kable(summary_df)
+
 qplot(mydata$TaxMorale,
       geom="histogram",
       binwidth=8,
