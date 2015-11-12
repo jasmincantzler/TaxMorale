@@ -54,6 +54,7 @@ summary_df <- mydata %>%
 #creating summary statistics table
 ###not yet sure how to do that
 sum2_table <- merge(summary_Morale, summary_df)
+sum2_table<- rbind(summary_Morale, summary_df)
 
 
                   
