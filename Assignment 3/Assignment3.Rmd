@@ -18,11 +18,48 @@ output:
 # 13 November 2015
 ##################################
 
-#load packages
+# Set working directory
+#setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Assignment 3/PreparatoryWork")
+setwd("/Users/jasmincantzler/Documents/TaxMorale/Assignment 3/PreparatoryWork")
 
+# Load data
+mydata <- read.csv('Afrobarometer.final.csv')
+
+# Load packages
+library(ggplot2)
+library(knitr)
+library(dplyr)
+
+#creates Tax Morale as a numeric variable
+TaxMoraleNumeric <- as.numeric(mydata$TaxMorale)
+
+# CONDUCTS BASIC DESCRIPTIVE STATISTICS 
+summary(mydata) 
+summary(mydata$TaxMorale)
+
+#creates a histogram of our dependent variable Tax Morale
+qplot(mydata$TaxMorale,
+      geom="histogram",
+      binwidth=8,
+      main="Summary Statistic",
+      xlab="The tax department always has the right to make people pay taxes.",
+      fill=I("lightblue"))
+
+meanage <- mean(mydata$Age, na.rm=TRUE)
+meanAge<- data.frame(meanage,mydata$Country)
+
+
+table <- with(mydata,
+              data.frame(Mean=mean(mydata$Age, na.rm = TRUE)),
+              Country=factor(mydata$Country))
+kable(table)
 
 ```
 
+
+```{r}
+kable(table)
+```
 #Introduction
 
 Our research paper aims to shed light on the determinants of tax morale in African countries by conducting a regression analysis using data from the Afrobarometer for the years 2005-2006, 2008-2010 and 2011-2013. Our conceptual framework is based on commonly perceived determinants of tax morale in developed countries, whereby:
