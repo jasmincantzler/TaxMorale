@@ -139,7 +139,8 @@ A regression analysis is used to investigate the determinants of tax morale in A
 
 
 
-#Conclusion
+#Discussion & Open Questions
+1. Since many of our dependent variables are also nominal we are still investigating whether there are more suitable regression models applicable than ordinal logistic regression. After all, at this point we are treating the dependent variables as numerical. Academic opinions seem strongly divided whether it is okay or highly problematic - what would be your take on this?
 
 
 

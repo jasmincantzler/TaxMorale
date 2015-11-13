@@ -12,10 +12,35 @@ output:
     number_sections: yes
     toc: yes
 ---
+\pagebreak
+
+#Introduction
+
+#Literature Review
+
+#Method
+
+##Design
+
+##Data Selection
+
+#Operationalization
+
+#Analysis Procedure
+As illustrated in the previous section, we have identified certain characteristics as determinants of the approach needed to make meaningful assertions concerning the relationship between our explanatory variable and our dependent variable. 
 
 When a dependent variable has more than two categories and the values of each category have a
 meaningful sequential order where a value is indeed ‘higher’ than the previous one, then you
 can use ordinal logit. 
+
+#Limitations and Delimitations
+
+
+#Results and Discussion
+
+#Conclusion
+
+
 
 ```{r}
 summary(cars)
