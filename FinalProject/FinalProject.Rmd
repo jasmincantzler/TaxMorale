@@ -1,9 +1,0 @@
----
-title: "Tax Morale in Africa"
-author: "Wiebke Weiger & Jasmin Cantzler"
-date: "11. Dezember 2015"
-output: html_document
-bibliography: References.bib
----
-
-This file will contain content for the final collaborative research project on tax morale in Africa.
