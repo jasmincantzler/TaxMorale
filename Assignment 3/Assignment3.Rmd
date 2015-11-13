@@ -40,6 +40,7 @@ library(tidyr)
 library(tables)
 library(usdm)
 library(Hmisc)
+library(plyr)
 # library(corrplot) funktioniert nicht so schön wie gedacht
 
 # STEP 2 OF ASSIGNMENT: CONDUCTS BASIC DESCRIPTIVE STATISTICS 
@@ -56,20 +57,30 @@ summary(TaxMoraleNumeric)
 sd(TaxMoraleNumeric, na.rm=TRUE)
 #[1] 1.445466
 
+# plots a summary statistics about the country distribution, fände das in % besser, bekomms aber nicht hin
+library(ggplot2)
+ggplot(mydata,aes(x=Country)) + geom_bar(colour="darkblue",fill="lightblue") +coord_flip()+ geom_text(stat='bin',aes(label=..count..))
+
+
 #creates a histogram of our dependent variable Tax Morale
 qplot(mydata$TaxMorale,
       geom="histogram",
-      binwidth=8,
+      binwidth=6,
       main="Summary Statistic",
       xlab="The tax department always has the right to make people pay taxes.",
       fill=I("lightblue"))
+
+#frequencytable
+mytable <- table(mydata$Country, mydata$TaxMorale) 
+ftable(mytable)
 
 summary_df <- mydata %>% 
   group_by(Country) %>% 
   summarise(
     meanage = mean(Age,na.rm=TRUE), 
-    meantaxmorale = mean(TaxMoraleNumeric, na.rm=TRUE)
+    meantaxmorale = mean(TaxMorale, na.rm=TRUE)
   )
+
 
 # STEP 3: CONDUCTS INFERENTIAL STATISTICS
 #Since our dependent variable is ordinal OLS would be problematic. Instead we want to use an ordinal logistic regression. In order to do so in a meaningful way we first need to ensure that there is no multicollinearity and that we have ordinal odds.
