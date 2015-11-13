@@ -1,0 +1,30 @@
+---
+title: "Opening the Black Box - Determinants of Tax Morale in Africa"
+author: "Wiebke Weiger & Jasmin Cantzler"
+date: "13 November 2015"
+output:
+  pdf_document:
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
+  html_document:
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
+---
+
+When a dependent variable has more than two categories and the values of each category have a
+meaningful sequential order where a value is indeed ‘higher’ than the previous one, then you
+can use ordinal logit. 
+
+```{r}
+summary(cars)
+```
+
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
