@@ -3,21 +3,18 @@ title: "Opening the Black Box - Determinants of Tax Morale in Africa"
 author: "Wiebke Weiger & Jasmin Cantzler"
 date: "13 November 2015"
 output:
-  html_document:
+  pdf_document:
     fig_caption: yes
     number_sections: yes
     toc: yes
-  pdf_document:
+  html_document:
     fig_caption: yes
     number_sections: yes
     toc: yes
 ---
 \pagebreak
 ```{r, include=FALSE}
-##################################
-# Assignment 3
-# Jasmin Cantzler & Wiebke Weiger
-# 13 November 2015
+
 ##################################
 
 # Set working directory
@@ -37,6 +34,10 @@ library(ggplot2)
 library(knitr)
 library(dplyr)
 library(stargazer)
+library(tidyr)
+library(tables)
+library(usdm)
+library(Hmisc)
 
 #creates Tax Morale as a numeric variable
 TaxMoraleNumeric <- as.numeric(mydata$TaxMorale)
@@ -67,9 +68,6 @@ summary_df <- mydata %>%
   )
 
 #Table Attempts
-library(dplyr)
-library(tidyr)
-library(tables)
 mtcars[mtcars$am==0,"am"] <- "manual"
 mtcars[mtcars$am==1,"am"] <- "automatic"
 mtcars$cyl <- as.factor(mtcars$cyl)
@@ -84,20 +82,35 @@ mytable <- tabular(Heading()*cyl ~ am*(`mean_mpg` +`mean_qsec`)*Heading()*(ident
 mytable
 
 # STEP 3: CONDUCTS INFERENTIAL STATISTICS
-# Comment: as you see in the histogram, our variable is skewed, which is also the case if we transform it to natural log. 
-# summary(TaxMoraleNumeric)
-# hist(TaxMoraleNumeric)
-# log(TaxMoraleNumeric) %>% hist(main = "TaxMoraleNumeric")
+#Since our dependent variable is ordinal OLS would be problematic. Instead we want to use an ordinal logistic regression. In order to do so in a meaningful way we first need to ensure that there is no multicollinearity and that we have ordinal odds.
+
+# Make a dataframe of the predictors as numeric variables (unfortunately with this method, independent variables need to be treated as numeric)
+# for some reason I cannot include as.numeric(mydata$Enforce1) because then the VIF gives an error, so for now I will do it without
+dummy_df <- data.frame(as.numeric(mydata$Country),as.numeric(mydata$Year), as.numeric(mydata$TrustPresident), as.numeric(mydata$CorruptionTax), as.numeric(mydata$SelfEmployedTax), as.numeric(mydata$Religion), as.numeric(mydata$Gender), as.numeric(mydata$EconomicSituation))
+
+#checking for multicollinearity using the "Variance Inflation Factor (VIF)"
+VIF<- vif(dummy_df)
+#                             Variables      VIF
+#1           as.numeric.mydata.Country. 1.027691
+#2              as.numeric.mydata.Year. 2.000024
+#3    as.numeric.mydata.TrustPresident. 1.012991
+#4     as.numeric.mydata.CorruptionTax. 1.012930
+#5   as.numeric.mydata.SelfEmployedTax. 1.023855
+#6          as.numeric.mydata.Religion. 1.010720
+#7            as.numeric.mydata.Gender. 1.006717
+#8 as.numeric.mydata.EconomicSituation. 1.005861
+
+#created a dataframe which dropped the missings (cause I could not find out how to do a correlation matrix including missings)
+dummy_df_without_NA <- na.omit(dummy_df)
+COR<-cor(dummy_df_without_NA)
+
+#checking for ordinal odds - still unsure how to do that
 
 # use the polr command from the MASS package to estimate an ordered logistic regression model. 
 # specify HESS=TRUE to have the model return the observed information matrix from optimization which is used to get standard errors
 
-reg1<-polr(TaxMorale ~ CorruptionPresident, method='logistic', data=mydata, Hess = TRUE)
+reg1<-polr(TaxMorale ~ CorruptionPresident + CorruptionTax + EconomicSituation, method='logistic', data=mydata, Hess = TRUE)
 summary(reg1)
-?stargazer
-
-reg2<-polr(TaxMorale ~ CorruptionPresident + Gender,  data=mydata, Hess = TRUE)
-summary(reg2)
 
 #store table
 (ctable <- coef(summary(reg1)))
@@ -107,6 +120,51 @@ p <- pnorm(abs(ctable[, "t value"]), lower.tail = FALSE) * 2
 
 ## combined table
 (ctable <- cbind(ctable, "p value" = p))
+
+#confidence intervals for the parameter estimates (takes forever thats why disabled)
+#(ci <- confint(reg1))
+#                                    2.5 %      97.5 %
+#CorruptionPresidentMost of them       -0.19182438 -0.08580664
+#CorruptionPresidentNone               -0.17179050 -0.05718965
+#CorruptionPresidentSome of them       -0.25072784 -0.15134814
+#CorruptionTaxMost of them             -0.33266761 -0.24272360
+#CorruptionTaxNone                     -0.21520517 -0.09948241
+#CorruptionTaxSome of them             -0.37704984 -0.28874489
+#EconomicSituationFairly good           0.03058761  0.10516012
+#EconomicSituationNeither good nor bad -0.01611019  0.06808788
+#EconomicSituationVery bad              0.26718134  0.33965945
+#EconomicSituationVery good             0.29385226  0.42424574
+
+#for some reason it doesnt work if I include country - not sure how to solve this
+reg2<-polr(TaxMorale ~ CorruptionPresident + CorruptionTax + EconomicSituation + Year + Gender + Age, method='logistic', data=mydata, Hess = TRUE)
+summary(reg2)
+
+#store table
+(ctable2 <- coef(summary(reg2)))
+
+#calculate and store p values
+p2 <- pnorm(abs(ctable2[, "t value"]), lower.tail = FALSE) * 2
+
+## combined table
+(ctable2 <- cbind(ctable2, "p value" = p2))
+
+# confidence intervals for the parameter estimates (takes forever thats why disabled)
+# (ci2 <- confint(reg2))
+#                                              2.5 %       97.5 %
+#CorruptionPresidentMost of them       -0.1912831346 -0.085302652
+#CorruptionPresidentNone               -0.1730778463 -0.060819937
+#CorruptionPresidentSome of them                  NA           NA
+#CorruptionTaxMost of them             -0.3325117953 -0.242345314
+#CorruptionTaxNone                                NA           NA
+#CorruptionTaxSome of them             -0.3779147748 -0.289237037
+#EconomicSituationFairly good           0.0337007043  0.108279597
+#EconomicSituationNeither good nor bad -0.0158376547  0.068428746
+#EconomicSituationVery bad              0.2676409190  0.339626561
+#EconomicSituationVery good                       NA           NA
+#Year                                             NA           NA
+#Gendermale                             0.0410194562  0.094950776
+#Age                                   -0.0003421893  0.001586891
+
 ```
 
 #Introduction
@@ -140,12 +198,12 @@ As outlined in Assignment 1, we make use of the Afrobarometer Surveys to investi
 ```{r, echo=FALSE}
 kable(summary_df)
 
-qplot(mydata$TaxMorale,
-      geom="histogram",
-      binwidth=8,
-      main="Summary Statistic",
-      xlab="The tax department always has the right to make people pay taxes.",
-      fill=I("lightblue"))
+# qplot(mydata$TaxMorale,
+#      geom="histogram",
+#      binwidth=8,
+#      main="Summary Statistic",
+#      xlab="The tax department always has the right to make people pay taxes.",
+#      fill=I("lightblue"))
 ```
 
 The average values in Table 1 give a first overview about tax morale in African countries; in general .... seems to have higher tax morale than...
@@ -155,11 +213,29 @@ The average values in Table 1 give a first overview about tax morale in African 
 A regression analysis is used to investigate the determinants of tax morale in African countries. Our dependent variable[^1] asks the participants to agree or disagree with the statement "The tax department always has the right to make people pay taxes." The variable is measured from  "Strongly Disagree", "Disagree", "Neither Agree or Disagree", "Agree", "Strongly Agree". Since we believe that the "distances" between these five points are not equal, an OLS regression in this case is problematic because the assumptions of OLS are violated when used with a non-interval outcome variable. Instead, we opted for an ordinal logistic regression. 
 
 In order to use an ordinal logistic regression the following four assumptions need to hold:
+
 1. The dependent variable is measured at the ordinal level.
 2. One or more independent variables that are continuous, ordinal, or categorical
 3. There is no multicollinearity
 4. Ordinal odds
 
+As indicated above, the first assumption holds true; our tax morale variable is measured at the ordinal level. The second assumption also holds true; all of our independent variables, are continuous, ordinal or categorical. To test for multicollinearity, we applied the variance inflation factor; the result are shown in the table below. Since all numbers exept year are very close to 1, we can assert that there is no multicollinearity.
+
+```{r, echo=FALSE}
+#shows the output from VIF Test
+kable(VIF)
+```
+
+We also created a simply correlation matrix to test for multicollinearity. As a rule of thumb, any correlation with a value of .5 and above will present multicollinearity, when 1 is perfect correlation. As seen in the correlation matrix, not a singly correlation yields a value above .5. The highest correlation, between country and paying taxes as a self-employed person is only -0.15, far from close to a high, multicollinear correlation. 
+
+```{r, echo=FALSE}
+#shows the output from the correlation matrix
+kable(COR, digits = 2)
+
+#corrplot(M, method = "circle") #plot matrix
+```
+
+We had some difficulties to test for ordinal odds, which will need to be resolved in the final project. 
 
 ```{r, message=FALSE, results='asis', echo=FALSE}
 ## this gives the output of the regression analysis
@@ -170,7 +246,9 @@ stargazer::stargazer(reg1, reg2,
 
 
 #Discussion & Open Questions
+@Wiebke - please have a look - only collecting my doubts here so I don't forget.
 1. Since many of our dependent variables are also nominal we are still investigating whether there are more suitable regression models applicable than ordinal logistic regression. After all, at this point we are treating the dependent variables as numerical. Academic opinions seem strongly divided whether it is okay or highly problematic - what would be your take on this?
+2. Maybe there is a way to group our corruption variables together per respondent? Or not advisable
 
 
 
