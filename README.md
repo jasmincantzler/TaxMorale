@@ -9,7 +9,12 @@ This repository contains all the information and documents related to the collab
   * HTML-, and pdf-files knitted from the R-Markdown file
   * a bib-file "References" containing the references from the proposal
   * other documents or data used for this assignment (e.g. map of countries included in the dataset)
-* The folder **Assignment3** contains all information and documents related to the third pair assignment (i.e. merged data and basic inferential statistics)
+* The folder **Assignment3** contains all information and documents related to the third pair assignment (i.e. merged data and basic inferential statistics):
+  * the folder "Preparatory Work" contains all preparatory work, the different data sets before merging, as well as step-by-step overviews about the procedures. 
+  * the folder "Afrobarometer Codebooks" contains the codebooks for the different surveys
+  * a bib-file "References" containing the references for this assignment
+  * R-Markdown file containing the assignment
+  * HTML-and pdf-files knitted from the R-Markdown file (please disregard html-file and only consult pdf)
 * The folder **Final Project** contains all the relevant information and documents for the final collaborative research project
 
 Assignment 2:
