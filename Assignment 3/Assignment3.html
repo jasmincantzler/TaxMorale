@@ -75,7 +75,7 @@ img {
 <li><a href="#descriptive-statistics-of-our-data"><span class="toc-section-number">2.2</span> Descriptive Statistics of Our Data</a></li>
 <li><a href="#inferential-statistics"><span class="toc-section-number">2.3</span> Inferential Statistics</a></li>
 </ul></li>
-<li><a href="#conclusion"><span class="toc-section-number">3</span> Conclusion</a></li>
+<li><a href="#discussion-open-questions"><span class="toc-section-number">3</span> Discussion &amp; Open Questions</a></li>
 </ul>
 </div>
 
@@ -83,7 +83,7 @@ img {
 <div id="introduction" class="section level1">
 <h1><span class="header-section-number">1</span> Introduction</h1>
 <p>A country’s ability to efficiently mobilize its national resources is a topic that has recently been gaining traction in the discussion surrounding development. Since the Monterrey Consensus was adopted in 2002, in which countries recognized the importance of raising domestic revenues, development aid has been increasingly shifting from direct financial assistance to improving tax system and national resource management. This shift in strategy was officially stated in 2008, in the Doha Declaration on Financing for Development, which pledged to enhance national tax revenues; one of the recognized strategies pledged to achieve this was combating tax evasion.</p>
-<p>High levels of tax evasion lead to a misallocation of resources and hinder the ability of the government to invest in the provision of public goods. Therefore, understanding the rationale behind tax evaders becomes essential to national development and state building. Tradtionally, the standard way to explain tax compliance has been the economics-of-crime approach, which assumes a rational taxpayer maximizing his or her utility by balancing the risk of detection and punishment with the benefit of tax evasion. Today, this approach is increasingly regarded as too narrow to fully explain tax compliance, and many argue for the need to include social factors, which are said to explain why people conform to paying taxes even in the absence of strong deterrence mechanisms. These social factors constitute and influence the individual’s “intrinsic motivation to pay taxes”, hereafter referred to as tax morale, by increasing moral costs of tax evasion and thus increasing tax compliance.</p>
+<p>High levels of tax evasion lead to a misallocation of resources and hinder the ability of the government to invest in the provision of public goods. Therefore, understanding the rationale behind tax evaders becomes essential to national development and state building. Traditionally, the standard way to explain tax compliance has been the economics-of-crime approach, which assumes a rational taxpayer maximizing his or her utility by balancing the risk of detection and punishment with the benefit of tax evasion. Today, this approach is increasingly regarded as too narrow to fully explain tax compliance, and many argue for the need to include social factors, which are said to explain why people conform to paying taxes even in the absence of strong deterrence mechanisms. These social factors constitute and influence the individual’s “intrinsic motivation to pay taxes”, hereafter referred to as tax morale, by increasing moral costs of tax evasion and thus increasing tax compliance.</p>
 <p>Against this background, the purpose of our research paper is to identify the determinants of tax morale in African countries, thereby opening the door for new policies fostering tax morale and thus tax compliance and increased public revenues in African countries. Using data from the Afrobarometer, we conduct a regression analysis using the commonly identified determinants of tax morale to test whether these also hold in developing countries; or more specifically, in African countries. Generally, the few studies that do look inside the black box of tax morale find that factors such as trust in government, the level of corruption, interactions with other taxpayers and tax administrators, tax burden, perception about benefits of public spending, social norms, detection, and punishment, gender all determine tax morale and hence influence tax compliance. Our conceptual framework is therefore based on the determinants of tax morale in developed countries, whereby:</p>
 
 <p>This paper briefly outlines the design, operationalization and data selection, before conducting a first regression analysis and briefly describing its results. More extensive information will be available in the final report.</p>
@@ -92,28 +92,11 @@ img {
 <h1><span class="header-section-number">2</span> Method</h1>
 <div id="data-selection-and-operationalization" class="section level2">
 <h2><span class="header-section-number">2.1</span> Data Selection and Operationalization</h2>
-<p>As outlined in Assignment 1, we make use of the Afrobarometer Surveys to investigate the determinants of tax morale in African countries. We merged the survey results from Round 3, 4 and 5, resulting in a data set that spans the years 2005-2006, 2008-2010 and 2011-2013.</p>
+<p>As outlined in Assignment 1, we make use of the Afrobarometer Surveys to investigate the determinants of tax morale in African countries. We merged the survey results from Round 3, 4 and 5, resulting in a data set that spans the years 2005-2006, 2008-2010 and 2011-2013. For a step-by-step protocol please consult this <a href="https://github.com/jasmincantzler/TaxMorale/blob/master/Assignment%203/PreparatoryWork/merging_data.R">R-file</a>.</p>
 </div>
 <div id="descriptive-statistics-of-our-data" class="section level2">
 <h2><span class="header-section-number">2.2</span> Descriptive Statistics of Our Data</h2>
 <p><strong>Table 1 in the columns 2, 3 and 4 shows for each country the percentage of individuals saying that tax evasion is never justifiable. Columns 5, 6, and 7 give the mean value for all countries based on a scale from 0 to 3, were 3 is the highest tax morale (value 0 integrates the values 4 to 10).</strong></p>
-<pre><code>## 
-## &lt;table style=&quot;text-align:center&quot;&gt;&lt;caption&gt;&lt;strong&gt;Logistic Regression Estimates of Grad School Acceptance&lt;/strong&gt;&lt;/caption&gt;
-## &lt;tr&gt;&lt;td colspan=&quot;2&quot; style=&quot;border-bottom: 1px solid black&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;Dependent variable:&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
-## &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan=&quot;1&quot; style=&quot;border-bottom: 1px solid black&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;TaxMorale&lt;/td&gt;&lt;/tr&gt;
-## &lt;tr&gt;&lt;td colspan=&quot;2&quot; style=&quot;border-bottom: 1px solid black&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;CorruptionPresidentMost of them&lt;/td&gt;&lt;td&gt;-0.27&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
-## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;(0.02)&lt;/td&gt;&lt;/tr&gt;
-## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
-## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;CorruptionPresidentNone&lt;/td&gt;&lt;td&gt;-0.25&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
-## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;(0.02)&lt;/td&gt;&lt;/tr&gt;
-## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
-## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;CorruptionPresidentSome of them&lt;/td&gt;&lt;td&gt;-0.39&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
-## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;(0.02)&lt;/td&gt;&lt;/tr&gt;
-## &lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
-## &lt;tr&gt;&lt;td colspan=&quot;2&quot; style=&quot;border-bottom: 1px solid black&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;Observations&lt;/td&gt;&lt;td&gt;80,052&lt;/td&gt;&lt;/tr&gt;
-## &lt;tr&gt;&lt;td colspan=&quot;2&quot; style=&quot;border-bottom: 1px solid black&quot;&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;text-align:left&quot;&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td style=&quot;text-align:right&quot;&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
-## &lt;/table&gt;</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -302,11 +285,16 @@ img {
 </div>
 <div id="inferential-statistics" class="section level2">
 <h2><span class="header-section-number">2.3</span> Inferential Statistics</h2>
-<p>A regression analysis is used to investigate the determinants of tax morale in African countries. Our dependent variable<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> asks the participants to agree or disagree with the statement “The tax department always has the right to make people pay taxes.” The variable is measured from “Strongly Disagree”, “Disagree”, “Neither Agree or Disagree”, “Agree”, “Strongly Agree”. Since we believe that the “distances” between these five points are not equal, an OLS regression in this case is problematic because the assumptions of OLS are violated when used with a non-interval outcome variable. Instead, we opted for an ordered logistic regression.</p>
+<p>A regression analysis is used to investigate the determinants of tax morale in African countries. Our dependent variable<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> asks the participants to agree or disagree with the statement “The tax department always has the right to make people pay taxes.” The variable is measured from “Strongly Disagree”, “Disagree”, “Neither Agree or Disagree”, “Agree”, “Strongly Agree”. Since we believe that the “distances” between these five points are not equal, an OLS regression in this case is problematic because the assumptions of OLS are violated when used with a non-interval outcome variable. Instead, we opted for an ordinal logistic regression.</p>
+<p>In order to use an ordinal logistic regression the following four assumptions need to hold: 1. The dependent variable is measured at the ordinal level. :heavy_check_mark:</p>
+
 </div>
 </div>
-<div id="conclusion" class="section level1">
-<h1><span class="header-section-number">3</span> Conclusion</h1>
+<div id="discussion-open-questions" class="section level1">
+<h1><span class="header-section-number">3</span> Discussion &amp; Open Questions</h1>
+<ol style="list-style-type: decimal">
+<li>Since many of our dependent variables are also nominal we are still investigating whether there are more suitable regression models applicable than ordinal logistic regression. After all, at this point we are treating the dependent variables as numerical. Academic opinions seem strongly divided whether it is okay or highly problematic - what would be your take on this?</li>
+</ol>
 </div>
 <div class="footnotes">
 <hr />
