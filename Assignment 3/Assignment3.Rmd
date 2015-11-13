@@ -41,7 +41,8 @@ library(tables)
 library(usdm)
 library(Hmisc)
 library(plyr)
-# library(corrplot) funktioniert nicht so schön wie gedacht
+library(corrplot) 
+library(gmodels)
 
 # STEP 2 OF ASSIGNMENT: CONDUCTS BASIC DESCRIPTIVE STATISTICS 
 summary(mydata) 
@@ -63,10 +64,12 @@ ggplot(mydata,aes(x=Country)) + geom_bar(colour="darkblue",fill="lightblue") +co
 
 
 #creates a histogram of our dependent variable Tax Morale
+mydata$TaxMorale = factor(mydata$TaxMorale,levels(mydata$TaxMorale)[c(5,2,3,1,4)])
+levels(mydata$TaxMorale)
 qplot(mydata$TaxMorale,
       geom="histogram",
       binwidth=6,
-      main="Summary Statistic",
+      main="Summary Statistic of Dependent Variable",
       xlab="The tax department always has the right to make people pay taxes.",
       fill=I("lightblue"))
 
@@ -81,6 +84,10 @@ summary_df <- mydata %>%
     meantaxmorale = mean(TaxMorale, na.rm=TRUE)
   )
 
+subdata <- subset(mydata, (!is.na(mydata$AvoidReason)))
+tb <- table(subdata$AvoidReason)
+subdata$AvoidReason <- factor(subdata$AvoidReason,
+                              levels = names(tb[order(tb, decreasing = FALSE)]))
 
 # STEP 3: CONDUCTS INFERENTIAL STATISTICS
 #Since our dependent variable is ordinal OLS would be problematic. Instead we want to use an ordinal logistic regression. In order to do so in a meaningful way we first need to ensure that there is no multicollinearity and that we have ordinal odds.
@@ -105,8 +112,8 @@ VIF<- vif(dummy_df)
 #created a dataframe which dropped the missings (cause I could not find out how to do a correlation matrix including missings)
 dummy_df_without_NA <- na.omit(dummy_df)
 COR<-cor(dummy_df_without_NA)
-colnames(COR) <- c("Country","TrustPresident", "CorruptionTax", "SelfEmployedTax", "Religion", "Gender", "EconomicSituation")
-row.names(COR)<-c("Country","TrustPresident", "CorruptionTax", "SelfEmployedTax", "Religion", "Gender", "EconomicSituation")
+colnames(COR) <- c("Country", "TrustPresident", "CorruptionTax", "SelfEmployedTax", "Religion", "Gender", "EconomicSituation")
+row.names(COR)<-c("Country", "TrustPresident", "CorruptionTax", "SelfEmployedTax", "Religion", "Gender", "EconomicSituation")
 
 #checking for ordinal odds - still unsure how to do that
 
@@ -169,6 +176,9 @@ p2 <- pnorm(abs(ctable2[, "t value"]), lower.tail = FALSE) * 2
 #Gendermale                             0.0410194562  0.094950776
 #Age                                   -0.0003421893  0.001586891
 
+#predicted probabilities
+
+
 ```
 
 #Introduction
@@ -197,24 +207,21 @@ As outlined in Assignment 1, we make use of the Afrobarometer Surveys to investi
 
 ##Descriptive Statistics of Our Data
 
-**Table 1 in the columns 2, 3 and 4 shows for each country the percentage of individuals saying that tax evasion is never justifiable. Columns 5, 6, and 7 give the mean value for all countries based on a scale from 0 to 3, were 3 is the highest tax morale (value 0 integrates the values 4 to 10).**
+Our dependent variable asks respondents, whether or not they agree with the statement "The tax department always has the right to make people pay taxes" and is measured from "Strongly Disagree", "Disagree", "Neither Agree or Disagree", "Agree" to "Strongly Agree". As depicted below, the majority either agree or strongly agree with the question, 45.448 and 24.765 observations respectively. 
 
-```{r, echo=FALSE}
-kable(summary_df)
-
-# qplot(mydata$TaxMorale,
-#      geom="histogram",
-#      binwidth=8,
-#      main="Summary Statistic",
-#      xlab="The tax department always has the right to make people pay taxes.",
-#      fill=I("lightblue"))
+```{r, fig.cap="Summary Statistics of Dependent Variable: The tax department always has the right to make people pay taxes", fig.height=2, fig.width=7, echo=FALSE}
+qplot(mydata$TaxMorale,geom="histogram",xlab='People must pax Taxes', binwidth=4, fill=I("lightblue"))
 ```
 
-The average values in Table 1 give a first overview about tax morale in African countries; in general .... seems to have higher tax morale than...
+In the fifth round of the Afrobarometer survey, the respondents were asked directly what they think, “is the main reason that some people avoid paying government the taxes and fees that they owe?” Since it was only asked in the most recent round and not in the two preceding ones, we cannot use the answers directly for our analysis, but nevertheless it is informative to our research question. Figure 2 shows how respondents answered the question with a majority of people saying that they think it is because people cannot afford to pay the taxes. Another big group of respondents mentioned that they think the reason is that taxes are too high. It will be interesting to see if these opinions will be reflected in the results of our final analysis. Following from the impression of this frequency distribution one could assume the effect of the personal economic situation of the respondent to be relatively large.
+
+```{r, fig.cap="What is the main reason that some people avoud paying government the taxes and fees that they owe?", fig.height=4, fig.width=7, echo=FALSE}
+ggplot(subdata,aes(x=AvoidReason)) + geom_bar(fill="lightblue") +coord_flip()+ theme_bw(base_size = 13)+ geom_text(stat='bin',aes(label=..count..))
+```
 
 ##Inferential Statistics
 
-A regression analysis is used to investigate the determinants of tax morale in African countries, using R Studio [@R; @Stargazer; @knitr] . Our dependent variable[^1] asks the participants to agree or disagree with the statement "The tax department always has the right to make people pay taxes." The variable is measured from  "Strongly Disagree", "Disagree", "Neither Agree or Disagree", "Agree", "Strongly Agree". Since we believe that the "distances" between these five points are not equal, an OLS regression in this case is problematic because the assumptions of OLS are violated when used with a non-interval outcome variable. Instead, we opted for an ordinal logistic regression. 
+A regression analysis is used to investigate the determinants of tax morale in African countries, using R Studio [@R; @Stargazer; @knitr] . Since our dependent variable[^1] is measured from  "Strongly Disagree", "Disagree", "Neither Agree or Disagree", "Agree", "Strongly Agree", we believe that the "distances" between these five points are not equal, an OLS regression in this case is problematic because the assumptions of OLS are violated when used with a non-interval outcome variable. Instead, we opted for an ordinal logistic regression. 
 
 In order to use an ordinal logistic regression the following four assumptions need to hold:
 
@@ -225,24 +232,26 @@ In order to use an ordinal logistic regression the following four assumptions ne
 
 As indicated above, the first assumption holds true; our tax morale variable is measured at the ordinal level. The second assumption also holds true; all of our independent variables, are continuous, ordinal or categorical. To test for multicollinearity, we applied the variance inflation factor; the result are shown in the table below. Since all numbers exept year are very close to 1, we can assert that there is no multicollinearity.
 
-```{r, echo=FALSE}
+``````{r, echo=FALSE}
 #shows the output from VIF Test
-kable(VIF, align='c', digits=2, caption='Variance Inflation Factor')
+kable(VIF, align='c', digits=2)
 ```
 
-We also created a simply correlation matrix to test for multicollinearity. As a rule of thumb, any correlation with a value of .5 and above will present multicollinearity, when 1 is perfect correlation. As seen in the correlation matrix, not a singly correlation yields a value above .5. The highest correlation, between country and paying taxes as a self-employed person is only -0.15, far from close to a high, multicollinear correlation. 
+We also created a simply correlation matrix to test for multicollinearity, whose results are depicted in the figure below. As a rule of thumb, any correlation with a value of .5 and above will present multicollinearity, when 1 is perfect correlation. As seen in the correlation matrix, not a singly correlation yields a value above .5. The highest correlation, between country and paying taxes as a self-employed person is only -0.15, far from close to a high, multicollinear correlation.
 
-```{r, echo=FALSE}
+\pagebreak
+``````{r, echo=FALSE, fig.height=5, fig.width=5,}
 #shows the output from the correlation matrix
-kable(COR, align = 'c', digits = 2, caption='Correlation Matrix')
+# kable(COR, align = 'c', digits = 2, caption='Correlation Matrix')
 
 #plot matrix
-#corrplot(COR, method = "number", title="Correlation Matrix") 
+corrplot(COR, method = "number",bg="lightblue", tl.col="black")
 ```
 
 We had some difficulties to test for ordinal odds and as a consequence we have not yet decided which test or approach to chose, but will resolve this for the final project. Essentially the assumption of ordinal logistic regression is that the "relationship between each pair of outcome groups is the same" [@UCLA]. There are some statistical test available but their weakness is said to lay in the tendency to reject the null hypothesis, "and hence, indicate that there the parallel slopes assumption does not hold, in cases where the assumption does hold" [@UCLA].
 
-Nevertheless, we went ahead and created two models using ordinal logistic regression, whose output is shown in the table below.
+Nevertheless, we went ahead and created two models using ordinal logistic regression, whose output is shown in table 2. 
+\pagebreak
 
 ```{r, message=FALSE, results='asis', echo=FALSE}
 ## this gives the output of the regression analysis
@@ -251,12 +260,10 @@ stargazer::stargazer(reg1, reg2,
     digits = 2, type='latex', header=FALSE)
 ```
 
-Since $\beta$'s in logistic regression are a bit weird, we need to transform these results into predicted probabilities in your final project.
-
 #Discussion & Open Questions
-Wiebke - please have a look - only collecting my doubts here so I don't forget.
-1. Since many of our dependent variables are also nominal we are still investigating whether there are more suitable regression models applicable than ordinal logistic regression. After all, at this point we are treating the dependent variables as numerical. Academic opinions seem strongly divided whether it is okay or highly problematic - what would be your take on this?
-2. Maybe there is a way to group our corruption variables together per respondent? Or not advisable
+We need to spend more time on ensuring that an ordinal logistic regression is indeed the way to go; in a next step we first and foremost need to test for ordinal odds in order to ensure that all necessary assumptions hold. In our final project we will further create more models than the ones presented here and find ways to present the predicted probabilities in a meaningful way, since $\beta$'s in logistic regression are a bit weird; this can be accomplished for example by generating a confusion table. 
+
+In addition to our general model of explaining determinants of tax morale in Africa overall, we will also look in more detail into single countries and whether they differ significantly from each other with regards to the level of tax morale as well as the determinants tax morale. 
 
 #References
 
@@ -266,3 +273,4 @@ Wiebke - please have a look - only collecting my doubts here so I don't forget.
 
 
 [^1]: For Round 3 (Codebook 2005) it is variable Q52D, for Round 4 (Codebook 2008) it is Q44C, and for Round 5 (2015) it is Q48C.
+[^2]: C=Country, TrustP=Trust President, CorruptionT=Corruption Tax, SET=SelfEmployedTax, Rel=Religion, Gen=Gender, EconS=EconomicSituation
