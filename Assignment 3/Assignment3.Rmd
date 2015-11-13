@@ -11,6 +11,7 @@ output:
     fig_caption: yes
     number_sections: yes
     toc: yes
+bibliography: References.bib
 ---
 \pagebreak
 ```{r, include=FALSE}
@@ -19,13 +20,14 @@ output:
 
 # Set working directory
 #setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Assignment 3/PreparatoryWork")
-setwd("/Users/jasmincantzler/Documents/TaxMorale/Assignment 3/PreparatoryWork")
+setwd("/Users/jasmincantzler/Documents/TaxMorale/Assignment 3/")
 
 #STEP 1 OF ASSIGNMENT: GATHERS WEB BASED DATA FROM AT LEAST TWO SOURCES, MERGES THE DATA SETS 
 #to load the R file that contains the merging of the different data sets please
 # source('merging_data.R') 
 
 # for sake of ease we directly load the final dataset that is the result of the file above
+#Überhaupt nicht ideal - musste den file jetzt einen Ordner hochschieben, das doof ist aber ansonsten geht hier nichts mehr (nur Fehlermeldungen), und irgendwie kann ich das directory nicht mit Unterordnern setzen... müssen wir unbedingt lösen!
 mydata <- read.csv('Afrobarometer.final.csv')
 
 # Load packages
@@ -38,14 +40,16 @@ library(tidyr)
 library(tables)
 library(usdm)
 library(Hmisc)
+# library(corrplot) funktioniert nicht so schön wie gedacht
+
+# STEP 2 OF ASSIGNMENT: CONDUCTS BASIC DESCRIPTIVE STATISTICS 
+summary(mydata) 
+summary(mydata$TaxMorale)
 
 #creates Tax Morale as a numeric variable
 TaxMoraleNumeric <- as.numeric(mydata$TaxMorale)
 # TaxMorale <- data.frame(mydata$Country, mydata$TaxMorale)
 
-# STEP 2 OF ASSIGNMENT: CONDUCTS BASIC DESCRIPTIVE STATISTICS 
-summary(mydata) 
-summary(mydata$TaxMorale)
 summary(TaxMoraleNumeric)
 # Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
 # 1.000   1.000   2.000   2.351   4.000   5.000    6539 
@@ -67,26 +71,13 @@ summary_df <- mydata %>%
     meantaxmorale = mean(TaxMoraleNumeric, na.rm=TRUE)
   )
 
-#Table Attempts
-mtcars[mtcars$am==0,"am"] <- "manual"
-mtcars[mtcars$am==1,"am"] <- "automatic"
-mtcars$cyl <- as.factor(mtcars$cyl)
-mtcars$am <- as.factor(mtcars$am)
-carsum <- mtcars %>%
-  group_by(cyl,am) %>%
-  summarise(
-    mean_mpg = mean(mpg, na.rm=TRUE),
-    mean_qsec = mean(qsec, na.rm=TRUE)
-  ) 
-mytable <- tabular(Heading()*cyl ~ am*(`mean_mpg` +`mean_qsec`)*Heading()*(identity),data=carsum)
-mytable
-
 # STEP 3: CONDUCTS INFERENTIAL STATISTICS
 #Since our dependent variable is ordinal OLS would be problematic. Instead we want to use an ordinal logistic regression. In order to do so in a meaningful way we first need to ensure that there is no multicollinearity and that we have ordinal odds.
 
 # Make a dataframe of the predictors as numeric variables (unfortunately with this method, independent variables need to be treated as numeric)
 # for some reason I cannot include as.numeric(mydata$Enforce1) because then the VIF gives an error, so for now I will do it without
-dummy_df <- data.frame(as.numeric(mydata$Country),as.numeric(mydata$Year), as.numeric(mydata$TrustPresident), as.numeric(mydata$CorruptionTax), as.numeric(mydata$SelfEmployedTax), as.numeric(mydata$Religion), as.numeric(mydata$Gender), as.numeric(mydata$EconomicSituation))
+dummy_df <- data.frame(as.numeric(mydata$Country), as.numeric(mydata$TrustPresident), as.numeric(mydata$CorruptionTax), as.numeric(mydata$SelfEmployedTax), as.numeric(mydata$Religion), as.numeric(mydata$Gender), as.numeric(mydata$EconomicSituation))
+colnames(dummy_df) <- c("Country","TrustPresident", "CorruptionTax", "SelfEmployedTax", "Religion", "Gender", "EconomicSituation")
 
 #checking for multicollinearity using the "Variance Inflation Factor (VIF)"
 VIF<- vif(dummy_df)
@@ -103,6 +94,8 @@ VIF<- vif(dummy_df)
 #created a dataframe which dropped the missings (cause I could not find out how to do a correlation matrix including missings)
 dummy_df_without_NA <- na.omit(dummy_df)
 COR<-cor(dummy_df_without_NA)
+colnames(COR) <- c("Country","TrustPresident", "CorruptionTax", "SelfEmployedTax", "Religion", "Gender", "EconomicSituation")
+row.names(COR)<-c("Country","TrustPresident", "CorruptionTax", "SelfEmployedTax", "Religion", "Gender", "EconomicSituation")
 
 #checking for ordinal odds - still unsure how to do that
 
@@ -210,7 +203,7 @@ The average values in Table 1 give a first overview about tax morale in African 
 
 ##Inferential Statistics
 
-A regression analysis is used to investigate the determinants of tax morale in African countries. Our dependent variable[^1] asks the participants to agree or disagree with the statement "The tax department always has the right to make people pay taxes." The variable is measured from  "Strongly Disagree", "Disagree", "Neither Agree or Disagree", "Agree", "Strongly Agree". Since we believe that the "distances" between these five points are not equal, an OLS regression in this case is problematic because the assumptions of OLS are violated when used with a non-interval outcome variable. Instead, we opted for an ordinal logistic regression. 
+A regression analysis is used to investigate the determinants of tax morale in African countries, using R Studio [@R; @Stargazer; @knitr] . Our dependent variable[^1] asks the participants to agree or disagree with the statement "The tax department always has the right to make people pay taxes." The variable is measured from  "Strongly Disagree", "Disagree", "Neither Agree or Disagree", "Agree", "Strongly Agree". Since we believe that the "distances" between these five points are not equal, an OLS regression in this case is problematic because the assumptions of OLS are violated when used with a non-interval outcome variable. Instead, we opted for an ordinal logistic regression. 
 
 In order to use an ordinal logistic regression the following four assumptions need to hold:
 
@@ -223,19 +216,22 @@ As indicated above, the first assumption holds true; our tax morale variable is 
 
 ```{r, echo=FALSE}
 #shows the output from VIF Test
-kable(VIF)
+kable(VIF, align='c', digits=2, caption='Variance Inflation Factor')
 ```
 
 We also created a simply correlation matrix to test for multicollinearity. As a rule of thumb, any correlation with a value of .5 and above will present multicollinearity, when 1 is perfect correlation. As seen in the correlation matrix, not a singly correlation yields a value above .5. The highest correlation, between country and paying taxes as a self-employed person is only -0.15, far from close to a high, multicollinear correlation. 
 
 ```{r, echo=FALSE}
 #shows the output from the correlation matrix
-kable(COR, digits = 2)
+kable(COR, align = 'c', digits = 2, caption='Correlation Matrix')
 
-#corrplot(M, method = "circle") #plot matrix
+#plot matrix
+#corrplot(COR, method = "number", title="Correlation Matrix") 
 ```
 
-We had some difficulties to test for ordinal odds, which will need to be resolved in the final project. 
+We had some difficulties to test for ordinal odds and as a consequence we have not yet decided which test or approach to chose, but will resolve this for the final project. Essentially the assumption of ordinal logistic regression is that the "relationship between each pair of outcome groups is the same" [@UCLA]. There are some statistical test available but their weakness is said to lay in the tendency to reject the null hypothesis, "and hence, indicate that there the parallel slopes assumption does not hold, in cases where the assumption does hold" [@UCLA].
+
+Nevertheless, we went ahead and created two models using ordinal logistic regression, whose output is shown in the table below.
 
 ```{r, message=FALSE, results='asis', echo=FALSE}
 ## this gives the output of the regression analysis
@@ -244,11 +240,14 @@ stargazer::stargazer(reg1, reg2,
     digits = 2, type='latex', header=FALSE)
 ```
 
+Since $\beta$'s in logistic regression are a bit weird, we need to transform these results into predicted probabilities in your final project.
 
 #Discussion & Open Questions
-@Wiebke - please have a look - only collecting my doubts here so I don't forget.
+Wiebke - please have a look - only collecting my doubts here so I don't forget.
 1. Since many of our dependent variables are also nominal we are still investigating whether there are more suitable regression models applicable than ordinal logistic regression. After all, at this point we are treating the dependent variables as numerical. Academic opinions seem strongly divided whether it is okay or highly problematic - what would be your take on this?
 2. Maybe there is a way to group our corruption variables together per respondent? Or not advisable
+
+#References
 
 
 
