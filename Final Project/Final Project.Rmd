@@ -11,45 +11,45 @@ output:
     fig_caption: yes
     number_sections: yes
     toc: yes
+bibliography: References.bib
 ---
 \pagebreak
 
 #Introduction
+A country’s ability to efficiently mobilize its national resources is a topic that has recently been gaining traction in the discussion surrounding development; it provides governments with the funds needed to “invest in development, relieve poverty and deliver public services directed toward the physical and social infrastructure required to enhance long term growth” [@OECD2013]
+
+Ever since the Monterrey Consensus was adopted in 2002, in which countries recognized the importance of raising domestic revenues, development aid has been increasingly shifting from direct financial assistance to improving tax systems and national resource management. Unfortunately, up to this date, tax systems still attract relatively little international assistance and “estimates based on OECD data suggests that currently around 0.1% of Official Development Assistance (excluding IMF) goes to support the development of tax systems in developing countries [@OECD2015].
+
+One malady plaguing developing countries is tax evasion and tax avoidance; whereby tax evasion “in general refers to illegal practices to escape from taxation”, whereas tax avoidance “in contrast, takes place within the legal context of the tax systems, that is individuals or firms take advantage of the tax code and exploit “loopholes”, i.e. engage in activities that are legal but run counter to the purpose of the tax law [@GTZ].
+
+High levels of tax evasion lead to a misallocation of resources and hinder the ability of the government to invest in the provision of public goods. Therefore, understanding the rationale behind tax evaders becomes essential to national development and state building. Traditionally, the standard way to explain tax compliance has been the economics-of-crime approach, which assumes a rational taxpayer maximizing his or her utility by balancing the risk of detection and punishment with the benefit of tax evasion. Today, this approach is increasingly regarded as too narrow to fully explain tax compliance, and many argue for the need to include social factors, which are said to explain why people conform to paying taxes even in the absence of strong deterrence mechanisms. These social factors constitute and influence the individual’s “intrinsic motivation to pay taxes,” hereafter referred to as tax morale, by increasing moral costs of tax evasion and thus increasing tax compliance. This link has been increasingly studied and strong evidence has been established that tax morale influences individual tax compliance. **The majority of the studies focus on developed countries and only few studies investigate the determinants of tax morale in developing countries.**  Since tax systems are embedded in national historical events and the cultural particularities, “the existence or creation of a universal and ‘objectively’ good system of taxation becomes implicitly impossible” [@Nerre] and highlights that tax culture is specific to regions and countries and influenced by the interaction of actors and cultural values. On the other hand, there might be universal values, such as condemning corruption and feelings of trust that have a direct influence on tax morale across cultural boundaries. 
+
+The purpose of this paper is to fill the existing gap in research by contributing a study of tax morale in African countries and investigates whether the commonly identified determinants of tax morale also satisfactorily explain this sentiment in African countries, thereby contributing to expanding the limited existing research in the field of tax morale by investigating a geographical area that has been largely neglected. It further aims to provide specific findings to African policymakers, which could be used to derive customized policy recommendations. 
+
+**Our data comes from the Afrobarometer, ….**
+The paper is organized as follows: Chapter 2 provides a review of the literature, illustrating the conceptual evolution of tax morale and the commonly associated determinants of tax morale; chapter 3 describes the data and methodology, chapter 4 presents the results, its interpretation and discussion; and chapter 5 concludes the study. 
 
 #Literature Review
+## The Conceptual Evolution of Tax Morale
+## Determinants of Tax Morale
 
 #Method
-
 ##Design
-
 ##Data Selection
-
-#Operationalization
-
-#Analysis Procedure
+##Operationalization
+##Analysis Procedure
 As illustrated in the previous section, we have identified certain characteristics as determinants of the approach needed to make meaningful assertions concerning the relationship between our explanatory variable and our dependent variable. 
 
 When a dependent variable has more than two categories and the values of each category have a
 meaningful sequential order where a value is indeed ‘higher’ than the previous one, then you
 can use ordinal logit. 
 
-#Limitations and Delimitations
-
+##Limitations and Delimitations
 
 #Results and Discussion
+##Regression Analyses
+##Discussion
 
 #Conclusion
 
-
-
-```{r}
-summary(cars)
-```
-
-You can also embed plots, for example:
-
-```{r, echo=FALSE}
-plot(cars)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+#References
