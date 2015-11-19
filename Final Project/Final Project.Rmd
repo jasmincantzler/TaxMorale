@@ -30,13 +30,65 @@ The purpose of this paper is to fill the existing gap in research by contributin
 The paper is organized as follows: Chapter 2 provides a review of the literature, illustrating the conceptual evolution of tax morale and the commonly associated determinants of tax morale; chapter 3 describes the data and methodology, chapter 4 presents the results, its interpretation and discussion; and chapter 5 concludes the study. 
 
 #Literature Review
+
+This chapter reviews the most influential literature about tax morale. We briefly review Allingham and Sandmo’s model of income tax evasion [-@Allingham1972] before discussing how the narrative of tax morale developed over time, how tax morale is defined, what factors are said to determine tax morale and why we make the case that these determinants need to be tested in the context of African countries.
+
 ## The Conceptual Evolution of Tax Morale
+In 1972, Allingham and Sandmo presented a formal model explaining tax evasion as negatively correlated with the probability of detection and the degree of punishment. According to their model, rational individuals should report virtually no income. Their model turned out to have little explanatory power and failed to account for the high degree of tax compliance in some countries, despite their low level of deterrence. This puzzle of tax compliance is only solvable using alternative theories, empirical findings, and calls for the need to consider other non-economic factors, including psychological, moral and social. Shortly after Allingham and Sandmo published their model, which was influenced by the economics-of-crime approach, Spicer and Lundstedt [-@Spicer] acknowledged that the decision of tax compliance is not solely based on sanctions but also on attitudes and norms. Tax compliance is thus “not only a function of opportunity, tax rates, probability of detection and so on, but of each individual’s willingness to comply, shaped by tax morale” [@Torgler2007, 77]. Tax morale is often defined as “the existence of an intrinsic motivation to pay taxes” [@Cummings2009; @Torgler2005; @Torgler2009]. Over the years several studies shed light on tax morale and find strong evidence that tax morale indeed influences tax compliance [@AlmTorgler; @Dulleck2012; @Maciejovsky2012; @Molero2012]. Tax compliance therefore seems to be not explainable solely by the level of enforcement, but partially by tax morale. What factors then determine tax morale?
+
 ## Determinants of Tax Morale
+Currently, tax morale remains the underdog in explaining tax compliance and “most studies treat ‘tax morale’ as a black box without discussing or even considering how it might arise or how it might be maintained” [@FeldFrey]. Not surprisingly then, the analysis of tax morale as a dependent variable remains a rather novel topic in tax compliance literature. The relatively few studies aiming to determine what influences tax morale find that factors such as trust in government, the level of corruption, interactions with other taxpayers and tax administrators, tax burden, perception about benefits of public spending, social norms, detection, and punishment all determine tax morale and hence influence tax compliance. 
+Trust in government and/or government officials is one of the classic factors said to influence the tax compliance behavior of individuals [@Torgler2001; @Torgler2003; @Torgler2009]. If people have no faith that their taxes are being fairly collected and spent, their desire to comply with applicable taxes is lowered. Similarly, corruption undermines tax morale by promoting a feeling of tax injustice; leading individuals to feel entitled to evade the taxes of an unfair system.  Related to this feeling of injustice are interactions between taxpayers, which subsequently further influence and potentially erode or increase tax morale. Individuals who know of someone avoiding their taxes are found to have lower tax morale than others [@Torgler2005], whereas the knowledge that others are paying their taxes correspondingly can increase tax morale. This suggests that there might be a “positive snowball effect” [@FreyTorgler; @Lewis], whereby taxpayers’ tax morale increases if they perceive others to be more compliant. Tax administrators also form an important figure in determining tax morale; when tax officials treat individuals with respect, their tax morale is enhanced [@BohnetFrey; @FeldFrey2003]. In addition, the perception of the tax burden seems to have an impact on tax morale: according to a study concerning Latin America [@Torgler2005], over 46 percent of respondents stated a high tax burden to be a reason for tax evasion. Based on the author’s findings, self-employed individuals are especially prone to developing anti-tax feelings, as taxes are typically more visible to them and affect them more directly, which results in lower tax morale. At the same time, individuals’ tax morale might also be influenced by their perception of received benefits, in the form of public goods and services. Torgler suggests that there is a direct input-output relation, where individuals compare money paid with benefits received. An additional relevant factor can be fiscal knowledge, which increases tax morale by influencing the perception of received benefits. Better-educated taxpayers are more knowledgeable about tax law and fiscal connections, and ultimately may be better equipped to see the connection between paying taxes and receiving benefits [@Lewis]. 
+Furthermore, strongly established social norms [@Ajzen; @Lewis] play a big role in determining the change of tax morale over time. Social dynamics- such as taxpayer interaction- become customary in the long-term, resulting in attitudes that become social norms. Consequently, what becomes central to complying with official laws is not the regulation in itself, but the justification for doing so. When a social norm dictates that allocating tax money into personal projects is morally acceptable, as opposed to giving it to the tax administration, the aforementioned ‘positive snowball effect’ might not be so easy to attain. Traxler [-@Traxler] finds that conditional cooperation is a characteristic inherent in taxpayers, in the sense that they condition their compliance to the behavior of the larger group. Traxler and Winter [-@TraxlerWinter] provide evidence of the existence of social sanctions, for example for an individual who cheats on their taxes when complying is the norm. If this is the case, the logical implication is that there is a need to realign social norms with tax regulations. 
+
+## Tax Morale in Africa
+**write a few paragraphs about Africa**
 
 #Method
+
+This study uses a regression analysis to assess the determinants of tax morale in Afria. The following chapter provides a comprehensive explanation about the methods used. We first substantiate our research design by indicating which method was chosen and why before providing information about the participants. In the operationalization section we show how we instrumented our variables, before discussing the analysis procedures we used to process, describe and test our data. This chapter ends with a section discussing the limitations and delimitations of the methods used.
+
 ##Design
+A regression analysis is used to investigate the determinants of tax morale in Africa, utilizing cross-sectional survey data from the Afrobarometer Survey [@Afro].Our conceptual framework is based on the determinants of tax morale in developed countries, whereby:
+
+\begin{equation}
+\begin{aligned}
+Tax Morale_i = & \alpha_i + \beta_1 Trust in Government/Public Officials_i + \beta_2 Level of Corruption_i \\
+& + \beta_3 interactions with other taxpayers_i + \beta_4 tax burden_i \\
+& + \beta_5 detection and punishment_i + \beta_5 Social Norms_i + \epsilon_i
+\end{aligned}
+\end{equation}
+
+$Tax Morale_i$ is a measure of the degree to which the respondent *i* believes the tax department always has the right to make people pay taxes. $Trust in Government/Public Officials_i$ is a measure **...** 
+$Level of Corruption_i$ is **...** $Interactions with other taxpayers_i$ is **...** $tax burden_i$ **..** $Social Norms_i$ **..**  $Detection and punishment_i$ *...** $epsilon_i$ denotes a vector of control variables that include the gender, religion and **...** of the respondent. Based on the assumptions of our framework we formulate the following hypothesis:
+
+$$H_1: The same determinants have a positive effect on tax compliance in Africa$$
+$$H_0: The determinants have no impact on tax morale in Africa$$
+
 ##Data Selection
+In order to test our hypothesis, we make use of data from the Afrobarometer, an "African-led, non-partisan survey research project that measures citizen attitudes on democracy and governance, the economy, civil society, and other topics" [@Afro]. The Afrobarometer's main donors for the survey rounds 5 and 6 (data on round 6 are not available yet) included the Mo Ibrahim Foundation, the Swedish International Development Cooperation Agency, the Department for International Development, the United States Agency for International Development, as well as the World Bank. **who conducts the survey**, **show some figure, sample per country? something**
+
 ##Operationalization
+In this section, we describe the specific methods employed and how they measure the selected variables, thereby discussing the appropriateness of the instrument, providing information about the measurement characteristics of the instruments, and information about the scoring of the scales.  Here it may be useful to recall the conceptual framework presented earlier:
+
+\begin{equation}
+\begin{aligned}
+Tax Morale_i = & \alpha_i + \beta_1 Trust in Government/Public Officials_i + \beta_2 Level of Corruption_i \\
+& + \beta_3 interactions with other taxpayers_i + \beta_4 tax burden_i \\
+& + \beta_5 detection and punishment_i + \beta_5 Social Norms_i + \epsilon_i
+\end{aligned}
+\end{equation}
+
+###Tax Morale
+Tax Morale is instrumented by a statement that asks "The tax department always has the right to make people pay taxes" and is measured from "Strongly Disagree", "Disagree", "Neither Agree or Disagree", "Agree" to "Strongly Agree". 
+
+**include summary statistic**
+
+**acknowledge shortcomings of the question** We will further discuss possible limitations of survey-generated information about tax morale in the “limitations and delimitations” section. For now, the reader may bear in mind that measuring tax morale  is a complex task regardless of the method, because it is a construct – a non-tangible phenomenon that needs an indirect form of measurement to be studied.  **elaborate**
+
+###Control Variables
+We include **insert number** control variables in our model that provide information about gender, religion, country the respondent resides in, **include % of the distribution per variable***
+
 ##Analysis Procedure
 As illustrated in the previous section, we have identified certain characteristics as determinants of the approach needed to make meaningful assertions concerning the relationship between our explanatory variable and our dependent variable. 
 
@@ -45,8 +97,11 @@ meaningful sequential order where a value is indeed ‘higher’ than the previo
 can use ordinal logit. 
 
 ##Limitations and Delimitations
+The following section is dedicated to acknowledging potential limitations and delimitations of the study, thereby addressing possible skepticisms and doubts concerning **??**
 
 #Results and Discussion
+This chapter presents the results and discussion of our analysis. We devote one section to discuss the results of the regression analysis, including appropriate robustness checks, before interpreting and discussing the statistical results.
+
 ##Regression Analyses
 ##Discussion
 
