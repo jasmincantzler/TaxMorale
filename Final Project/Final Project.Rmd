@@ -49,7 +49,7 @@ Furthermore, strongly established social norms [@Ajzen; @Lewis] play a big role 
 This study uses a regression analysis to assess the determinants of tax morale in Afria. The following chapter provides a comprehensive explanation about the methods used. We first substantiate our research design by indicating which method was chosen and why before providing information about the participants. In the operationalization section we show how we instrumented our variables, before discussing the analysis procedures we used to process, describe and test our data. This chapter ends with a section discussing the limitations and delimitations of the methods used.
 
 ##Design
-A regression analysis is used to investigate the determinants of tax morale in Africa, utilizing cross-sectional survey data from the Afrobarometer Survey [@Afro].Our conceptual framework is based on the determinants of tax morale in developed countries, whereby:
+A regression analysis is used to investigate the determinants of tax morale in Africa, utilizing cross-sectional survey data from the Afrobarometer Survey [@Afro].We reside with Torgler and believe that it "is important to analyse the determinants that influence tax morale in developing countries as the environment is different from developed countries", while on the other hand acknowledging that "some effects might be independent of cultural environments" [@Torgler2005, p.2]. Our conceptual framework is therefore based on the determinants of tax morale in developed countries, whereby:
 
 \begin{equation}
 \begin{aligned}
@@ -90,11 +90,22 @@ Tax Morale is instrumented by a statement that asks "The tax department always h
 We include **insert number** control variables in our model that provide information about gender, religion, country the respondent resides in, **include % of the distribution per variable***
 
 ##Analysis Procedure
-As illustrated in the previous section, we have identified certain characteristics as determinants of the approach needed to make meaningful assertions concerning the relationship between our explanatory variable and our dependent variable. 
+A regression analysis is used to investigate the determinants of tax morale in African countries, using R Studio [@R; @Stargazer; @knitr] . Since our dependent variable[^1] is measured from  "Strongly Disagree", "Disagree", "Neither Agree or Disagree", "Agree", "Strongly Agree", we believe that the "distances" between these five points are not equal, an OLS regression in this case is problematic because the assumptions of OLS are violated when used with a non-interval outcome variable. Instead, we opted for an ordinal logistic regression. 
 
-When a dependent variable has more than two categories and the values of each category have a
-meaningful sequential order where a value is indeed ‘higher’ than the previous one, then you
-can use ordinal logit. 
+In order to use an ordinal logistic regression the following four assumptions need to hold:
+
+1. The dependent variable is measured at the ordinal level.
+2. One or more independent variables that are continuous, ordinal, or categorical
+3. There is no multicollinearity
+4. Ordinal odds
+
+As indicated above, the first assumption holds true; our tax morale variable is measured at the ordinal level. The second assumption also holds true; all of our independent variables, are continuous, ordinal or categorical. To test for multicollinearity, we applied the variance inflation factor; the result are shown in the table below. Since all numbers exept year are very close to 1, we can assert that there is no multicollinearity.
+
+**insert R codes from Assignment 3**
+
+We also created a simply correlation matrix to test for multicollinearity, whose results are depicted in the figure below. As a rule of thumb, any correlation with a value of .5 and above will present multicollinearity, when 1 is perfect correlation. As seen in the correlation matrix, not a singly correlation yields a value above .5. The highest correlation, between country and paying taxes as a self-employed person is only -0.15, far from close to a high, multicollinear correlation.
+
+**insert R codes from Assignment 3**
 
 ##Limitations and Delimitations
 The following section is dedicated to acknowledging potential limitations and delimitations of the study, thereby addressing possible skepticisms and doubts concerning **??**
