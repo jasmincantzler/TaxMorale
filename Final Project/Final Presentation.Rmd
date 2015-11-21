@@ -1,0 +1,31 @@
+---
+title: "Tax Morale in Africa"
+author: "Wiebke Weiger & Jasmin Cantzler"
+date: "21. November 2015"
+output: ioslides_presentation
+---
+
+## Tax Morale the Blackbox of Tax Compliance...
+
+This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+## We want to investigate the determinants of tax morale in African countries...
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+## Why Africa?
+
+```{r}
+summary(cars)
+```
+
+## Slide with Plot
+
+```{r, echo=FALSE}
+plot(cars)
+```
+

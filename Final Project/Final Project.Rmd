@@ -15,8 +15,6 @@ bibliography: References.bib
 ---
 \pagebreak
 
-Test
-
 #Introduction
 A country’s ability to efficiently mobilize its national resources is a topic that has recently been gaining traction in the discussion surrounding development; it provides governments with the funds needed to “invest in development, relieve poverty and deliver public services directed toward the physical and social infrastructure required to enhance long term growth” [@OECD2013]
 
