@@ -3,11 +3,11 @@ title: "Opening the Black Box - Determinants of Tax Morale in Africa"
 author: "Wiebke Weiger & Jasmin Cantzler"
 date: "13 November 2015"
 output:
-  pdf_document:
+  html_document:
     fig_caption: yes
     number_sections: yes
     toc: yes
-  html_document:
+  pdf_document:
     fig_caption: yes
     number_sections: yes
     toc: yes
@@ -41,7 +41,7 @@ Trust in government and/or government officials is one of the classic factors sa
 Furthermore, strongly established social norms [@Ajzen; @Lewis] play a big role in determining the change of tax morale over time. Social dynamics- such as taxpayer interaction- become customary in the long-term, resulting in attitudes that become social norms. Consequently, what becomes central to complying with official laws is not the regulation in itself, but the justification for doing so. When a social norm dictates that allocating tax money into personal projects is morally acceptable, as opposed to giving it to the tax administration, the aforementioned ‘positive snowball effect’ might not be so easy to attain. Traxler [-@Traxler] finds that conditional cooperation is a characteristic inherent in taxpayers, in the sense that they condition their compliance to the behavior of the larger group. Traxler and Winter [-@TraxlerWinter] provide evidence of the existence of social sanctions, for example for an individual who cheats on their taxes when complying is the norm. If this is the case, the logical implication is that there is a need to realign social norms with tax regulations. 
 
 ## Tax Morale in Africa
-Measuring tax evasion is comparable to hunting a ghost and while there are several methods available for attempting to measure tax evasion, using audited returns, traces of true income, and measures of traces of compliance, all of them face the same problem: tax evasion is an informal economic activity and “unlike invisible phenomena in the natural sciences, these invisible social science phenomena are hard to measure because of choices made by individuals” [@Slemrod, 25]. All of these methods face measurement problems, “that arise not by chance, but because of the nature of the subject matter” (p. 50). That said, to give a point of reference to illustrate the widespread dimension of tax evasion, estimates for South Africa state that households fail to declare up to 30% of the income [@ADCORP].In recent years, especially in the aftermath of the global financial crisis the focus has been on tax evasion of cooperations and estimates about private tax evasion is almost non existent. By shifting the focus on to individuals, this paper by no means wants to shift the blame away from multinationals; it rather complements the current debate about taxes, obligation, values and sentiments by including the everyday citizen into this dialogue and quest for morale behavior. 
+Measuring tax evasion is a complex endeavor and while there are several methods available for attempting to measure tax evasion, using audited returns, traces of true income, and measures of traces of compliance, all of them face the same problem: tax evasion is an informal economic activity and “unlike invisible phenomena in the natural sciences, these invisible social science phenomena are hard to measure because of choices made by individuals” [@Slemrod, 25]. All of these methods face measurement problems, “that arise not by chance, but because of the nature of the subject matter” (p. 50). That said, to give a point of reference to illustrate the widespread dimension of tax evasion, estimates for South Africa state that households fail to declare up to 30% of the income [@ADCORP].In recent years, especially in the aftermath of the global financial crisis the focus has been on tax evasion of cooperations and estimates about private tax evasion is almost non existent. By shifting the focus on to individuals, this paper by no means wants to shift the blame away from multinationals; it rather complements the current debate about taxes, obligation, values and sentiments by including the everyday citizen into this dialogue and quest for morale behavior. **write a few more lines about relevance**
 
 #Method
 
@@ -65,7 +65,11 @@ $$H_1: The same determinants have a positive effect on tax compliance in Africa$
 $$H_0: The determinants have no impact on tax morale in Africa$$
 
 ##Data Selection
-In order to test our hypothesis, we make use of data from the Afrobarometer, an "African-led, non-partisan survey research project that measures citizen attitudes on democracy and governance, the economy, civil society, and other topics" [@Afro]. The Afrobarometer's main donors for the survey rounds 5 and 6 (data on round 6 are not available yet) included the Mo Ibrahim Foundation, the Swedish International Development Cooperation Agency, the Department for International Development, the United States Agency for International Development, as well as the World Bank. **who conducts the survey**, **show some figure, sample per country? something**
+In order to test our hypothesis, we make use of data from the Afrobarometer, an "African-led, non-partisan survey research project that measures citizen attitudes on democracy and governance, the economy, civil society, and other topics" [@Afro]. The Afrobarometer's main donors for the survey rounds 5 and 6 (data on round 6 are not available yet) included the Mo Ibrahim Foundation, the Swedish International Development Cooperation Agency, the Department for International Development, the United States Agency for International Development, as well as the World Bank. All survey interviews are conducted face-to-face by interviewers who usually have a first class degree in social science and who receive training by national partners during a five-day traning workshop which includes the familiarisation of the survey in national and local languages, sampling protocol and field practice. The interviews usualy are conducted within 48 hours after the training [@Afro]. Afrobarometer uses national pribability samples that are designed to generate a represetative cross-sections of the country by using random selection methods and my sampling at all stages with probability proportinate to population size [see @Afro]. In Figure **?** one can see the distribution per country.
+
+```{r, include=FALSE}
+##include figure showing respondents per country or another summary statistic
+```
 
 ##Operationalization
 In this section, we describe the specific methods employed and how they measure the selected variables, thereby discussing the appropriateness of the instrument, providing information about the measurement characteristics of the instruments, and information about the scoring of the scales.  Here it may be useful to recall the conceptual framework presented earlier:

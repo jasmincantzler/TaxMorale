@@ -1,22 +1,34 @@
 ---
-title: "Final Presentation"
+title: "Tax Morale in Africa"
 author: "Wiebke Weiger & Jasmin Cantzler"
-date: "22. November 2015"
-output: revealjs::revealjs_presentation
+date: "22 November 2015"
+output: 
+  revealjs::revealjs_presentation:
+    theme: sky
+    transition: slide
+    highlight: default
+bibliography: References.bib
 ---
+```{r, include=FALSE}
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r}
-# devtools::install_github("jjallaire/revealjs")
 ```
 
-You can also embed plots, for example:
+## Tax Morale the Blackbox of Tax Compliance...
+<style type="text/css">
+p { text-align: left; }
+</style>
 
-```{r, echo=FALSE}
-plot(cars)
-```
+Tax morale = "the intrinsic motivation to pay taxes"
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+<br>
+
+## Why Africa?
+test test 
+
+## The determinants of tax morale...
+test test 
+
+## How did we arrive at these findings? 
+test test 
+
+## References
