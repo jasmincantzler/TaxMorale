@@ -1,6 +1,7 @@
 ##############################################
 # Create sub-dataframe with mean values      #
-#  for countries in order to be used for map #
+# for countries in order to be used for map  # 
+# and code for map of Tax Morale             #
 # 23 November 2015                           # 
 ##############################################
 
@@ -64,3 +65,29 @@ rio::export(round5.mean, file="round5.mean.csv")
 
 # save final data set in Rdata format:
 save(round5.mean, file="Round5.mean.RData", list="round5.mean")
+
+
+#####################################################################
+
+# first attempt at map for average tax morale:
+
+setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Assignment 3/PreparatoryWork") 
+r5.mean <- read.csv('round5.mean.csv')
+
+# make an iso2c-variable:
+r5.mean$iso2c <- c('DZ', 'BJ', 'BW', 'BF', 'BI', 'CM', 'CV', 'CI', 'EG', 'GH','GN', 'KE', 'LS', 'LR', 'MG',
+                   'MW', 'ML','MU', 'MA', 'MZ', 'NA', 'NE', 'NG', 'SN', 'SL', 'ZA', 'SD', 'SZ', 'TZ', 'TG', 
+                   'TN', 'UG', 'ZM', 'ZW')
+
+# Plot:
+library(googleVis)
+keep_vars = c(7, 21)
+taxmorale.mean <- r5.mean[, keep_vars]
+
+afrobarometer_map <- gvisGeoChart(taxmorale.mean, locationvar = 'iso2c',
+                                  colorvar = 'TaxMorale.mean',
+                                  options = list(
+                                    colors = "['#fff7bc', '#d95f0e']"
+                                  ))
+
+plot(afrobarometer_map)
