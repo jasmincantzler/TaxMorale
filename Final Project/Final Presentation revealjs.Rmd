@@ -20,7 +20,6 @@ p { text-align: left; }
 
 Tax morale = "the intrinsic motivation to pay taxes"
 ```{r}
-![My Figure](giphy.gif)
 ```
 
 <br>
@@ -29,7 +28,10 @@ Tax morale = "the intrinsic motivation to pay taxes"
 test test 
 
 ## The determinants of tax morale...
-test test 
+
+$$Tax Morale_i = \alpha_i + \beta_1 Trust in Government_i \\
++ \beta_2 LevelCorruption_i + \beta_3 interactionstaxpayers_i \\ 
++ \beta_4 selfemployed_i + \beta_5 detection and punishment_i + \epsilon_i$$
 
 ## How did we arrive at these findings? 
 test test 
