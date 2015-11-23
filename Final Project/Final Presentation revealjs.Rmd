@@ -19,6 +19,9 @@ p { text-align: left; }
 </style>
 
 Tax morale = "the intrinsic motivation to pay taxes"
+```{r}
+![My Figure](giphy.gif)
+```
 
 <br>
 
