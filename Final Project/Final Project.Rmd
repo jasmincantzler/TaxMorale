@@ -3,17 +3,82 @@ title: "Opening the Black Box - Determinants of Tax Morale in Africa"
 author: "Wiebke Weiger & Jasmin Cantzler"
 date: "13 November 2015"
 output:
-  html_document:
+  pdf_document:
     fig_caption: yes
     number_sections: yes
     toc: yes
-  pdf_document:
+  html_document:
     fig_caption: yes
     number_sections: yes
     toc: yes
 bibliography: References.bib
 ---
 \pagebreak
+
+```{r, include=FALSE}
+
+# Set working directory
+#setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Assignment 3/PreparatoryWork")
+setwd("/Users/jasmincantzler/Documents/TaxMorale/Final Project")
+
+# Load packages
+library(MASS)
+library(ggplot2)
+library(knitr)
+library(dplyr)
+library(stargazer)
+library(tidyr)
+library(tables)
+library(usdm)
+library(Hmisc)
+library(plyr)
+library(corrplot) 
+library(gmodels)
+
+#to load the R file that contains the merging of the different data sets please consult Assignment 3 and
+# source('merging_data.R') 
+
+mydata <- read.csv('Afrobarometer.final.csv')
+
+#REGRESSION ASSUMPTIONS TEST
+#Variance Inflation Factor (only possible if I first transform the data into numeric so not sure how good that is)
+dummy_df <- data.frame(as.numeric(mydata$Country), as.numeric(mydata$TrustPresident), as.numeric(mydata$CorruptionTax), as.numeric(mydata$CorruptionParliament), as.numeric(mydata$SelfEmployedTax),as.numeric(mydata$AvoidHowOften), as.numeric(mydata$Religion), as.numeric(mydata$Gender), as.numeric(mydata$LivingConditions),as.numeric(mydata$Age))
+colnames(dummy_df) <- c("Country","TrustPresident", "CorruptionTax","CorruptionParliament", "SelfEmployedTax","AvoidHowOften", "Religion", "Gender", "LivingConditions", "Age")
+
+VIF<- vif(dummy_df)
+
+#created a dataframe which dropped the missings (cause I could not find out how to do a correlation matrix including missings)
+dummy_df_without_NA <- na.omit(dummy_df)
+COR<-cor(dummy_df_without_NA)
+colnames(COR) <- c("Country","TrustPresident", "CorruptionTax","CorruptionParliament", "SelfEmployedTax","AvoidHowOften", "Religion", "Gender", "LivingConditions", "Age")
+row.names(COR)<-c("Country","TrustPresident", "CorruptionTax","CorruptionParliament", "SelfEmployedTax","AvoidHowOften", "Religion", "Gender", "LivingConditions", "Age")
+
+# REGRESSION ANALYSES
+# MODEL 1
+# use the polr command from the MASS package to estimate an ordered logistic regression model. 
+# specify HESS=TRUE to have the model return the observed information matrix from optimization which is used to get standard errors
+
+# included AvoidHowOften here (only available in 2015)
+reg1<-polr(TaxMorale ~ TrustPresident + CorruptionTax + CorruptionParliament + AvoidHowOften + SelfEmployedTax + Age + Year + Religion + LivingConditions + Country, method='logistic', data=mydata, Hess = TRUE)
+summary(reg1)
+#store table
+(ctable <- coef(summary(reg1)))
+#calculate and store p values
+p <- pnorm(abs(ctable[, "t value"]), lower.tail = FALSE) * 2
+## combined table
+(ctable <- cbind(ctable, "p value" = p))
+#FEHLERMELDUNG confidence intervals for the parameter estimates 
+#(ci <- confint(reg1))
+
+#Predicted Probabilities
+
+
+# MODEL 2
+#include Enforce 2 here (only available in 2005)
+## FEHLERMELDUNG!!
+#reg2<-polr(TaxMorale ~ TrustPresident + CorruptionTax + CorruptionParliament + Enforce2 + SelfEmployedTax + Age + Year + Religion + LivingConditions + Country, method='logistic', data=mydata, Hess = TRUE)
+#summary(reg2)
+```
 
 #Introduction
 A country’s ability to efficiently mobilize its national resources is a topic that has recently been gaining traction in the discussion surrounding development; it provides governments with the funds needed to “invest in development, relieve poverty and deliver public services directed toward the physical and social infrastructure required to enhance long term growth” [@OECD2013]
@@ -53,14 +118,14 @@ A regression analysis is used to investigate the determinants of tax morale in A
 \begin{equation}
 \begin{aligned}
 Tax Morale_i = & \alpha_i + \beta_1 Trust in Government/Public Officials_i + \beta_2 Level of Corruption_i \\
-& + \beta_3 interactions with other taxpayers_i + \beta_4 tax burden_i \\
-& + \beta_5 detection and punishment_i + \beta_5 Social Norms_i + \epsilon_i
+& + \beta_3 interactions with other taxpayers_i + \beta_4 selfemployed_i \\
+& + \beta_5 detection and punishment_i + \epsilon_i
 \end{aligned}
 \end{equation}
 
-$Tax Morale_i$ is a measure of the degree to which the respondent *i* believes the tax department always has the right to make people pay taxes. $Trust in Government/Public Officials_i$ is a measure **...** 
-$Level of Corruption_i$ is **...** $Interactions with other taxpayers_i$ is **...** $tax burden_i$ **..** $Social Norms_i$ **..**  $Detection and punishment_i$ *...** $epsilon_i$ denotes a vector of control variables that include the gender, religion, age and **...** of the respondent. Based on the assumptions of our framework we formulate the following hypothesis:
+$Tax Morale_i$ is a measure of the degree to which the respondent *i* believes the tax department always has the right to make people pay taxes.[^1] $Trust in Government/Public Officials_i$ is a measure of the degree to which respondents trust the president/prime minister[^2] $Level of Corruption_i$ is measured by two variables. One is concerned with how many members of parliament/national assembly representatives are involved in corruption and the other asks about about how many tax officials are involved in corruption.[^3] $Interactions with other taxpayers_i$ is instrumented by a question asking how often people avoid paying taxes they owe the government.[^4] $selfemployed_i$ is measured by asking the respondent whether he/she is self employed and if so whether he/she is required to pay tax on the earnings from her/his business.[^5]  $Detection and punishment_i$ is instrumented by a question asking how likely the respondent thinks it would be that the authorities could enforce the law if they did not pay a tax on some of the income they earned.[^6]  $epsilon_i$ denotes a vector of control variables that include the gender, religion, age, year, country, living situation of the respondent. Based on the assumptions of our framework we formulate the following hypothesis:
 
+**change accordingly, didnt know how to call them best**
 $$H_1: The same determinants have a positive effect on tax compliance in Africa$$
 $$H_0: The determinants have no impact on tax morale in Africa$$
 
@@ -77,15 +142,17 @@ In this section, we describe the specific methods employed and how they measure 
 \begin{equation}
 \begin{aligned}
 Tax Morale_i = & \alpha_i + \beta_1 Trust in Government/Public Officials_i + \beta_2 Level of Corruption_i \\
-& + \beta_3 interactions with other taxpayers_i + \beta_4 tax burden_i \\
-& + \beta_5 detection and punishment_i + \beta_5 Social Norms_i + \epsilon_i
+& + \beta_3 interactions with other taxpayers_i + \beta_4 self-employed_i \\
+& + \beta_5 detection and punishment_i + \epsilon_i
 \end{aligned}
 \end{equation}
 
 ###Tax Morale
 Tax Morale is instrumented by a statement that asks "The tax department always has the right to make people pay taxes" and is measured from "Strongly Disagree", "Disagree", "Neither Agree or Disagree", "Agree" to "Strongly Agree". 
 
-**include summary statistic**
+```{r, fig.cap="Summary Statistics of Dependent Variable: The tax department always has the right to make people pay taxes", fig.height=2, fig.width=7, echo=FALSE}
+qplot(mydata$TaxMorale,geom="histogram",xlab='People must pax Taxes', binwidth=4, fill=I("lightblue"))
+```
 
 **acknowledge shortcomings of the question** We will further discuss possible limitations of survey-generated information about tax morale in the “limitations and delimitations” section. For now, the reader may bear in mind that measuring tax morale  is a complex task regardless of the method, because it is a construct – a non-tangible phenomenon that needs an indirect form of measurement to be studied.  **elaborate**
 
@@ -93,7 +160,7 @@ Tax Morale is instrumented by a statement that asks "The tax department always h
 We include **insert number** control variables in our model that provide information about gender, religion, age, country the respondent resides in, **include % of the distribution per variable*** Though studies are not conclusive and often contradictory, we hypothesize that those who claim a religious faith or identity to show more positive attitudes towards paying taxes; based on about the current debats in the financial world and gender differences we further believe women to exhibit higher levels of tax morale than men and older people may be more traditional and conservative than younger ones and thus may be more likely to exhibit higher tax morale and condemn cheating on taxes.
 
 ##Analysis Procedure
-A regression analysis is used to investigate the determinants of tax morale in African countries, using R Studio [@R; @Stargazer; @knitr] . Since our dependent variable[^1] is measured from  "Strongly Disagree", "Disagree", "Neither Agree or Disagree", "Agree", "Strongly Agree", we believe that the "distances" between these five points are not equal, an OLS regression in this case is problematic because the assumptions of OLS are violated when used with a non-interval outcome variable. Instead, we opted for an ordinal logistic regression. 
+A regression analysis is used to investigate the determinants of tax morale in African countries, using R Studio [@R; @Stargazer; @knitr] . Since our dependent variable is measured from  "Strongly Disagree", "Disagree", "Neither Agree or Disagree", "Agree", "Strongly Agree", we believe that the "distances" between these five points are not equal, an OLS regression in this case is problematic because the assumptions of OLS are violated when used with a non-interval outcome variable. Instead, we opted for an ordinal logistic regression. 
 
 In order to use an ordinal logistic regression the following four assumptions need to hold:
 
@@ -103,12 +170,20 @@ In order to use an ordinal logistic regression the following four assumptions ne
 4. Ordinal odds
 
 As indicated above, the first assumption holds true; our tax morale variable is measured at the ordinal level. The second assumption also holds true; all of our independent variables, are continuous, ordinal or categorical. To test for multicollinearity, we applied the variance inflation factor; the result are shown in the table below. Since all numbers exept year are very close to 1, we can assert that there is no multicollinearity.
-
-**insert R codes from Assignment 3**
+**needed to transform independent variables into numerical ones - is this an issue?**
+``````{r, echo=FALSE}
+#shows the output from VIF Test
+kable(VIF, align='c', digits=2)
+```
 
 We also created a simply correlation matrix to test for multicollinearity, whose results are depicted in the figure below. As a rule of thumb, any correlation with a value of .5 and above will present multicollinearity, when 1 is perfect correlation. As seen in the correlation matrix, not a singly correlation yields a value above .5. The highest correlation, between country and paying taxes as a self-employed person is only -0.15, far from close to a high, multicollinear correlation.
 
-**insert R codes from Assignment 3**
+``````{r, echo=FALSE, fig.cap="Correlation Matrix", fig.height=6, fig.width=6}
+
+##derzeit noch zu groß und an der falschen Stelle - würde sagen wir fixen das wenn finale Struktur steht, ansonsten müssen wirs zig Mal machen
+#plot matrix
+corrplot(COR, method = "number",bg="lightblue", tl.col="black")
+```
 
 ##Limitations and Delimitations
 The following section is dedicated to acknowledging potential limitations and delimitations of the study, thereby addressing possible skepticisms and doubts concerning **??**
@@ -122,3 +197,10 @@ This chapter presents the results and discussion of our analysis. We devote one 
 #Conclusion
 
 #References
+
+[^1]: Measured by Q52D in Codebook 2005, Q44C in Codebook 2008 & Q48C in Codebook 2015.
+[^2]: Instrumented by questions Q55A in Codebook 2005, Q49A in Codebook 2008 and Q59A in Codebook 2015.
+[^3]: Corruption of members of parliament is measured by Q56B in Codebook 2005, Q50B in Codebook 2008 and Q60B in Codebook 2015; Corruption of Tax Officials is measured by Q56G in Codebook 2005, Q50F in Codebook 2008 and Q60F in Codebook 2015. 
+[^4]:Measured by Q56I in Codebook 2015; unfortunately not available for the previous rounds. 
+[^5]: Measured by Q73E in Codebook 2015; unfortunately not available for the previous rounds.
+[^6]: Measured by Q70D in Codebook 2005; unfortunately not available for the following rounds. 
