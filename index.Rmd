@@ -9,6 +9,34 @@ output:
 ---
 
 ```{r, include=FALSE}
+#setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Assignment 3/PreparatoryWork")
+setwd("/Users/jasmincantzler/Documents/TaxMorale")
+
+library(dplyr)
+library(tidyr)
+library(googleVis)
+
+# Using the no factor one as we want to show the means in the map
+mydata <- read.csv('Afrobarometer.nofactors.csv')
+
+#creates a subset with only Tax Morale and country
+summary_df <- mydata %>% 
+  group_by(Country) %>% 
+  summarise(
+    meantaxmorale = mean(TaxMorale, na.rm=TRUE)
+  )
+
+
+
+
+TaxMorale_map <- gvisGeoChart(summary_df, locationvar = 'Country',
+                      colorvar = 'meantaxmorale',
+                      options = list(
+                          colors = "['#e31b23', '#ffff00', '#00853f']",
+                          region= '002'
+                          ))
+
+plot(TaxMorale_map)
 
 ```
 
