@@ -2,10 +2,7 @@
 title: "Determinants of Tax Morale in Africa"
 author: "Wiebke Weiger & Jasmin Cantzler"
 date: "20. November 2015"
-output:
-  html_document:
-    theme: united
-    highlight: tango
+output: "html_document"
 ---
 
 ```{r, include=FALSE}
@@ -26,9 +23,6 @@ summary_df <- mydata %>%
     meantaxmorale = mean(TaxMorale, na.rm=TRUE)
   )
 
-
-
-
 TaxMorale_map <- gvisGeoChart(summary_df, locationvar = 'Country',
                       colorvar = 'meantaxmorale',
                       options = list(
@@ -36,33 +30,14 @@ TaxMorale_map <- gvisGeoChart(summary_df, locationvar = 'Country',
                           region= '002'
                           ))
 
-plot(TaxMorale_map)
-
 ```
 
 **Tax morale remains the underdog in explaining tax compliance and “most studies treat ‘tax morale’ as a black box without discussing or even considering how it might arise or how it might be maintained” But tax morale can .... and plays an important role for the development of African country**
 
-```{r, results='asis'}
-
-#Plot Map
-# Plot
-#co2_map <- gvisGeoChart(co2, locationvar = 'iso2c',
-#                      colorvar = 'CO2 Emissions per Capita',
-#                      options = list(
-#                          colors = "['#fff7bc', '#d95f0e']"
-#                          ))
-# print(co2_map, tag = 'chart')
+```{r, echo=FALSE, results='asis'}
+print(TaxMorale_map, tag = 'chart')
 ```
 
-https://developers.google.com/chart/interactive/docs/gallery/geochart
-var options = {
-          region: '002', // Africa
-          colorAxis: {colors: ['#00853f', 'black', '#e31b23']},
-          backgroundColor: '#81d4fa',
-          datalessRegionColor: '#f8bbd0',
-          defaultColor: '#f5f5f5',
-        };
-       
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
