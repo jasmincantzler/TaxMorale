@@ -28,6 +28,13 @@ summary_df <- mydata %>%
     meantaxmorale = mean(TaxMorale, na.rm=TRUE)
   )
 
+TaxMorale_map <- gvisGeoChart(summary_df, locationvar = 'Country',
+                      colorvar = 'meantaxmorale',
+                      options = list(
+                          colors = "['#e31b23', '#ffff00', '#00853f']",
+                          region= '002'
+                          ))
+
 ```
 
 ## Tax Morale the Blackbox of Tax Compliance...
@@ -37,7 +44,7 @@ p { text-align: left; }
 
 Tax morale = "the intrinsic motivation to pay taxes"
 ```{r, results='asis'}
-
+print(TaxMorale_map, tag = 'chart')
 ```
 
 <br>
