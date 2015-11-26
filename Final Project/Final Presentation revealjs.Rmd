@@ -10,6 +10,23 @@ output:
 bibliography: References.bib
 ---
 ```{r, include=FALSE}
+# Set working directory
+#setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Assignment 3/PreparatoryWork")
+setwd("/Users/jasmincantzler/Documents/TaxMorale/Final Project")
+
+library(dplyr)
+library(tidyr)
+library(googleVis)
+
+# Using the no factor one as we want to show the means in the map
+mydata <- read.csv('Afrobarometer.nofactors.csv')
+
+#creates a subset with only Tax Morale and country
+summary_df <- mydata %>% 
+  group_by(Country) %>% 
+  summarise(
+    meantaxmorale = mean(TaxMorale, na.rm=TRUE)
+  )
 
 ```
 
@@ -19,7 +36,8 @@ p { text-align: left; }
 </style>
 
 Tax morale = "the intrinsic motivation to pay taxes"
-```{r}
+```{r, results='asis'}
+
 ```
 
 <br>
