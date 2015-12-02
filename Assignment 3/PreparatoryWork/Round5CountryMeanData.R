@@ -87,7 +87,8 @@ taxmorale.mean <- r5.mean[, keep_vars]
 afrobarometer_map <- gvisGeoChart(taxmorale.mean, locationvar = 'iso2c',
                                   colorvar = 'TaxMorale.mean',
                                   options = list(
-                                    colors = "['#fff7bc', '#d95f0e']"
+                                    colors = "['#fff7bc', '#d95f0e']",
+                                    region= '002'
                                   ))
 
 plot(afrobarometer_map)

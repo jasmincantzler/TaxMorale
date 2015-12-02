@@ -1,11 +1,12 @@
 ---
 title: "Tax Morale in Africa"
-author: "Wiebke Weiger & Jasmin Cantzler"
-date: "22 November 2015"
+author: "Jasmin Cantzler & Wiebke Weiger"
+date: "4 December 2015"
 output: 
   revealjs::revealjs_presentation:
     theme: sky
-    transition: slide
+    transition: none
+    slideNumber: 'c/t'
     highlight: default
     center: true
     fig_caption: true
@@ -13,12 +14,14 @@ bibliography: References.bib
 ---
 ```{r, include=FALSE}
 # Set working directory
-#setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Assignment 3/PreparatoryWork")
-setwd("/Users/jasmincantzler/Documents/TaxMorale/Final Project")
+setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Final Project")
+#setwd("/Users/jasmincantzler/Documents/TaxMorale/Final Project")
 
 library(dplyr)
 library(tidyr)
 library(googleVis)
+library(revealjs)
+library(stringi)
 
 # Using the no factor one as we want to show the means in the map
 mydata <- read.csv('Afrobarometer.nofactors.csv')
@@ -33,45 +36,83 @@ summary_df <- mydata %>%
 TaxMorale_map <- gvisGeoChart(summary_df, locationvar = 'Country',
                       colorvar = 'meantaxmorale',
                       options = list(
-                          colors = "['#e31b23', '#ffff00', '#00853f']",
-                          region= '002'
+                          colors = "['#7f7fff', '#000019']",
+                          region= '002',
+                          width=900, height=700
                           ))
+plot(TaxMorale_map)
 
 ```
 
 ## Why do people pay taxes?
 
-The discourse about tax compliance was long dominated by Allingham & Sandmo's [-@Allingham1972] model of income tax evasion:
+The discourse about tax compliance was long dominated by Allingham & Sandmo's (1972) model of income tax evasion:
 
-$$Compliance_i = \alpha_i + \beta_1 Probability of Detection_i \\
-+ \beta_2 Rate of Penalty_i + \epsilon_i$$ 
+$$Compliance_i = \alpha_i + \beta_1 ProbabilityOfDetection_i \\
++ \beta_2 RateOfPenalty_i + \epsilon_i$$ 
 
-But turns out their model had little explanatory power and failed to account for the high degree of tax compliance in some countries, despite their low level of deterrence.
+BUT: Their model had little explanatory power and failed to account for cases of high degrees of tax compliance despite low levels of deterrence.
 
-## Tax compliance is “not only a function of opportunity, tax rates, probability of detection and so on...
+## Tax compliance is "not only a function of...
 
-but of each individual’s willingness to comply, shaped by tax morale” [@Torgler2007, 77]. 
+- opportunity
+- tax rates
+- probability of detection 
+- and so on...
+- but of each individual's willingness to comply, shaped by tax morale" (Torgler 2007: 77) 
 
-Tax morale is often defined as **“the existence of an intrinsic motivation to pay taxes”** [@Cummings2009; @Torgler2005; @Torgler2009].
+Tax morale is often defined as 
+**"the existence of an intrinsic motivation to pay taxes"** 
 
 ## But what determines Tax Morale?
 
-$$Tax Morale_i = \alpha_i + \beta_1 Trust in Government_i \\
-+ \beta_2 LevelCorruption_i + \beta_3 interactionstaxpayers_i \\ 
-+ \beta_4 selfemployed_i + \beta_5 detection and punishment_i + \epsilon_i$$
+$$Tax Morale_i = \alpha_i + \beta_1 TrustInGovernment_i \\
++ \beta_2 LevelCorruption_i + \beta_3 InteractionTaxpayers_i \\ 
++ \beta_4 Selfemployed_i + \beta_5 DetectionAndPunishment_i + \epsilon_i$$
 
 
-## We investigated the determinants of tax morale in Africa, because...
+## Research Question and Motivation
 
-understanding the rationale behind tax evaders becomes essential to national development and state building.
+- existing research focuses on developed countries, but...
+- understanding the rationale behind tax evaders becomes essential to national development and state building.
+
+## Our Data...
+
+- ...comes from the [Afrobarometer Survey](http://www.afrobarometer.org/) 
+- ...is individual level survey data (no panel)
+- ...was merged for three different survey rounds:
+  
+    + Round 5: 34 countries (2011-2013)
+ 
+    + Round 4: 20 countries (2008-2010)
+ 
+    + Round 3: **18 countries** (2005-2006)
+    
+- ...contains a total of 104,697 observations 
+
+
+## Operationalization of Tax Morale
+
+People were asked whether they agree or disagree with the statement
+
+**The tax authorities always have the right to make people pay taxes.**
+
+They could choose between:
+
+  - strongly disagree
+  - disagree
+  - neither agree nor disagree
+  - agree
+  - strongly agree
+ 
 
 ## Tax Morale varies by country...
 
-```{r, echo=FALSE, results='asis', fig.align: ('center'), fig.cap="Tax Morale in Africa"}
+```{r, echo=FALSE, results='asis', fig.cap="Tax Morale in Africa"}
 print(TaxMorale_map, tag = 'chart')
 ```
 
 ## Determinants of Tax Morale however are quite similar...
 
 
-## References
+## 
