@@ -22,12 +22,16 @@ library(tidyr)
 library(googleVis)
 library(revealjs)
 library(stringi)
+library(ggplot2)
+library(stargazer)
+
 
 # Using the no factor one as we want to show the means in the map
-mydata <- read.csv('Afrobarometer.nofactors.csv')
+data.numeric <- read.csv('Afrobarometer.nofactors.csv')
+data.factors <- read.csv('Afrobarometer.final.csv')
 
 #creates a subset with only Tax Morale and country
-summary_df <- mydata %>% 
+summary_df <- data.numeric %>% 
   group_by(Country) %>% 
   summarise(
     meantaxmorale = mean(TaxMorale, na.rm=TRUE)
@@ -41,6 +45,47 @@ TaxMorale_map <- gvisGeoChart(summary_df, locationvar = 'Country',
                           width=900, height=700
                           ))
 plot(TaxMorale_map)
+
+
+# Histogram of distribution of dependent variable tax morale:
+
+data.factors$TaxMorale = factor(data.factors$TaxMorale,levels(data.factors$TaxMorale)[c(5,2,3,1,4)])
+
+levels(data.factors$TaxMorale)
+
+taxmorale_dist <- qplot(data.factors$TaxMorale,
+      geom="histogram",
+      binwidth=6,
+      main="Distribution of responses",
+      xlab="The tax department always has the right to make people pay taxes.",
+      fill=I("lightblue"))
+
+print(taxmorale_dist, tag = 'chart')
+
+# Histogram of distribution of dependent variable tax morale (only 3 levels):
+
+data.3levels <- data.numeric
+
+data.3levels$TaxMorale[data.3levels$TaxMorale==2] <- 1
+data.3levels$TaxMorale[data.3levels$TaxMorale==3] <- 2
+data.3levels$TaxMorale[data.3levels$TaxMorale==4] <- 3
+data.3levels$TaxMorale[data.3levels$TaxMorale==5] <- 3
+
+
+data.3levels$TaxMorale <- cut(data.3levels$TaxMorale,
+                            breaks = c(0, 1, 2, 3),
+                            labels = c("Disagree", "Neither agree nor disagre", "Agree"))
+
+levels(data.3levels$TaxMorale)
+
+taxmorale_dist3levels <- qplot(data.3levels$TaxMorale,
+      geom="histogram",
+      binwidth=6,
+      main="Distribution of responses",
+      xlab="The tax department always has the right to make people pay taxes.",
+      fill=I("lightblue"))
+
+print(taxmorale_dist3levels, tag = 'chart')
 
 ```
 
@@ -110,6 +155,9 @@ They could choose between:
 
 ## To get a first idea:
 
+```{r, echo=FALSE, results='asis'}
+print(taxmorale_dist, tag = 'chart')
+```
  
 
 ## Average Tax Morale in Africa
@@ -118,6 +166,7 @@ They could choose between:
 ```{r, echo=FALSE, results='asis', fig.cap="Tax Morale in Africa"}
 print(TaxMorale_map, tag = 'chart')
 ```
+
 
 ## Our Model to Explain Tax Morale
 
