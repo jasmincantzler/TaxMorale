@@ -64,7 +64,7 @@ BUT: Their model had little explanatory power and failed to account for cases of
 Tax morale is often defined as 
 **"the existence of an intrinsic motivation to pay taxes"** 
 
-## But what determines Tax Morale?
+## What determines Tax Morale?
 
 $$Tax Morale_i = \alpha_i + \beta_1 TrustInGovernment_i \\
 + \beta_2 LevelCorruption_i + \beta_3 InteractionTaxpayers_i \\ 
@@ -73,8 +73,10 @@ $$Tax Morale_i = \alpha_i + \beta_1 TrustInGovernment_i \\
 
 ## Research Question and Motivation
 
-- existing research focuses on developed countries, but...
-- understanding the rationale behind tax evaders becomes essential to national development and state building.
+- What are the determinants of tax morale in Africa?
+- Existing research focuses on developed countries
+- Understanding the drivers of tax morale particularly important for developing countries
+- **Do identified determinants of tax morale (defined mostly in the US or the EU) also hold in African countries?** 
 
 ## Our Data...
 
@@ -104,15 +106,41 @@ They could choose between:
   - neither agree nor disagree
   - agree
   - strongly agree
+  
+
+## To get a first idea:
+
  
 
-## Tax Morale varies by country...
+## Average Tax Morale in Africa
+
 
 ```{r, echo=FALSE, results='asis', fig.cap="Tax Morale in Africa"}
 print(TaxMorale_map, tag = 'chart')
 ```
 
-## Determinants of Tax Morale however are quite similar...
+## Our Model to Explain Tax Morale
+
+ordered logistic regression
+
+**Control variables:**
+
+  - trust in government and institutions
+  - perceived corruption 
+  - perceived level of tax avoidance
+  - living conditions
+  - self employement 
+  - religion
+  - age & gender
+  - year & country fixed effects
 
 
-## 
+
+## Results
+
+
+
+## Shortcomings, Open Questions & Outlook for Future Research
+- survey answers could be biased (social desirability)
+- address model assumption of ordinal odds
+- 
