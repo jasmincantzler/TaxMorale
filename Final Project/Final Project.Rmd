@@ -18,20 +18,20 @@ bibliography: References.bib
 ```{r, include=FALSE}
 
 # Set working directory
-#setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Assignment 3/PreparatoryWork")
-setwd("/Users/jasmincantzler/Documents/TaxMorale/Final Project")
+#setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Final Project")
+#setwd("/Users/jasmincantzler/Documents/TaxMorale/Final Project")
 
 # Load packages
+library(plyr)
+library(dplyr)
 library(MASS)
 library(ggplot2)
 library(knitr)
-library(dplyr)
 library(stargazer)
 library(tidyr)
+library(Hmisc)
 library(tables)
 library(usdm)
-library(Hmisc)
-library(plyr)
 library(corrplot) 
 library(gmodels)
 

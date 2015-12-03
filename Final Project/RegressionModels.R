@@ -184,16 +184,78 @@ reg1.1 <- polr(TaxMorale ~ TrustPresident + CorruptionPresident + Year + Country
 
 summary(reg1.1) ## 26845 observations deleted due to missingness (that is 25.6% of all observations)
 
-#store table
-(ctable <- coef(summary(reg1)))
-#calculate and store p values
-p <- pnorm(abs(ctable[, "t value"]), lower.tail = FALSE) * 2
-## combined table
-(ctable <- cbind(ctable, "p value" = p))
-#FEHLERMELDUNG confidence intervals for the parameter estimates 
-#(ci <- confint(reg1))
 
-#Predicted Probabilities
+# Store table
+(ctable1.1 <- coef(summary(reg1.1)))
+
+# Calculate and store p values
+p1.1 <- pnorm(abs(ctable1.1[, "t value"]), lower.tail = FALSE) * 2
+
+# Combined table
+(ctable1.1 <- cbind(ctable1.1, "p value" = p1.1))
+
+# Confidence Interval
+ci.1.1 <- confint.default(reg1.1)
+
+# Odds Ratios
+exp(coef(reg1.1))
+
+# Combine Odds Ratios and Confidence Interval
+ORtable <- exp(cbind(OR = coef(reg1.1), ci.1.1))
+
+kable(ORtable)
+ortable <- kable(ORtable, align = 'c', digits = 2)
+
+# Predicted Probabilities
+#fitted <- with(data.numeric,
+#               data.frame(TrustPresident = mean(TrustPresident, na.rm=TRUE),
+#                         CorruptionPresident = mean(CorruptionPresident, na.rm=TRUE),
+#                          Year = mean(Year),
+#                          Country = factor(1:34)))
+#fitted
+
+#fitted$predicted <- predict(reg1.1, newdata = fitted,
+#                            type = 'response')
+#fitted
+
+# try with numeric:
+reg11 <- polr(as.factor(TaxMorale) ~ as.factor(TrustPresident) + as.factor(CorruptionPresident) + 
+                as.factor(Year) + as.factor(Country), method='logistic', 
+              data=data.numeric, Hess = TRUE)
+
+summary(reg11) ## 26845 observations deleted due to missingness (that is 25.6% of all observations)
+
+# Store table
+(ctable11 <- coef(summary(reg11)))
+
+# Calculate and store p values
+p11 <- pnorm(abs(ctable11[, "t value"]), lower.tail = FALSE) * 2
+
+# Combined table
+(ctable11 <- cbind(ctable11, "p value" = p11))
+
+# Confidence Interval
+ci.11 <- confint.default(reg11)
+
+# Odds Ratios
+exp(coef(reg11))
+
+# Combine Odds Ratios and Confidence Interval
+exp(cbind(OR = coef(reg11), ci.11))
+
+# Predicted Probabilities
+#fitted1 <- with(data.numeric,
+#               data.frame(TrustPresident = mean(TrustPresident, na.rm=TRUE),
+#                          CorruptionPresident = mean(CorruptionPresident, na.rm=TRUE),
+#                          Year = mean(Year, na.rm=TRUE),
+#                          Country = factor(1:34)))
+#fitted1
+
+#fitted1$predicted <- predict(reg11, newdata = fitted1, type = 'response')
+#fitted1
+
+#fitted$predicted <- predict(Logit1, newdata = fitted,
+#                            type = 'response')
 
 # Model 1.2 (including socio-economic controls):
 #   - trust in the government (trying out various versions, e.g. trust in president, trust in parliament, etc)
@@ -211,6 +273,34 @@ reg1.2 <- polr(TaxMorale ~ TrustPresident + CorruptionPresident +  Year + Countr
 
 summary(reg1.2) ## 27912 observations deleted due to missingness (that is 26.7% of all observations)
 
+# Store table
+(ctable1.2 <- coef(summary(reg1.2)))
+
+# Calculate and store p values
+p1.2 <- pnorm(abs(ctable1.2[, "t value"]), lower.tail = FALSE) * 2
+
+# Combined table
+(ctable1.2 <- cbind(ctable1.2, "p value" = p1.2))
+
+# Confidence Interval
+ci.1.2 <- confint.default(reg1.2)
+
+# Odds Ratios
+exp(coef(reg1.2))
+
+# Combine Odds Ratios and Confidence Interval
+exp(cbind(OR = coef(reg1.2), ci.1.2))
+
+# Predicted Probabilities
+
+
+#####
+# Joint table for Models 1.1 and 1.2
+
+library(stargazer)
+stargazer(reg1.1, reg1.2,
+          title = 'Ordinal Logistic Regression Results of Tax Morale',
+          digits = 2, type = 'html')
 
 # Model 1.3 (same as 1.1, but with tax morale coded with only 3 levels - disagree, neither nor, agree)
 
