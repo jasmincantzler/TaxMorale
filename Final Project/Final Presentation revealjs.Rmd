@@ -17,6 +17,7 @@ bibliography: References.bib
 setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Final Project")
 #setwd("/Users/jasmincantzler/Documents/TaxMorale/Final Project")
 
+library(knitr)
 library(dplyr)
 library(tidyr)
 library(googleVis)
@@ -24,7 +25,6 @@ library(revealjs)
 library(stringi)
 library(ggplot2)
 library(MASS)
-library(knitr)
 library(stargazer)
 
 
@@ -395,4 +395,7 @@ print(ortable)
 ## Shortcomings, Open Questions & Outlook for Future Research
 - survey answers could be biased (social desirability)
 - address model assumption of ordinal odds
-- 
+- take a closer look at individual countries and between-country-differences (potentially evaluating impacts of campaigns etc.)
+
+
+## Thank you very much for listening
