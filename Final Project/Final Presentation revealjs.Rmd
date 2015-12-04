@@ -369,14 +369,6 @@ stargazer(reg1.1, reg1.2,
           digits = 2, type = 'html')
 ```
 
-## Results (Cont.)
- 
-```{r, echo=FALSE, results='asis', tidy=TRUE}
-library(knitr)
-ortable <- kable(ORtable, align = 'c', digits = 2)
-print(ortable)
-```
-
 
 ## Shortcomings, Open Questions & Outlook for Future Research
 - survey answers could be biased (social desirability)
