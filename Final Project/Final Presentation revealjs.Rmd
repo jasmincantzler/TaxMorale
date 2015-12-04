@@ -97,21 +97,7 @@ print(taxmorale_dist, tag = 'chart')
 # Third: Recode dependent variable "TaxMorale" so that it has 3 instead of 5 levels
 
 # First: Sort factor levels (they are currently in alphabetical order) for output to be more easily
-# readable:
-
-# Dependent Variable: tax morale:
-levels(data.factors$TaxMorale) # gives the current order of the levels:
-# [1] "Agree"                      "Disagree"                   "Neither agree nor disagree"
-# [4] "Strongly Agree"             "Strongly Disagree"
-# correct order would be: 5, 2, 3, 1, 4
-# change order: 
-data.factors$TaxMorale = factor(data.factors$TaxMorale,levels(data.factors$TaxMorale)[c(5,2,3,1,4)])
-levels(data.factors$TaxMorale) # now order is correct:
-# [1] "Strongly Disagree"          "Disagree"                   "Neither agree nor disagree"
-# [4] "Agree"                      "Strongly Agree"
-
-
-# Independent Variables:
+# readable for the independent Variables:
 
 # A) TRUST:
 # 1) Trust key leadership figure (President/Prime Minister)
@@ -174,18 +160,18 @@ levels(data.factors$Year) # in correct order: 2005, 2008, 2015
 
 # Third: Recode dependent variable "TaxMorale" so that it has 3 instead of 5 levels
 
-data.3levels <- data.numeric
+#data.3levels <- data.numeric
 
-data.3levels$TaxMorale[data.3levels$TaxMorale==2] <- 1
-data.3levels$TaxMorale[data.3levels$TaxMorale==3] <- 2
-data.3levels$TaxMorale[data.3levels$TaxMorale==4] <- 3
-data.3levels$TaxMorale[data.3levels$TaxMorale==5] <- 3
+#data.3levels$TaxMorale[data.3levels$TaxMorale==2] <- 1
+#data.3levels$TaxMorale[data.3levels$TaxMorale==3] <- 2
+#data.3levels$TaxMorale[data.3levels$TaxMorale==4] <- 3
+#data.3levels$TaxMorale[data.3levels$TaxMorale==5] <- 3
 
-data.3levels$TaxMorale <- cut(data.3levels$TaxMorale,
-                              breaks = c(0, 1, 2, 3),
-                              labels = c("Disagree", "Neither agree nor disagre", "Agree"))
+#data.3levels$TaxMorale <- cut(data.3levels$TaxMorale,
+#                              breaks = c(0, 1, 2, 3),
+#                              labels = c("Disagree", "Neither agree nor disagre", "Agree"))
 
-levels(data.3levels$TaxMorale) 
+#levels(data.3levels$TaxMorale) 
 
 # end of preparatory work
 ########################################################################################################
