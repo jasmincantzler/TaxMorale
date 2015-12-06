@@ -692,7 +692,7 @@ exp(coef(reg1.1))
 ORtable <- exp(cbind(OR = coef(reg1.1), ci.1.1))
 
 kable(ORtable)
-ortable <- kable(ORtable, align = 'c', digits = 2)
+ortable1.1 <- kable(ORtable, align = 'c', digits = 2)
 
 # Predicted Probabilities
 test <- predict(reg1.1)
@@ -734,26 +734,51 @@ exp(coef(reg11))
 # Combine Odds Ratios and Confidence Interval
 exp(cbind(OR = coef(reg11), ci.11))
 
-# Predicted Probabilities
-#fitted1 <- with(data.numeric,
-#               data.frame(TrustPresident = mean(TrustPresident, na.rm=TRUE),
-#                          CorruptionPresident = mean(CorruptionPresident, na.rm=TRUE),
-#                          Year = mean(Year, na.rm=TRUE),
-#                          Country = factor(1:34)))
-#fitted1
+# Model 1.1 without the Country Variable to see how important specific country differences are for the model:
+reg1.1nocountry <- polr(TaxMorale ~ TrustPresident + CorruptionPresident + Year, method='logistic', 
+               data=data1.1, Hess = TRUE)
 
-#fitted1$predicted <- predict(reg11, newdata = fitted1, type = 'response')
-#fitted1
+summary(reg1.1nocountry)
 
-#fitted$predicted <- predict(Logit1, newdata = fitted,
-#                            type = 'response')
+# Store table
+(ctable1.1nocountry <- coef(summary(reg1.1nocountry)))
 
-# try OLS:
+# Calculate and store p values
+p1.1nocountry <- pnorm(abs(ctable1.1nocountry[, "t value"]), lower.tail = FALSE) * 2
 
-ols <- lm(TaxMorale ~ TrustPresident + CorruptionPresident + 
-                    as.factor(Year) + as.factor(Country), data=data.numeric)
+# Combined table
+(ctable1.1nocountry <- cbind(ctable1.1nocountry, "p value" = p1.1nocountry))
 
-summary(ols)
+# Confidence Interval
+ci.1.1nocountry <- confint.default(reg1.1nocountry)
+
+# Odds Ratios
+exp(coef(reg1.1nocountry))
+
+# Combine Odds Ratios and Confidence Interval
+ORtable.nocountry <- exp(cbind(OR = coef(reg1.1nocountry), ci.1.1nocountry))
+kable(ORtable.nocountry)
+ortable1.1nocountry <- kable(ORtable.nocountry, align = 'c', digits = 2)
+print(ortable1.1nocountry)
+
+# try a multinomia logit model to compare results:
+library(nnet)
+multinom1.1 <- multinom(TaxMorale ~ TrustPresident + CorruptionPresident + Country + Year, data=data1.1)
+Anova(multinom1.1) # to see if the variables included are statistically significant: they are all significant
+#Response: TaxMorale
+#LR Chisq  Df Pr(>Chisq)    
+#TrustPresident         837.2  12  < 2.2e-16 ***
+#CorruptionPresident    313.7  12  < 2.2e-16 ***
+#Country               6495.8 132  < 2.2e-16 ***
+#Year                   408.4   8  < 2.2e-16 ***
+#  ---
+#Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+summary(multinom1.1) # Warning message: In sqrt(diag(vc)) : NaNs produced
+# AIC: 205112 is lower than the AIC for reg 1.1 (209761.52) which suggests that the assumption of proportional 
+# odds doesn't hold
+
+
 
 # Model 1.2 (including socio-economic controls):
 #   - trust in the government (trying out various versions, e.g. trust in president, trust in parliament, etc)
@@ -822,11 +847,51 @@ summary(data1.2$LivingConditions)
 # Neither good nor bad: 15824
 # Fairly good:          19951
 # Very good:             3468
+# Histogram:
+livingcond1.2 <- qplot(data1.2$LivingConditions,
+                            geom="histogram",
+                            binwidth=6,
+                            main="Distribution of responses",
+                            xlab="In general, how would you describe: Your own present living conditions?",
+                            fill=I("lightblue"))
+print(livingcond1.2, tag = 'chart')
+
+summary(data1.2$Religion)
+# Not a member:    30147
+# Inactive member: 15894
+# Active member:   26137
+# Official Leader:  4607
+# Histogram:
+religion1.2 <- qplot(data1.2$Religion,
+                       geom="histogram",
+                       binwidth=6,
+                       main="Distribution of responses",
+                       xlab="Are you a member of a religious group that meets outside of regular worship services?",
+                       fill=I("lightblue"))
+print(religion1.2, tag = 'chart')
+
+summary(data1.2$Gender)
+# Male:   40104
+# Female: 36681
+
+summary(data1.2$Age)
+#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#   18.00   25.00   33.00   36.14   45.00  120.00
+
+# Ovierview over variables used in the model using the ScatterplotMatrix command from car:
+# making the matrix takes a lot of time therefore this command should not be run every time.
+# a "png" and "pdf" file of the matrix are saved under 
+#
+#data.numeric1.2 <- DropNA(data.numeric, c("TaxMorale", "TrustPresident", "CorruptionPresident", "Country", "Year",
+#                                          "LivingConditions", "Age", "Gender", "Religion"))
+#keepvars = c(10, 11, 14, 5, 7, 9, 19)
+#data.numeric1.2 <- data.numeric1.2[, keepvars]
+#scatterplotMatrix(data.numeric1.2)
 
 # Step two: run the model:
 reg1.2 <- polr(TaxMorale ~ TrustPresident + CorruptionPresident +  Year + Country + 
                LivingConditions + Age + Gender + Religion, method='logistic', 
-               data=data.factors, Hess = TRUE)
+               data=data1.2, Hess = TRUE)
 
 summary(reg1.2) ## 27912 observations deleted due to missingness (that is 26.7% of all observations)
 
@@ -848,17 +913,98 @@ exp(coef(reg1.2))
 # Combine Odds Ratios and Confidence Interval
 exp(cbind(OR = coef(reg1.2), ci.1.2))
 
+# Combine Odds Ratios and Confidence Interval
+ORtable1.2 <- exp(cbind(OR = coef(reg1.2), ci.1.2))
+
+kable(ORtable1.2)
+ortable1.2 <- kable(ORtable1.2, align = 'c', digits = 2)
+
 # Predicted Probabilities
 
+# Model 1.2 without the Country Variable to see how important specific country differences are for the model:
+reg1.2nocountry <- polr(TaxMorale ~ TrustPresident + CorruptionPresident +  Year + 
+                 LivingConditions + Age + Gender + Religion, method='logistic', 
+               data=data1.2, Hess = TRUE)
+
+summary(reg1.2nocountry)
+
+# Store table
+(ctable1.2nocountry <- coef(summary(reg1.2nocountry)))
+
+# Calculate and store p values
+p1.2nocountry <- pnorm(abs(ctable1.2nocountry[, "t value"]), lower.tail = FALSE) * 2
+
+# Combined table
+(ctable1.2nocountry <- cbind(ctable1.2nocountry, "p value" = p1.2nocountry))
+
+# Confidence Interval
+ci.1.2nocountry <- confint.default(reg1.2nocountry)
+
+# Odds Ratios
+exp(coef(reg1.2nocountry))
+
+# Combine Odds Ratios and Confidence Interval
+ORtable1.2nocountry <- exp(cbind(OR = coef(reg1.2nocountry), ci.1.2nocountry))
+kable(ORtable1.2nocountry)
+ortable1.2nocountry <- kable(ORtable1.2nocountry, align = 'c', digits = 2)
+print(ortable1.2nocountry)
+
+# try a multinomial logit model to compare results:
+library(nnet)
+multinom1.2 <- multinom(TaxMorale ~ TrustPresident + CorruptionPresident + Country + Year + 
+                          LivingConditions + Age + Gender + Religion, data=data1.2)
+summary(multinom1.2) # Warning message: In sqrt(diag(vc)) : NaNs produced
+# AIC: 201728.7 is lower than the AIC for reg 1.1 (206619.55) which suggests that the assumption of proportional 
+# odds doesn't hold
+
+# rerun model 1.1 with the same dataset used in model 1.2 (data1.2) in order to be able to compare AIC values:
+reg1.1new <- polr(TaxMorale ~ TrustPresident + CorruptionPresident + Year + Country, method='logistic', 
+               data=data1.2, Hess = TRUE)
+
+summary(reg1.1new) 
+
+# Store table
+(ctable1.1new <- coef(summary(reg1.1new)))
+
+# Calculate and store p values
+p1.1new <- pnorm(abs(ctable1.1new[, "t value"]), lower.tail = FALSE) * 2
+
+# Combined table
+(ctable1.1new <- cbind(ctable1.1new, "p value" = p1.1new))
+
+# Confidence Interval
+ci.1.1new <- confint.default(reg1.1new)
+
+# Odds Ratios
+exp(coef(reg1.1new))
+
+# Combine Odds Ratios and Confidence Interval
+ORtable1.1new <- exp(cbind(OR = coef(reg1.1new), ci.1.1new))
+
+kable(ORtable1.1new)
+ortable1.1new <- kable(ORtable1.1new, align = 'c', digits = 2)
+print(ortable1.1new)
+# try a multinomial logit model to compare results:
+library(nnet)
+multinom1.1new <- multinom(TaxMorale ~ TrustPresident + CorruptionPresident + Country + Year, data=data1.2)
+summary(multinom1.1new) # Warning message: In sqrt(diag(vc)) : NaNs produced
+# AIC: 202169.7 is lower than the AIC for reg 1.2 (206619.55) which suggests that the assumption of proportional 
+# odds doesn't hold
 
 #####
-# Joint table for Models 1.1 and 1.2
+# Joint table for Models 1.1, 1.2, and 1.1new
 
 library(stargazer)
-table1 <- stargazer(reg1.1, reg1.2,
+table1 <- stargazer(reg1.1, reg1.2, reg1.1new,
           title = 'Ordinal Logistic Regression Results of Tax Morale',
           digits = 2, type = 'html')
 
+
+# joint table for multinomial models:
+
+table2 <- stargazer(multinom1.1, multinom1.2, multinom1.1new,
+                    title = 'Multinomial Logistic Regression Results of Tax Morale',
+                    digits = 2, type = 'html')
 
 # Model 1.3 (same as 1.1, but with tax morale coded with only 3 levels - disagree, neither nor, agree)
 
