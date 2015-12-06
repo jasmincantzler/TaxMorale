@@ -641,13 +641,13 @@ trustpreshist <- qplot(data1.1$TrustPresident,
 print(trustpreshist, tag = 'chart')
 
 summary(data1.1$CorruptionPresident)
-# distribution of TrustPresident after dropping NA's:
+# distribution of CorruptionPresident after dropping NA's:
 # None:         15983  
 # Some of them: 38430
 # Most of them: 15591
 # All of them:   7848
 # Histogram:
-corruptpreshist <- qplot(data1.1$TrustPresident,
+corruptpreshist <- qplot(data1.1$CorruptionPresident,
                        geom="histogram",
                        binwidth=6,
                        main="Distribution of responses",
@@ -827,13 +827,13 @@ trustpreshist1.2 <- qplot(data1.2$TrustPresident,
 print(trustpreshist1.2, tag = 'chart')
 
 summary(data1.2$CorruptionPresident)
-# distribution of TrustPresident after dropping NA's:
+# distribution of CorruptionPresident after dropping NA's:
 # None:         15704  
 # Some of them: 37948
 # Most of them: 15391
 # All of them:   7742
 # Histogram:
-corruptpreshist1.2 <- qplot(data1.2$TrustPresident,
+corruptpreshist1.2 <- qplot(data1.2$CorruptionPresident,
                          geom="histogram",
                          binwidth=6,
                          main="Distribution of responses",
@@ -1079,14 +1079,131 @@ table3 <- stargazer(reg1.1, reg1.2, reg1.3, reg1.4,
 #   - self-employed
 #   - country fixed effects
 
+# Step one: get data set that doesn't have any missings on the variables of the model:
+data2.1 <- DropNA(round5, c("TaxMorale", "TrustPresident", "TrustTax", "CorruptionPresident", 
+                                  "AvoidHowOften", "SelfEmployedTax", "Country"))
+# 35800 rows dropped from the data frame (that is almost 70% of all observations!!!)
+# take a closer look what that means:
+summary(data2.1$TaxMorale)
+# distribution of dependent variable TaxMorale after dropping NA's:
+# Strongly Disagree:           1228  
+# Disagree:                    1876
+# Neither agree nor disagree:  1004
+# Agree:                       7192
+# Strongly Agree:              4487
+# Histogram:
+taxmoralehist2.1 <- qplot(data2.1$TaxMorale,
+                       geom="histogram",
+                       binwidth=6,
+                       main="Distribution of responses",
+                       xlab="The tax department always has the right to make people pay taxes.",
+                       fill=I("lightblue"))
+print(taxmoralehist2.1, tag = 'chart')
+
+summary(data2.1$TrustPresident)
+# distribution of TrustPresident after dropping NA's:
+# Not at all:    2490  
+# Just a little: 3546
+# Somewhat:      3790
+# A lot:         5961
+# Histogram:
+trustpreshist2.1 <- qplot(data2.1$TrustPresident,
+                       geom="histogram",
+                       binwidth=6,
+                       main="Distribution of responses",
+                       xlab="How much do you trust the President/Prime Minister?",
+                       fill=I("lightblue"))
+print(trustpreshist2.1, tag = 'chart')
+
+summary(data2.1$TrustTax)
+#distribution of TrustTax after dropping NAs:
+# Not at all:    3620  
+# Just a little: 4848
+# Somewhat:      4181
+# A lot:         3138
+# Histogram:
+trusttax2.1 <- qplot(data2.1$TrustTax,
+                          geom="histogram",
+                          binwidth=6,
+                          main="Distribution of responses",
+                          xlab="How much do you trust the tax department?",
+                          fill=I("lightblue"))
+print(trusttax2.1, tag = 'chart')
+
+summary(data2.1$CorruptionPresident)
+# distribution of CorruptionPresident after dropping NA's:
+# None:         2708  
+# Some of them: 8354
+# Most of them: 3187
+# All of them:  1538
+# Histogram:
+corruptpreshist2.1 <- qplot(data2.1$CorruptionPresident,
+                         geom="histogram",
+                         binwidth=6,
+                         main="Distribution of responses",
+                         xlab="How many of the following people do you think are involved in corruption: The President/Prime Minister and Officials in his Office?",
+                         fill=I("lightblue"))
+print(corruptpreshist2.1, tag = 'chart')
+
+summary(data2.1$AvoidHowOften)
+# Never:   5256
+# Rarely:  5200
+# Often:   4068
+# Allways: 1263
+# Histogram:
+avoidhist2.1 <- qplot(data2.1$AvoidHowOften,
+                            geom="histogram",
+                            binwidth=6,
+                            main="Distribution of responses",
+                            xlab="How often do people avoid paying the taxes that they owe the government?",
+                            fill=I("lightblue"))
+print(avoidhist2.1, tag = 'chart')
+
+summary(data2.1$SelfEmployedTax)
+# Not required to pay: 5902
+# Required to pay:     9885
+
+summary(data2.1$Country) # Algeria, Egypt, Morocco, Sudan, Swaziland, and Tunisia are not in the dataset 
+# anymore and 5 countries have fewer than 200 observations now (Botswana, Burkina Faso, Burundi, Mauritius, 
+# and Namibia)
+countryhist2.1 <- qplot(data2.1$Country,
+                     geom="histogram",
+                     binwidth=3,
+                     main="Number of observations per country",
+                     xlab="Country of origin",
+                     fill=I("lightblue"))
+print(countryhist2.1, tag = 'chart')
+
+
+
+# Step two: run the model:
 reg2.1 <- polr(TaxMorale ~ TrustPresident + TrustTax + CorruptionPresident +  AvoidHowOften + 
                SelfEmployedTax + Country, 
                method='logistic', 
-               data=round5, 
+               data=data2.1, 
                Hess = TRUE)
 
-summary(reg2.1) ## problem: it says "(35800 observations deleted due to missingness)" which is almost 70%
-                ## of all observations
+summary(reg2.1)
+
+# Store table
+(ctable2.1 <- coef(summary(reg2.1)))
+
+# Calculate and store p values
+p2.1 <- pnorm(abs(ctable2.1[, "t value"]), lower.tail = FALSE) * 2
+
+# Combined table
+(ctable2.1 <- cbind(ctable2.1, "p value" = p2.1))
+
+# Confidence Interval
+ci.2.1 <- confint.default(reg2.1)
+
+# Odds Ratios
+exp(coef(reg2.1))
+
+# Combine Odds Ratios and Confidence Interval
+ORtable2.1 <- exp(cbind(OR = coef(reg2.1), ci.2.1))
+kable(ORtable2.1)
+ortable2.1 <- kable(ORtable2.1, align = 'c', digits = 2)
 
 # Model 2.2 (round 5 only, including socio-economic controls):
 #   - trust in the government (trying out various versions, e.g. trust in president, trust in parliament, etc)
@@ -1100,15 +1217,46 @@ summary(reg2.1) ## problem: it says "(35800 observations deleted due to missingn
 #   - gender
 #   - religious
 
+# Step one: get data set that doesn't have any missings on the variables of the model:
+data2.2 <- DropNA(round5, c("TaxMorale", "TrustPresident", "TrustTax", "CorruptionPresident", 
+                            "AvoidHowOften", "SelfEmployedTax", "Country", "LivingConditions", "Age",
+                            "Gender", "Religion"))
+# 35955 rows dropped from the data frame (that is almost 70% of all observations!!!)
+# take a closer look what that means:
+summary(data2.2$Religion)
+summary(data2.2$Gender)
+summary(data2.2$Age)
+summary(data2.2$LivingConditions)
+summary(data2.2$Country)
+## not so different from 2.1
+
 reg2.2 <- polr(TaxMorale ~ TrustPresident + TrustTax + CorruptionPresident +  AvoidHowOften + 
                SelfEmployedTax + Country + LivingConditions + Age + Gender + Religion,
                method='logistic', 
-               data=round5, 
+               data=data2.2, 
                Hess = TRUE)
 
-summary(reg2.2) ## problem: it says "(35955 observations deleted due to missingness)" which is almost 70%
-                ## of all observations
+summary(reg2.2) 
 
+# Store table
+(ctable2.2 <- coef(summary(reg2.2)))
+
+# Calculate and store p values
+p2.2 <- pnorm(abs(ctable2.2[, "t value"]), lower.tail = FALSE) * 2
+
+# Combined table
+(ctable2.2 <- cbind(ctable2.2, "p value" = p2.2))
+
+# Confidence Interval
+ci.2.2 <- confint.default(reg2.2)
+
+# Odds Ratios
+exp(coef(reg2.2))
+
+# Combine Odds Ratios and Confidence Interval
+ORtable2.2 <- exp(cbind(OR = coef(reg2.2), ci.2.2))
+kable(ORtable2.2)
+ortable2.2 <- kable(ORtable2.2, align = 'c', digits = 2)
 
 # Model 2.3 (round 3 only):
 #   - trust in the government (trying out various versions, e.g. trust in president, trust in parliament, etc)
