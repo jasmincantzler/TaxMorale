@@ -980,10 +980,9 @@ exp(coef(reg1.1new))
 
 # Combine Odds Ratios and Confidence Interval
 ORtable1.1new <- exp(cbind(OR = coef(reg1.1new), ci.1.1new))
-
 kable(ORtable1.1new)
 ortable1.1new <- kable(ORtable1.1new, align = 'c', digits = 2)
-print(ortable1.1new)
+
 # try a multinomial logit model to compare results:
 library(nnet)
 multinom1.1new <- multinom(TaxMorale ~ TrustPresident + CorruptionPresident + Country + Year, data=data1.2)
@@ -992,10 +991,10 @@ summary(multinom1.1new) # Warning message: In sqrt(diag(vc)) : NaNs produced
 # odds doesn't hold
 
 #####
-# Joint table for Models 1.1, 1.2, and 1.1new
+# Joint table for Models 1.1, 1.2, 1.1new, and the two models without country fixed effects
 
 library(stargazer)
-table1 <- stargazer(reg1.1, reg1.2, reg1.1new,
+table1 <- stargazer(reg1.1, reg1.2, reg1.1new, reg1.1nocountry, reg1.2nocountry,
           title = 'Ordinal Logistic Regression Results of Tax Morale',
           digits = 2, type = 'html')
 
@@ -1006,22 +1005,70 @@ table2 <- stargazer(multinom1.1, multinom1.2, multinom1.1new,
                     title = 'Multinomial Logistic Regression Results of Tax Morale',
                     digits = 2, type = 'html')
 
+
+####
+
 # Model 1.3 (same as 1.1, but with tax morale coded with only 3 levels - disagree, neither nor, agree)
 
 reg1.3 <- polr(TaxMorale ~ TrustPresident + CorruptionPresident + Year + Country, method='logistic', 
-               data=data.3levels, Hess = TRUE)
+               data=data.3l.factors, Hess = TRUE)
 
 summary(reg1.3) ## 26845 observations deleted due to missingness (that is 25.6% of all observations)
 
+# Store table
+(ctable1.3 <- coef(summary(reg1.3)))
+
+# Calculate and store p values
+p1.3 <- pnorm(abs(ctable1.3[, "t value"]), lower.tail = FALSE) * 2
+
+# Combined table
+(ctable1.3 <- cbind(ctable1.3, "p value" = p1.3))
+
+# Confidence Interval
+ci.1.3 <- confint.default(reg1.3)
+
+# Odds Ratios
+exp(coef(reg1.3))
+
+# Combine Odds Ratios and Confidence Interval
+ORtable1.3 <- exp(cbind(OR = coef(reg1.3), ci.1.3))
+
+kable(ORtable1.3)
+ortable1.3 <- kable(ORtable1.3, align = 'c', digits = 2)
 
 # Model 1.4 (same as 1.2, but with tax morale coded with only 3 levels - disagree, neither nor, agree)
 
 reg1.4 <- polr(TaxMorale ~ TrustPresident + CorruptionPresident +  Year + Country + 
                LivingConditions + Age + Gender + Religion, method='logistic', 
-               data=data.3levels, Hess = TRUE)
+               data=data.3l.factors, Hess = TRUE)
 
-summary(reg1.4) ## 27884 observations deleted due to missingness (that is 26.7% of all observations)
+summary(reg1.4) ## 27912 observations deleted due to missingness 
 
+# Store table
+(ctable1.4 <- coef(summary(reg1.4)))
+
+# Calculate and store p values
+p1.4 <- pnorm(abs(ctable1.4[, "t value"]), lower.tail = FALSE) * 2
+
+# Combined table
+(ctable1.4 <- cbind(ctable1.4, "p value" = p1.4))
+
+# Confidence Interval
+ci.1.4 <- confint.default(reg1.4)
+
+# Odds Ratios
+exp(coef(reg1.4))
+
+# Combine Odds Ratios and Confidence Interval
+ORtable1.4 <- exp(cbind(OR = coef(reg1.4), ci.1.4))
+kable(ORtable1.4)
+ortable1.4 <- kable(ORtable1.4, align = 'c', digits = 2)
+
+####
+# Combined table models 1.1, 1.2, 1.3,and 1.4
+table3 <- stargazer(reg1.1, reg1.2, reg1.3, reg1.4,
+                    title = 'Comparison 5 vs. 3 levels of Tax Morale',
+                    digits = 2, type = 'html')
 
 # 2. Sub analyses for single years (with variables not available in all rounds)
 # Model 2.1 (round 5 only):
