@@ -22,6 +22,7 @@ library(tidyr)
 library(foreign)
 library(DataCombine)
 library(ggplot2)
+library(effects)
 
 
 # data:
@@ -1264,12 +1265,44 @@ ortable2.2 <- kable(ORtable2.2, align = 'c', digits = 2)
 #   - perceived likelihood of being detected
 #   - country fixed effects
 
+# Step one: get data set that doesn't have any missings on the variables of the model:
+data2.3 <- DropNA(round3, c("TaxMorale", "TrustPresident", "CorruptionPresident", "Enforce2",
+                            "Country"))
+# 7656 rows dropped from the data frame (that is 30% of all observations)
+# take a closer look what that means:
+summary(data2.3$TaxMorale)
+summary(data2.3$TrustPresident)
+summary(data2.3$CorruptionPresident)
+summary(data2.3$Enforce2)
+summary(data2.3$Country) # no country entirely dropped out
+
+# Step two: run the model
 reg2.3 <- polr(TaxMorale ~ TrustPresident + CorruptionPresident +  Enforce2 + Country,
                method='logistic', 
-               data=round3, 
+               data=data2.3, 
                Hess = TRUE)
 
-summary(reg2.3) ## 7656 observations deleted due to missingness (that is 30.1% of all observations)
+summary(reg2.3) 
+
+# Store table
+(ctable2.3 <- coef(summary(reg2.3)))
+
+# Calculate and store p values
+p2.3 <- pnorm(abs(ctable2.3[, "t value"]), lower.tail = FALSE) * 2
+
+# Combined table
+(ctable2.3 <- cbind(ctable2.3, "p value" = p2.3))
+
+# Confidence Interval
+ci.2.3 <- confint.default(reg2.3)
+
+# Odds Ratios
+exp(coef(reg2.3))
+
+# Combine Odds Ratios and Confidence Interval
+ORtable2.3 <- exp(cbind(OR = coef(reg2.3), ci.2.3))
+kable(ORtable2.3)
+ortable2.3 <- kable(ORtable2.3, align = 'c', digits = 2)
 
 # Model 2.4 (round 3 only, including socio-economic controls):
 #   - trust in the government (trying out various versions, e.g. trust in president, trust in parliament, etc)
@@ -1281,10 +1314,47 @@ summary(reg2.3) ## 7656 observations deleted due to missingness (that is 30.1% o
 #   - gender
 #   - religious
 
+# Step one: get data set that doesn't have any missings on the variables of the model:
+data2.4 <- DropNA(round3, c("TaxMorale", "TrustPresident", "CorruptionPresident", 
+                            "Enforce2", "Country", "LivingConditions", "Age","Gender", "Religion"))
+# 7845 rows dropped from the data frame (that is 30% of all observations)
+# take a closer look what that means:
+summary(data2.4$TaxMorale)
+summary(data2.4$TrustPresident)
+summary(data2.4$CorruptionPresident)
+summary(data2.4$Enforce2)
+summary(data2.4$Country) # no country dropped entirely
+summary(data2.4$LivingConditions)
+summary(data2.4$Age)
+summary(data2.4$Gender)
+summary(data2.4$Religion)
+
+
+# Step two: run the model:
 reg2.4 <- polr(TaxMorale ~ TrustPresident + CorruptionPresident +  Enforce2 + Country + 
                LivingConditions + Age + Gender + Religion,
                method='logistic', 
-               data=round3, 
+               data=data2.4, 
                Hess = TRUE)
 
 summary(reg2.4) ## 7845 observations deleted due to missingness (that is 30.9% of all observations)
+
+# Store table
+(ctable2.4 <- coef(summary(reg2.4)))
+
+# Calculate and store p values
+p2.4 <- pnorm(abs(ctable2.4[, "t value"]), lower.tail = FALSE) * 2
+
+# Combined table
+(ctable2.4 <- cbind(ctable2.4, "p value" = p2.4))
+
+# Confidence Interval
+ci.2.4 <- confint.default(reg2.4)
+
+# Odds Ratios
+exp(coef(reg2.4))
+
+# Combine Odds Ratios and Confidence Interval
+ORtable2.4 <- exp(cbind(OR = coef(reg2.4), ci.2.4))
+kable(ORtable2.4)
+ortable2.4 <- kable(ORtable2.4, align = 'c', digits = 2)
