@@ -2,7 +2,7 @@
 # Determinants of Tax Morale in Africa   #
 # Models for ordered logistic regression #
 # Jasmin Cantzler & Wiebke Weiger        #
-# 3 December 2015                        #
+# last updated: 7 December 2015          #
 ##########################################
 
 
@@ -16,6 +16,7 @@ library(plyr)
 library(dplyr)
 library(MASS)
 library(corrplot) 
+library(nnet)
 library(knitr)
 library(stargazer)
 library(tidyr)
@@ -762,7 +763,7 @@ kable(ORtable.nocountry)
 ortable1.1nocountry <- kable(ORtable.nocountry, align = 'c', digits = 2)
 print(ortable1.1nocountry)
 
-# try a multinomia logit model to compare results:
+# try a multinomial logit model to compare results:
 library(nnet)
 multinom1.1 <- multinom(TaxMorale ~ TrustPresident + CorruptionPresident + Country + Year, data=data1.1)
 Anova(multinom1.1) # to see if the variables included are statistically significant: they are all significant
