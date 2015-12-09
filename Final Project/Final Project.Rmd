@@ -168,6 +168,36 @@ percountry + geom_segment(aes(yend=Country,xend=0)) +
   labs(x="Mean Level of Tax Morale", y="", title="Level of Tax Morale by Country") +
   theme(panel.grid.major.y=element_blank(), axis.ticks=element_blank())
 
+# descriptive information on How often people avoid and why they avoid paying taxes:
+summary(data.factors$AvoidHowOften)
+# Never:   15277 (33.7%)
+# Rarely:  14606 (32.2%)
+# Often:   12219 (26.9%)
+# Allways:  3242 (07.1%)
+# NAs:     59353
+summary(data.factors$AvoidReason)
+# People cannot afford to pay                   :14295 (34.8%) 
+# The taxes are too high                        : 8474 (20.6%)  
+# The poor services they receive from government: 4438 (10.8%)  
+# The tax system is unfair                      : 3326 ( 8.1%)  
+# People don't avoid paying                     : 2511 ( 6.1%)  
+# Government wastes tax money                   : 2290  
+# (Other)                                       : 5771
+# NA's                                          :63592
+
+# descriptives on the independent variables:
+# comparison of number of missings of the different variables on trust and corruption:
+summary(data.factors$TrustTax)        #59018 NAs
+summary(data.factors$TrustCourts)     # 5608 NAs
+summary(data.factors$TrustPresident)  # 5482 NAs
+summary(data.factors$TrustParliament) # 7794 NAs
+summary(data.factors$CorruptionPresident)         # 21089 NAs
+summary(data.factors$CorruptionParliament)        # 18918 NAs
+summary(data.factors$CorruptionOfficials)         # 36145 NAs
+summary(data.factors$CorruptionCouncilors)        # 18554 NAs
+summary(data.factors$CorruptionTax)               # 19558 NAs
+summary(data.factors$CorruptionOfficialsLocal)    # 84426 NAs
+summary(data.factors$CorruptionOfficialsNational) # 84417 NAs
 
 #REGRESSION ASSUMPTIONS TEST
 #Variance Inflation Factor (only possible if I first transform the data into numeric so not sure how good that is)
@@ -271,14 +301,25 @@ All survey interviews are conducted face-to-face by interviewers who usually hav
 ### Tax Morale in the Afrobarometer
 We operationalize our dependent variable tax morale with a question that appears in the same wording in all three rounds of the Afrobarometer survey. Respondents are asked to state their agreement or disagreement with the statement "The tax department always has the right to make people pay taxes". Respondents are offered 5 different options ranging from "strongly disagree" to "strongly agree". Figure 1 illustrates the distribution of how respondents answered this question. As can be seen, the vast majority of respondents agrees or even strongly agrees with the statement. If we take a closer look at the individual countries, we can see that there is, however, some variation with regard to the level of tax morale. Figure 2 shows how respondents answered this question on average in the different countries under study. 
 
-```{r, include=FALSE}
-##include Figure1 (responses to tax morale question) and Figure 2 (level of tax morale per country)
-```
 
 ```{r, fig.cap="Summary Statistics of Dependent Variable: The tax department always has the right to make people pay taxes", fig.height=2, fig.width=7, echo=FALSE}
-qplot(mydata$TaxMorale,geom="histogram",xlab='People must pax Taxes', binwidth=4, fill=I("lightblue"))
+qplot(data.factors$TaxMorale,
+                       geom="histogram",
+                       binwidth=4,
+                       main="Distribution of responses",
+                       xlab="The tax department always has the right to make people pay taxes.",
+                       fill=I("black"))
 ```
 
+```{r, fig.cap="Level of Tax Morale per Country (mean level of tax morale through all three rounds)", echo=FALSE}
+percountry <- ggplot(data=summary_df, aes(x=meantaxmorale, y=reorder(Country, meantaxmorale)))
+percountry + geom_segment(aes(yend=Country,xend=0)) +
+  geom_point() +
+  theme_minimal() +
+  scale_x_continuous(breaks=c(1,2,3,4,5)) +
+  labs(x="Mean Level of Tax Morale", y="", title="Level of Tax Morale by Country") +
+  theme(panel.grid.major.y=element_blank(), axis.ticks=element_blank())
+```
 
 This seemingly high level of tax morale in Africa might be related to the rather technical phrasing of the statement which only refers to the right of the tax department to do its job. It can be argued however, that agreeing to the statement does not necessarily exclude respondents to think that there are nevertheless "valid" reasons for not paying taxes. The fifth round of the Afrobarometer contains two questions that could be informative in this context. One of them asks respondents, how often they think people avoid paying taxes. Of those who answered this question[^2], one third (33.7%) says people never and almost another third (32.2%) says they rarely avoid paying taxes. This seems to be an indicator that people at least perceive tax morale to be relatively high. However, the fifth round also contains a question that directly asks what respondents think is the main reason for why people avoid paying taxes. For this question, only about 6% of those who answered, chose the option "people don't avoid paying". The majority of respondents says that the main reason for avoiding to pay taxes is that people cannot afford to pay them (34.8%) or  that they are too high (20.6%). 
 
