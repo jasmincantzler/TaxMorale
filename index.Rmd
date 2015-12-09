@@ -12,6 +12,7 @@ setwd("/Users/jasmincantzler/Documents/TaxMorale")
 library(dplyr)
 library(tidyr)
 library(googleVis)
+library(formattable)
 
 # Using the no factor one as we want to show the means in the map
 mydata <- read.csv('Afrobarometer.nofactors.csv')
@@ -29,30 +30,19 @@ TaxMorale_map <- gvisGeoChart(summary_df, locationvar = 'Country',
                           colors = "['#e31b23', '#ffff00', '#00853f']",
                           region= '002'
                           ))
+Bar <- gvisBarChart(df)
+plot(Bar)
 
 ```
 
-**Although tax morale could play an important role for developing countries, tax morale remains the underdog in explaining tax compliance and most studies treat ‘tax morale’ as a black box without discussing or even considering how it might arise or how it might be maintained. We opened the black box and 
-
-
+**Tax morale could play a vital role in enhancing country's ability to efficiently mobilize national resources needed to invest in development, relieve poverty and deliver public services. Despite its potential, tax morale remains the underdog in enhancing tax compliance; most studies treat ‘tax morale’ as a black box without discussing or even considering how it might arise or how it might be maintained. We opened the box and present our findings and suggestions to policy makers in this post.**
 
 ```{r, echo=FALSE, results='asis'}
 print(TaxMorale_map, tag = 'chart')
 ```
 
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r}
-summary(cars)
-```
-
-You can also embed plots, for example:
-
-```{r, echo=FALSE}
-plot(cars)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+**For further insights please see:**
+insert link here to the pdf of the final report
