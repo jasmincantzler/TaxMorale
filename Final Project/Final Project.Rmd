@@ -384,7 +384,7 @@ Additionally, we will include a number of control variables in our model such as
 
 
 ## The Research Design
-
+In line with our research question, which seeks to assess whether the relationship between tax morale and identified determinants which has been found in previous studies also exists for the African context, we apply a regression design to describe the relationship between our dependent variable (tax morale) and our independent variables. As our dependent variable is discrete, taking on values between 1 (strongly disagree) and 5 (strongly agree), we will use a logistic regression model appropriate for this type of data. The most commonly known type of logistic regression is that for binary dependent variables. One option would therefore be to collapse the existing five response categories into two categories and then run a logistic regression model. However, this approach is difficult in our case. While it seems to plausible to collapse the categories "strongly disagree" and "disagree" into one variable indicating disagreement with the statement and the same for "strongly agree" and "agree", it is much less clear how to deal with the category "neither agree nor disagree". This response category clearly presents a third option to respondents. Consequently, we have to consider possible models for discrete outcome variables with more than two categories. When doing so, one needs to pay attention to the measurement scale of the outcome variable: If it is nominal, the most common approach would be a multinomial logistic regression model. If it is ordinal, we can still use a multinomial logistic regression, but an ordered logistic regression model would be more appropriate in order to take into account the ordinal nature of the outcome variable [@hosmer2013]. Because of the underlying order in the coding of our tax morale variable we opt for the ordered logistic regression model, more precisely, for the most commonly used *proportional-odds logistic-regression model* [@fox2010].  According to Fox and Weisberg (2010) this model offers an attractive feature compared to the multinomial logistic regression model in that it reduces the number of parameters and regression coefficients by using a single linear predictor rather than *m*-1 linear predictors.  
 
 
 ##Analysis Procedure
@@ -433,8 +433,23 @@ This project used @CiteRStudio to create this assignment.
 
 \pagebreak
 
-#References
 
 #References
 
 [^1]: This study focuses on rounds three to five of the Afrobarometer. The third round was conducted in 18 countries between 2005 and 2006. All of these 18 countries are represented in the following rounds as well. The fourth round comprised 20 countries and was conducted between 2008 and 2010, and the fifth round was conducted between 2011 and 2013 in 34 countries. The sixth round of the Afrobarometer was conducted between 2014 and 2015, but was not available for analysis yet, which is why it was not considered in this analysis. In total our dataset contains 104,697 observations. 
+
+@book{hosmer2013applied,
+  title={Applied logistic regression},
+  author={Hosmer Jr, David W and Lemeshow, Stanley and Sturdivant, Rodney X},
+  volume={398},
+  year={2013},
+  publisher={John Wiley \& Sons}
+}
+
+
+@book{fox2010r,
+  title={An R companion to applied regression},
+  author={Fox, John and Weisberg, Sanford},
+  year={2010},
+  publisher={Sage}
+}
