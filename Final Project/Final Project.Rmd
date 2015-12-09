@@ -18,27 +18,156 @@ bibliography: References.bib
 ```{r, include=FALSE}
 
 # Set working directory
-#setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Final Project")
+setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Final Project")
 #setwd("/Users/jasmincantzler/Documents/TaxMorale/Final Project")
 
-# Load packages
+# packages needed:
 library(plyr)
 library(dplyr)
 library(MASS)
-library(ggplot2)
+library(corrplot) 
+library(nnet)
 library(knitr)
 library(stargazer)
 library(tidyr)
+library(foreign)
+library(DataCombine)
+library(ggplot2)
+library(effects)
 library(Hmisc)
 library(tables)
 library(usdm)
-library(corrplot) 
 library(gmodels)
 
-#to load the R file that contains the merging of the different data sets please consult Assignment 3 and
-# source('merging_data.R') 
+# load merged and cleaned data into workbook:
+data.numeric <- read.csv('Afrobarometer.nofactors.csv')
+data.factors <- read.csv('Afrobarometer.final.csv')
+round5 <- read.csv('round5.final.csv')
+round4 <- read.csv('round4.final.csv')
+round3 <- read.csv('round3.final.csv')
 
-mydata <- read.csv('Afrobarometer.final.csv')
+# sort factor levels in the correct order:
+data.factors$TaxMorale = factor(data.factors$TaxMorale,levels(data.factors$TaxMorale)[c(5,2,3,1,4)])
+round5$TaxMorale = factor(round5$TaxMorale,levels(round5$TaxMorale)[c(5,2,3,1,4)])
+round4$TaxMorale = factor(round4$TaxMorale,levels(round4$TaxMorale)[c(5,2,3,1,4)])
+round3$TaxMorale = factor(round3$TaxMorale,levels(round3$TaxMorale)[c(5,2,3,1,4)])
+data.factors$TrustPresident = factor(data.factors$TrustPresident,levels(data.factors$TrustPresident)[c(3,2,4,1)])
+round5$TrustPresident = factor(round5$TrustPresident,levels(round5$TrustPresident)[c(3,2,4,1)])
+round4$TrustPresident = factor(round4$TrustPresident,levels(round4$TrustPresident)[c(3,2,4,1)])
+round3$TrustPresident = factor(round3$TrustPresident,levels(round3$TrustPresident)[c(3,2,4,1)])
+data.factors$TrustParliament = factor(data.factors$TrustParliament,levels(data.factors$TrustParliament)[c(3,2,4,1)])
+round5$TrustParliament = factor(round5$TrustParliament,levels(round5$TrustParliament)[c(3,2,4,1)])
+round4$TrustParliament = factor(round4$TrustParliament,levels(round4$TrustParliament)[c(3,2,4,1)])
+round3$TrustParliament = factor(round3$TrustParliament,levels(round3$TrustParliament)[c(3,2,4,1)])
+data.factors$TrustCourts = factor(data.factors$TrustCourts,levels(data.factors$TrustCourts)[c(3,2,4,1)])
+round5$TrustCourts = factor(round5$TrustCourts,levels(round5$TrustCourts)[c(3,2,4,1)])
+round4$TrustCourts = factor(round4$TrustCourts,levels(round4$TrustCourts)[c(3,2,4,1)])
+round3$TrustCourts = factor(round3$TrustCourts,levels(round3$TrustCourts)[c(3,2,4,1)])
+data.factors$TrustTax = factor(data.factors$TrustTax,levels(data.factors$TrustTax)[c(3,2,4,1)])
+round5$TrustTax = factor(round5$TrustTax,levels(round5$TrustTax)[c(3,2,4,1)])
+data.factors$CorruptionPresident = factor(data.factors$CorruptionPresident,levels(data.factors$CorruptionPresident)[c(3,4,2,1)])
+round5$CorruptionPresident = factor(round5$CorruptionPresident,levels(round5$CorruptionPresident)[c(3,4,2,1)])
+round4$CorruptionPresident = factor(round4$CorruptionPresident,levels(round4$CorruptionPresident)[c(3,4,2,1)])
+round3$CorruptionPresident = factor(round3$CorruptionPresident,levels(round3$CorruptionPresident)[c(3,4,2,1)])
+data.factors$CorruptionParliament = factor(data.factors$CorruptionParliament,levels(data.factors$CorruptionParliament)[c(3,4,2,1)])
+round5$CorruptionParliament = factor(round5$CorruptionParliament,levels(round5$CorruptionParliament)[c(3,4,2,1)])
+round4$CorruptionParliament = factor(round4$CorruptionParliament,levels(round4$CorruptionParliament)[c(3,4,2,1)])
+round3$CorruptionParliament = factor(round3$CorruptionParliament,levels(round3$CorruptionParliament)[c(3,4,2,1)])
+data.factors$CorruptionOfficials = factor(data.factors$CorruptionOfficials,levels(data.factors$CorruptionOfficials)[c(3,4,2,1)])
+round5$CorruptionOfficials = factor(round5$CorruptionOfficials,levels(round5$CorruptionOfficials)[c(3,4,2,1)])
+round4$CorruptionOfficials = factor(round4$CorruptionOfficials,levels(round4$CorruptionOfficials)[c(3,4,2,1)])
+data.factors$CorruptionCouncilors = factor(data.factors$CorruptionCouncilors,levels(data.factors$CorruptionCouncilors)[c(3,4,2,1)])
+round5$CorruptionCouncilors = factor(round5$CorruptionCouncilors,levels(round5$CorruptionCouncilors)[c(3,4,2,1)])
+round4$CorruptionCouncilors = factor(round4$CorruptionCouncilors,levels(round4$CorruptionCouncilors)[c(3,4,2,1)])
+round3$CorruptionCouncilors = factor(round3$CorruptionCouncilors,levels(round3$CorruptionCouncilors)[c(3,4,2,1)])
+data.factors$CorruptionTax = factor(data.factors$CorruptionTax,levels(data.factors$CorruptionTax)[c(3,4,2,1)])
+round5$CorruptionTax = factor(round5$CorruptionTax,levels(round5$CorruptionTax)[c(3,4,2,1)])
+round4$CorruptionTax = factor(round4$CorruptionTax,levels(round4$CorruptionTax)[c(3,4,2,1)])
+round3$CorruptionTax = factor(round3$CorruptionTax,levels(round3$CorruptionTax)[c(3,4,2,1)])
+data.factors$LivingConditions = factor(data.factors$LivingConditions,levels(data.factors$LivingConditions)[c(4,1,3,2,5)])
+round5$LivingConditions = factor(round5$LivingConditions,levels(round5$LivingConditions)[c(4,1,3,2,5)])
+round4$LivingConditions = factor(round4$LivingConditions,levels(round4$LivingConditions)[c(4,1,3,2,5)])
+round3$LivingConditions = factor(round3$LivingConditions,levels(round3$LivingConditions)[c(4,1,3,2,5)])
+data.factors$Gender = factor(data.factors$Gender,levels(data.factors$Gender)[c(2,1)])
+round5$Gender = factor(round5$Gender,levels(round5$Gender)[c(2,1)])
+round4$Gender = factor(round4$Gender,levels(round4$Gender)[c(2,1)])
+round3$Gender = factor(round3$Gender,levels(round3$Gender)[c(2,1)])
+data.factors$Religion = factor(data.factors$Religion,levels(data.factors$Religion)[c(3,2,1,4)])
+round5$Religion = factor(round5$Religion,levels(round5$Religion)[c(3,2,1,4)])
+round4$Religion = factor(round4$Religion,levels(round4$Religion)[c(3,2,1,4)])
+round3$Religion = factor(round3$Religion,levels(round3$Religion)[c(3,2,1,4)])
+data.factors$AvoidHowOften = factor(data.factors$AvoidHowOften,levels(data.factors$AvoidHowOften)[c(2,4,3,1)])
+round5$AvoidHowOften = factor(round5$AvoidHowOften,levels(round5$AvoidHowOften)[c(2,4,3,1)])
+data.factors$Enforce2 = factor(data.factors$Enforce2,levels(data.factors$Enforce2)[c(2,3,1,4)])
+round3$Enforce2 = factor(round3$Enforce2,levels(round3$Enforce2)[c(2,3,1,4)])
+
+# turn year variable into factor variable and relable it with "round 3", "round 4", and "round 5":
+data.factors$Year <- cut(data.factors$Year,
+                         breaks = c(0, 2005, 2008, 2015),
+                         labels = c("round 3", "round 4", "round 5"))
+data.numeric$Year <- cut(data.numeric$Year,
+                         breaks = c(0, 2005, 2008, 2015),
+                         labels = c("round 3", "round 4", "round 5"))
+round5$Year <- cut(round5$Year,
+                   breaks = c(0, 2005, 2008, 2015),
+                   labels = c("round 3", "round 4", "round 5"))
+round4$Year <- cut(round4$Year,
+                   breaks = c(0, 2005, 2008, 2015),
+                   labels = c("round 3", "round 4", "round 5"))
+round3$Year <- cut(round3$Year,
+                   breaks = c(0, 2005, 2008, 2015),
+                   labels = c("round 3", "round 4", "round 5"))
+
+# create dataset with a recoded dependent variable with 3 instead of 5 levels 
+data.3l.factors <- data.factors
+data.3l.factors$TaxMorale[data.3l.factors$TaxMorale=="Strongly Disagree"] <- "Disagree"
+data.3l.factors$TaxMorale[data.3l.factors$TaxMorale=="Strongly Agree"] <- "Agree"
+data.3l.factors$TaxMorale <- data.3l.factors$TaxMorale[data.3l.factors$TaxMorale != "Strongly Disagree"]
+data.3l.factors$TaxMorale <- data.3l.factors$TaxMorale[data.3l.factors$TaxMorale != "Strongly Agree"]
+data.3l.factors$TaxMorale <- factor(data.3l.factors$TaxMorale)
+data.3l.numeric <- data.numeric
+data.3l.numeric$TaxMorale[data.3l.numeric$TaxMorale==2] <- 1
+data.3l.numeric$TaxMorale[data.3l.numeric$TaxMorale==3] <- 2
+data.3l.numeric$TaxMorale[data.3l.numeric$TaxMorale==4] <- 3
+data.3l.numeric$TaxMorale[data.3l.numeric$TaxMorale==5] <- 3
+data.3l.numeric$TaxMorale <- cut(data.3l.numeric$TaxMorale,
+                                 breaks = c(0, 1, 2, 3),
+                                 labels = c("Disagree", "Neither agree nor disagre", "Agree"))
+
+# descriptives:
+# the dependent variable tax morale in the data
+summary(data.factors$TaxMorale)
+# distribution of dependent variable TaxMorale after dropping NA's:
+# Strongly Disagree:           7050  
+# Disagree:                   11673
+# Neither agree nor disagree:  9222
+# Agree:                      45448
+# Strongly Agree:             24765
+# NA's:                        6539
+# Figure 1: Distribution of dependent variable, number of responses to the Statement: "The tax 
+# department always has the right to make people pay taxes" 
+taxmoralehist <- qplot(data.factors$TaxMorale,
+                       geom="histogram",
+                       binwidth=6,
+                       main="Distribution of responses",
+                       xlab="The tax department always has the right to make people pay taxes.",
+                       fill=I("black"))
+print(taxmoralehist, tag = 'chart')
+
+# Figure 2: Level of tax morale per country (mean level of tax morale through all three rounds)
+subdata.percountry <- data.numeric %>% 
+  group_by(Country) %>% 
+  summarise(meantaxmorale = mean(TaxMorale, na.rm=TRUE)
+  )
+percountry <- ggplot(data=subdata.percountry, aes(x=meantaxmorale, y=reorder(Country, meantaxmorale)))
+
+percountry + geom_segment(aes(yend=Country,xend=0)) +
+  geom_point() +
+  theme_minimal() +
+  scale_x_continuous(breaks=c(1,2,3,4,5)) +
+  labs(x="Mean Level of Tax Morale", y="", title="Level of Tax Morale by Country") +
+  theme(panel.grid.major.y=element_blank(), axis.ticks=element_blank())
+
 
 #REGRESSION ASSUMPTIONS TEST
 #Variance Inflation Factor (only possible if I first transform the data into numeric so not sure how good that is)
