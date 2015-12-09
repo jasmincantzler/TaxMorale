@@ -50,6 +50,8 @@ These social factors constitute and influence the individual’s “intrinsic mo
 
 **The determinants of tax morale seem largely independent of cultural environments**
 
+![](small.png)
+
 Trust in government and/or government officials is one of the classic factors influencing the tax compliance behavior of individuals. If people have no faith that their taxes are being fairly collected and spent, their desire to comply with applicable taxes is lowered. 
 
 Similarly, corruption undermines tax morale by promoting a feeling of tax injustice; leading individuals to feel entitled to evade the taxes of an unfair system. Related to this feeling of injustice are interactions between taxpayers, which subsequently further influence and potentially erode or increase tax morale. Individuals who know of someone avoiding their taxes tend to have lower tax morale than others, whereas the knowledge that others are paying their taxes correspondingly can increase tax morale. 
