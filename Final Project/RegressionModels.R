@@ -955,11 +955,26 @@ print(ortable1.2nocountry)
 library(nnet)
 multinom1.2 <- multinom(TaxMorale ~ TrustPresident + CorruptionPresident + Country + Year + 
                           LivingConditions + Age + Gender + Religion, data=data1.2)
+Anova(multinom1.2)
+# Analysis of Deviance Table (Type II tests)
+#Response: TaxMorale
+#LR Chisq  Df Pr(>Chisq)    
+#TrustPresident         648.6  12  < 2.2e-16 ***
+#CorruptionPresident    249.1  12  < 2.2e-16 ***
+#Country               5703.1 132  < 2.2e-16 ***
+#Year                   369.3   8  < 2.2e-16 ***
+#LivingConditions       478.2  16  < 2.2e-16 ***
+#Age                     -0.3   4          1    
+#Gender                 143.8   4  < 2.2e-16 ***
+#Religion                51.3  12  8.234e-07 ***
+#  ---
+#Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+### except for Age all variables are highly statistically significant
 summary(multinom1.2) # Warning message: In sqrt(diag(vc)) : NaNs produced
 # AIC: 201728.7 is lower than the AIC for reg 1.1 (206619.55) which suggests that the assumption of proportional 
 # odds doesn't hold
 
-# rerun model 1.1 with the same dataset used in model 1.2 (data1.2) in order to be able to compare AIC values:
+# rerun model 1.1 , 1.1nocountry and multinom1.1 with the same dataset used in model 1.2 (data1.2) in order to be able to compare AIC values:
 reg1.1new <- polr(TaxMorale ~ TrustPresident + CorruptionPresident + Year + Country, method='logistic', 
                data=data1.2, Hess = TRUE)
 
@@ -985,7 +1000,34 @@ ORtable1.1new <- exp(cbind(OR = coef(reg1.1new), ci.1.1new))
 kable(ORtable1.1new)
 ortable1.1new <- kable(ORtable1.1new, align = 'c', digits = 2)
 
-# try a multinomial logit model to compare results:
+# model 1.1 without countries but with same dataset as in model 1.2:
+reg1.1newnocountry <- polr(TaxMorale ~ TrustPresident + CorruptionPresident + Year, method='logistic', 
+                        data=data1.2, Hess = TRUE)
+
+summary(reg1.1newnocountry)
+
+# Store table
+(ctable1.1newnocountry <- coef(summary(reg1.1newnocountry)))
+
+# Calculate and store p values
+p1.1newnocountry <- pnorm(abs(ctable1.1newnocountry[, "t value"]), lower.tail = FALSE) * 2
+
+# Combined table
+(ctable1.1newnocountry <- cbind(ctable1.1newnocountry, "p value" = p1.1newnocountry))
+
+# Confidence Interval
+ci.1.1newnocountry <- confint.default(reg1.1newnocountry)
+
+# Odds Ratios
+exp(coef(reg1.1newnocountry))
+
+# Combine Odds Ratios and Confidence Interval
+ORtable.newnocountry <- exp(cbind(OR = coef(reg1.1nocountry), ci.1.1nocountry))
+kable(ORtable.newnocountry)
+ortable1.1newnocountry <- kable(ORtable.newnocountry, align = 'c', digits = 2)
+print(ortable1.1newnocountry)
+
+# multinomial model1.1 but with same dataset as in model 1.2:
 library(nnet)
 multinom1.1new <- multinom(TaxMorale ~ TrustPresident + CorruptionPresident + Country + Year, data=data1.2)
 summary(multinom1.1new) # Warning message: In sqrt(diag(vc)) : NaNs produced

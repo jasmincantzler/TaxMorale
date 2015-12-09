@@ -89,9 +89,9 @@ One malady plaguing developing countries is tax evasion and tax avoidance; where
 
 High levels of tax evasion lead to a misallocation of resources and hinder the ability of the government to invest in the provision of public goods. Therefore, understanding the rationale behind tax evaders becomes essential to national development and state building. Traditionally, the standard way to explain tax compliance has been the economics-of-crime approach, which assumes a rational taxpayer maximizing his or her utility by balancing the risk of detection and punishment with the benefit of tax evasion. Today, this approach is increasingly regarded as too narrow to fully explain tax compliance, and many argue for the need to include social factors, which are said to explain why people conform to paying taxes even in the absence of strong deterrence mechanisms. These social factors constitute and influence the individual’s “intrinsic motivation to pay taxes,” hereafter referred to as tax morale, by increasing moral costs of tax evasion and thus increasing tax compliance. This link has been increasingly studied and strong evidence has been established that tax morale influences individual tax compliance. **The majority of the studies focus on developed countries and only few studies investigate the determinants of tax morale in developing countries.**  Since tax systems are embedded in national historical events and the cultural particularities, “the existence or creation of a universal and ‘objectively’ good system of taxation becomes implicitly impossible” [@Nerre] and highlights that tax culture is specific to regions and countries and influenced by the interaction of actors and cultural values. On the other hand, there might be universal values, such as condemning corruption and feelings of trust that have a direct influence on tax morale across cultural boundaries. 
 
-The purpose of this paper is to fill the existing gap in research by contributing a study of tax morale in African countries and investigates whether the commonly identified determinants of tax morale also satisfactorily explain this sentiment in African countries, thereby contributing to expanding the limited existing research in the field of tax morale by investigating a geographical area that has been largely neglected. The African Development Bank itself recognizes that tax morale and trust in public institutions are "issues impinging the continent's development" [@ADB]; this paper therefore aims to provide specific findings to African policymakers, which could be used to derive customized policy recommendations. 
+The purpose of this paper is to fill the existing gap in research by contributing a study of tax morale in African countries and to investigate whether the commonly identified determinants of tax morale also satisfactorily explain this sentiment in African countries. Therefore this paper will contribute to expanding the limited existing research in the field of tax morale by investigating a geographical area that has been largely neglected. The African Development Bank itself recognizes that tax morale and trust in public institutions are "issues impinging the continent's development" [@ADB]; this paper therefore aims to provide specific findings to African policymakers, which could be used to derive customized policy recommendations. 
 
-Our data comes from the Afrobarometer Survey, and our conceptural framework is based on the commonly identified determinants of tax morale. The paper is organized as follows: Chapter 2 provides a review of the literature, illustrating the conceptual evolution of tax morale and the commonly associated determinants of tax morale; chapter 3 describes the data and methodology, chapter 4 presents the results, its interpretation and discussion; and chapter 5 concludes the study. 
+Our data comes from the Afrobarometer Survey, and our conceptural framework is based on the commonly identified determinants of tax morale. The paper is organized as follows: Chapter 2 provides a review of the literature, illustrating the conceptual evolution of tax morale and the commonly associated determinants of tax morale; chapter 3 describes the data and methodology, chapter 4 presents and discusses the results; and chapter 5 concludes the study. 
 
 #Literature Review
 
@@ -108,12 +108,15 @@ Furthermore, strongly established social norms [@Ajzen; @Lewis] play a big role 
 ## Tax Morale in Africa
 Measuring tax evasion is a complex endeavor and while there are several methods available for attempting to measure tax evasion, using audited returns, traces of true income, and measures of traces of compliance, all of them face the same problem: tax evasion is an informal economic activity and “unlike invisible phenomena in the natural sciences, these invisible social science phenomena are hard to measure because of choices made by individuals” [@Slemrod, 25]. All of these methods face measurement problems, “that arise not by chance, but because of the nature of the subject matter” (p. 50). That said, to give a point of reference to illustrate the widespread dimension of tax evasion, estimates for South Africa state that households fail to declare up to 30% of the income [@ADCORP].In recent years, especially in the aftermath of the global financial crisis the focus has been on tax evasion of cooperations and estimates about private tax evasion is almost non existent. By shifting the focus on to individuals, this paper by no means wants to shift the blame away from multinationals; it rather complements the current debate about taxes, obligation, values and sentiments by including the everyday citizen into this dialogue and quest for morale behavior. **write a few more lines about relevance**
 
-#Method
 
-This study uses a regression analysis to assess the determinants of tax morale in Afria. The following chapter provides a comprehensive explanation about the methods used. We first substantiate our research design by indicating which method was chosen and why before providing information about the participants. In the operationalization section we show how we instrumented our variables, before discussing the analysis procedures we used to process, describe and test our data. This chapter ends with a section discussing the limitations and delimitations of the methods used.
+#Opening the black box 
+This study seeks to analyse the determinants of tax morale in Africa. The following chapter provides a comprehensive explanation of the process of how we seek to open the black box of tax morale. It illustrates how the central question of this study and how we went about conducting the analysis by focusing on the data that was used, the operationalization of the relevant variables and the choice of the research design.  
 
-##Design
-A regression analysis is used to investigate the determinants of tax morale in Africa, utilizing cross-sectional survey data from the Afrobarometer Survey [@Afro].We reside with Torgler and believe that it "is important to analyse the determinants that influence tax morale in developing countries as the environment is different from developed countries", while on the other hand acknowledging that "some effects might be independent of cultural environments" [@Torgler2005, p.2]. Our conceptual framework is therefore based on the determinants of tax morale in developed countries, whereby:
+
+## The Research Question
+The central question of this study is: Do commonly identified determinants of tax morale also explain this sentiment in African countries? In other words, we want to test, whether factors that have been found to influence tax morale in previous studies for other countries and regions of the world also hold for the African context. By answering this question, we will not only provide some more insight on tax morale in African countries, but we will furthermore also shed some light on the question whether there are factors that shape tax morale across national borders. With this approach we reside with Torgler and believe that it "is important to analyse the determinants that influence tax morale in developing countries as the environment is different from developed countries", while on the other hand acknowledging that "some effects might be independent of cultural environments" [@Torgler2005, p.2]. 
+In section 2.2 we have already described a variety of factors that have been found to be determinants of tax morale. These include trust in government, the level of corruption, interactions with other taxpayers and tax administrators, tax burden, detection, and punishment. Tax morale can thus be conceptualized as a function of these determinants:
+
 
 \begin{equation}
 \begin{aligned}
@@ -123,41 +126,57 @@ Tax Morale_i = & \alpha_i + \beta_1 Trust in Government/Public Officials_i + \be
 \end{aligned}
 \end{equation}
 
-$Tax Morale_i$ is a measure of the degree to which the respondent *i* believes the tax department always has the right to make people pay taxes.[^1] $Trust in Government/Public Officials_i$ is a measure of the degree to which respondents trust the president/prime minister[^2] $Level of Corruption_i$ is measured by two variables. One is concerned with how many members of parliament/national assembly representatives are involved in corruption and the other asks about about how many tax officials are involved in corruption.[^3] $Interactions with other taxpayers_i$ is instrumented by a question asking how often people avoid paying taxes they owe the government.[^4] $selfemployed_i$ is measured by asking the respondent whether he/she is self employed and if so whether he/she is required to pay tax on the earnings from her/his business.[^5]  $Detection and punishment_i$ is instrumented by a question asking how likely the respondent thinks it would be that the authorities could enforce the law if they did not pay a tax on some of the income they earned.[^6]  $epsilon_i$ denotes a vector of control variables that include the gender, religion, age, year, country, living situation of the respondent. Based on the assumptions of our framework we formulate the following hypothesis:
 
-**change accordingly, didnt know how to call them best**
-$$H_1: The same determinants have a positive effect on tax compliance in Africa$$
-$$H_0: The determinants have no impact on tax morale in Africa$$
+If these are in fact factors that universally influence the intrinsic motivation to pay taxes, we should be able to find them to have significant effects on tax morale in Africa as well. If we are, however, unable to find significant effects, then this would be an indicator that specific cultural, regional or even national characteristics play a crucial role for tax morale in Africa. Our hypothesis therefore is: 
 
-##Data Selection
-In order to test our hypothesis, we make use of data from the Afrobarometer, an "African-led, non-partisan survey research project that measures citizen attitudes on democracy and governance, the economy, civil society, and other topics" [@Afro]. The Afrobarometer's main donors for the survey rounds 5 and 6 (data on round 6 are not available yet) included the Mo Ibrahim Foundation, the Swedish International Development Cooperation Agency, the Department for International Development, the United States Agency for International Development, as well as the World Bank. All survey interviews are conducted face-to-face by interviewers who usually have a first class degree in social science and who receive training by national partners during a five-day traning workshop which includes the familiarisation of the survey in national and local languages, sampling protocol and field practice. The interviews usualy are conducted within 48 hours after the training [@Afro]. Afrobarometer uses national pribability samples that are designed to generate a represetative cross-sections of the country by using random selection methods and my sampling at all stages with probability proportinate to population size [see @Afro]. In Figure **?** one can see the distribution per country.
+*H_1: Determinants of tax morale identified from the literature also have a significant effects on tax morale in Africa.*
+
+
+
+## The Data
+Our definition of tax morale as an intrinsic motivation to pay taxes indicates that we are looking at an individual level phenomenon. Consequently the level of analysis also has to be on the individual level. We have therefore decided to look at survey data, more specifically, at the Afrobarometer Survey, which provides data on attitudes of citizens on political, economic, and social issues [@Afro]. The main reason why we have decided to use the Afrobarometer for our analysis (instead of other data sources such as for example the World Value Survey) is that it includes a question on tax morale that has been the same and has been asked in the past three rounds of the survey, which enables us to also take into account changes over time. And, secondly, the Afrobarometer includes a total of 34 countries out of which 18 countries can be observed at three different points in time[^1] which offers us insight into a relatively large amount of different countries from the continent and therefore also into the question whether national contexts play an important role for tax morale.  
+The data is publicly available on the website of the Afrobarometer [www.afrobarometer.org](http://www.afrobarometer.org/). For this analysis we have downloaded the three datasets for the third, fourth, and fifth round of the survey and merged them into a single dataset containing information from respondents at three different points in time. It should be noted however, that the Afrobarometer is not a panel study which means that the respondents from the different years were not the same individuals. 
+All survey interviews are conducted face-to-face by interviewers who usually have a first class degree in social science and who receive training by national partners during a five-day training workshop which includes the familiarisation with the survey in national and local languages, sampling protocol and field practice. The interviews usually are conducted within 48 hours after the training [@Afro]. 
+
+
+### Tax Morale in the Afrobarometer
+We operationalize our dependent variable tax morale with a question that appears in the same wording in all three rounds of the Afrobarometer survey. Respondents are asked to state their agreement or disagreement with the statement "The tax department always has the right to make people pay taxes". Respondents are offered 5 different options ranging from "strongly disagree" to "strongly agree". Figure 1 illustrates the distribution of how respondents answered this question. As can be seen, the vast majority of respondents agrees or even strongly agrees with the statement. If we take a closer look at the individual countries, we can see that there is, however, some variation with regard to the level of tax morale. Figure 2 shows how respondents answered this question on average in the different countries under study. 
 
 ```{r, include=FALSE}
-##include figure showing respondents per country or another summary statistic
+##include Figure1 (responses to tax morale question) and Figure 2 (level of tax morale per country)
 ```
-
-##Operationalization
-In this section, we describe the specific methods employed and how they measure the selected variables, thereby discussing the appropriateness of the instrument, providing information about the measurement characteristics of the instruments, and information about the scoring of the scales.  Here it may be useful to recall the conceptual framework presented earlier:
-
-\begin{equation}
-\begin{aligned}
-Tax Morale_i = & \alpha_i + \beta_1 Trust in Government/Public Officials_i + \beta_2 Level of Corruption_i \\
-& + \beta_3 interactions with other taxpayers_i + \beta_4 self-employed_i \\
-& + \beta_5 detection and punishment_i + \epsilon_i
-\end{aligned}
-\end{equation}
-
-###Tax Morale
-Tax Morale is instrumented by a statement that asks "The tax department always has the right to make people pay taxes" and is measured from "Strongly Disagree", "Disagree", "Neither Agree or Disagree", "Agree" to "Strongly Agree". 
 
 ```{r, fig.cap="Summary Statistics of Dependent Variable: The tax department always has the right to make people pay taxes", fig.height=2, fig.width=7, echo=FALSE}
 qplot(mydata$TaxMorale,geom="histogram",xlab='People must pax Taxes', binwidth=4, fill=I("lightblue"))
 ```
 
-**acknowledge shortcomings of the question** We will further discuss possible limitations of survey-generated information about tax morale in the “limitations and delimitations” section. For now, the reader may bear in mind that measuring tax morale  is a complex task regardless of the method, because it is a construct – a non-tangible phenomenon that needs an indirect form of measurement to be studied.  **elaborate**
 
-###Control Variables
-We include **insert number** control variables in our model that provide information about gender, religion, age, country the respondent resides in, **include % of the distribution per variable*** Though studies are not conclusive and often contradictory, we hypothesize that those who claim a religious faith or identity to show more positive attitudes towards paying taxes; based on about the current debats in the financial world and gender differences we further believe women to exhibit higher levels of tax morale than men and older people may be more traditional and conservative than younger ones and thus may be more likely to exhibit higher tax morale and condemn cheating on taxes.
+This seemingly high level of tax morale in Africa might be related to the rather technical phrasing of the statement which only refers to the right of the tax department to do its job. It can be argued however, that agreeing to the statement does not necessarily exclude respondents to think that there are nevertheless "valid" reasons for not paying taxes. The fifth round of the Afrobarometer contains two questions that could be informative in this context. One of them asks respondents, how often they think people avoid paying taxes. Of those who answered this question[^2], one third (33.7%) says people never and almost another third (32.2%) says they rarely avoid paying taxes. This seems to be an indicator that people at least perceive tax morale to be relatively high. However, the fifth round also contains a question that directly asks what respondents think is the main reason for why people avoid paying taxes. For this question, only about 6% of those who answered, chose the option "people don't avoid paying". The majority of respondents says that the main reason for avoiding to pay taxes is that people cannot afford to pay them (34.8%) or  that they are too high (20.6%). 
+
+
+### Data on the Determinants of Tax Morale
+As described earlier, we consider tax morale to be a function of trust in government, the level of corruption, interactions with other taxpayers and tax administrators, tax burden, detection, and punishment:
+
+\begin{equation}
+\begin{aligned}
+Tax Morale_i = & \alpha_i + \beta_1 Trust in Government/Public Officials_i + \beta_2 Level of Corruption_i \\
+& + \beta_3 interactions with other taxpayers_i + \beta_4 selfemployed_i \\
+& + \beta_5 detection and punishment_i + \epsilon_i
+\end{aligned}
+\end{equation}
+
+In order to test our hypothesis (*H_1: Determinants of tax morale identified from the literature also have a significant effect on tax morale in Africa*) we need to identify corresponding questions from the Afrobarometer that can be used to operationalize these potential determinants.
+The survey includes a variety of different questions regarding the level of trust of respondents in their government as well as regarding the perceived level of corruption. They relate to different representatives of the government such as the prime minister or the president, the parliament or the tax authorities. However, not all of them are available for each round.
+For our main model we want to take into account as many countries as possible and also all three points in time, which is why we decided to use the questions on the level of trust in the president or the prime minister as a key leadership figure as well as on the perceived level of corruption of the office of the president for our analysis.
+With regards to $Interactions with other taxpayers_i$ we will use the afore mentioned question on how often respondents think people avoid paying taxes. As this question was only asked in the fifth round, we cannot include the variable in the main model, but we will run an additional model that only looks at the respondents of the fifth round. 
+The variable $selfemployed_i$ relates to the idea that self-employed individuals are especially prone to developing anti-tax feelings as taxes are typically more visible to them and affect them more directly. The fifth round of the Afrobarometer contains a question asking the respondent whether they are self-employed and if so whether they are required to pay taxes on the earnings from their business.
+Data on detection and punishment only exists in the third round of the survey. Respondents are asked how likely they think it would be that authorities enforce the law if they did not pay their taxes. Again, the variable cannot be included in the main model, but we will conduct a sub-analysis of just the respondents in that round where we will include this variable. 
+Additionally, we will include a number of control variables in our model such as the respondents' current living conditions, gender, age, and being religous.  
+
+
+## The Research Design
+
+
 
 ##Analysis Procedure
 A regression analysis is used to investigate the determinants of tax morale in African countries, using R Studio [@R; @Stargazer; @knitr] . Since our dependent variable is measured from  "Strongly Disagree", "Disagree", "Neither Agree or Disagree", "Agree", "Strongly Agree", we believe that the "distances" between these five points are not equal, an OLS regression in this case is problematic because the assumptions of OLS are violated when used with a non-interval outcome variable. Instead, we opted for an ordinal logistic regression. 
@@ -185,8 +204,6 @@ We also created a simply correlation matrix to test for multicollinearity, whose
 corrplot(COR, method = "number",bg="lightblue", tl.col="black")
 ```
 
-##Limitations and Delimitations
-The following section is dedicated to acknowledging potential limitations and delimitations of the study, thereby addressing possible skepticisms and doubts concerning **??**
 
 #Results and Discussion
 This chapter presents the results and discussion of our analysis. We devote one section to discuss the results of the regression analysis, including appropriate robustness checks, before interpreting and discussing the statistical results.
@@ -198,9 +215,4 @@ This chapter presents the results and discussion of our analysis. We devote one 
 
 #References
 
-[^1]: Measured by Q52D in Codebook 2005, Q44C in Codebook 2008 & Q48C in Codebook 2015.
-[^2]: Instrumented by questions Q55A in Codebook 2005, Q49A in Codebook 2008 and Q59A in Codebook 2015.
-[^3]: Corruption of members of parliament is measured by Q56B in Codebook 2005, Q50B in Codebook 2008 and Q60B in Codebook 2015; Corruption of Tax Officials is measured by Q56G in Codebook 2005, Q50F in Codebook 2008 and Q60F in Codebook 2015. 
-[^4]:Measured by Q56I in Codebook 2015; unfortunately not available for the previous rounds. 
-[^5]: Measured by Q73E in Codebook 2015; unfortunately not available for the previous rounds.
-[^6]: Measured by Q70D in Codebook 2005; unfortunately not available for the following rounds. 
+[^1]: This study focuses on rounds three to five of the Afrobarometer. The third round was conducted in 18 countries between 2005 and 2006. All of these 18 countries are represented in the following rounds as well. The fourth round comprised 20 countries and was conducted between 2008 and 2010, and the fifth round was conducted between 2011 and 2013 in 34 countries. The sixth round of the Afrobarometer was conducted between 2014 and 2015, but was not available for analysis yet, which is why it was not considered in this analysis. In total our dataset contains 104,697 observations. 
