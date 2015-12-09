@@ -425,6 +425,16 @@ This chapter presents the results and discussion of our analysis. We devote one 
 
 #Conclusion
 
+
+***
+Final word count: 
+
+This project used @CiteRStudio to create this assignment.
+
+\pagebreak
+
+#References
+
 #References
 
 [^1]: This study focuses on rounds three to five of the Afrobarometer. The third round was conducted in 18 countries between 2005 and 2006. All of these 18 countries are represented in the following rounds as well. The fourth round comprised 20 countries and was conducted between 2008 and 2010, and the fifth round was conducted between 2011 and 2013 in 34 countries. The sixth round of the Afrobarometer was conducted between 2014 and 2015, but was not available for analysis yet, which is why it was not considered in this analysis. In total our dataset contains 104,697 observations. 
