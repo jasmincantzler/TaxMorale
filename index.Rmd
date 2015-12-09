@@ -38,7 +38,7 @@ TaxMorale_map <- gvisGeoChart(summary_df, locationvar = 'Country',
 ```{r, echo=FALSE, results='asis'}
 print(TaxMorale_map, tag = 'chart')
 ```
-*Average tax morale per country*
+*Mean tax morale per country, using the Afrobarometer across Round 3 - Round 5; participants were asked whether "The tax department always has the right to make people pay taxes”. Respondents were offered 5 different options ranging from “strongly disagree” to “strongly agree” (low tax morale to high tax morale). The mean tax morale across these rounds was utilized for this graphic*
 
 **Tax morale is an issue impinging Africa's development**
 
@@ -69,5 +69,4 @@ Tax morale enhancing mechanisms consist of mechanisms to increase tax morale by 
 
 There is a need for greater emphasis on policy tools that enhance tax morale and the importance of a holistic approach to combat tax evasion. There is a colorful potpourri of policy options that can enhance tax morale - we just need to start to use them!
 
-**For further insights please see:**
-insert link here to the pdf of the final report
+**For further insights please see [here.](https://github.com/jasmincantzler/TaxMorale/blob/master/Final%20Project/Final_Project.pdf)**
