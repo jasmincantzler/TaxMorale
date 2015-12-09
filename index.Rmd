@@ -32,7 +32,9 @@ TaxMorale_map <- gvisGeoChart(summary_df, locationvar = 'Country',
 
 ```
 
-**Tax morale remains the underdog in explaining tax compliance and “most studies treat ‘tax morale’ as a black box without discussing or even considering how it might arise or how it might be maintained” But tax morale can .... and plays an important role for the development of African country**
+**Although tax morale could play an important role for developing countries, tax morale remains the underdog in explaining tax compliance and most studies treat ‘tax morale’ as a black box without discussing or even considering how it might arise or how it might be maintained. We opened the black box and 
+
+
 
 ```{r, echo=FALSE, results='asis'}
 print(TaxMorale_map, tag = 'chart')
