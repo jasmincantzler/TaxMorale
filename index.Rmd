@@ -8,7 +8,6 @@ output: "html_document"
 ```{r, include=FALSE}
 #setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Assignment 3/PreparatoryWork")
 setwd("/Users/jasmincantzler/Documents/TaxMorale")
-
 library(dplyr)
 library(tidyr)
 library(googleVis)
@@ -39,6 +38,7 @@ TaxMorale_map <- gvisGeoChart(summary_df, locationvar = 'Country',
 ```{r, echo=FALSE, results='asis'}
 print(TaxMorale_map, tag = 'chart')
 ```
+*Average tax morale per country*
 
 **Tax morale is an issue impinging Africa's development**
 
@@ -50,9 +50,22 @@ These social factors constitute and influence the individual’s “intrinsic mo
 
 **The determinants of tax morale seem largely independent of cultural environments**
 
+Trust in government and/or government officials is one of the classic factors influencing the tax compliance behavior of individuals. If people have no faith that their taxes are being fairly collected and spent, their desire to comply with applicable taxes is lowered. 
+
+Similarly, corruption undermines tax morale by promoting a feeling of tax injustice; leading individuals to feel entitled to evade the taxes of an unfair system. Related to this feeling of injustice are interactions between taxpayers, which subsequently further influence and potentially erode or increase tax morale. Individuals who know of someone avoiding their taxes tend to have lower tax morale than others, whereas the knowledge that others are paying their taxes correspondingly can increase tax morale. 
+
+The perception of the tax burden further seems to have an impact on tax morale:  self-employed individuals are especially prone to developing anti-tax feelings, as taxes are typically more visible to them and affect them more directly, which results in lower tax morale. 
+
+Furthermore, strongly established social norms play a big role in determining the change of tax morale over time. Social dynamics- such as taxpayer interaction- become customary in the long-term, resulting in attitudes that become social norms.
+Consequently, what becomes central to complying with official laws is not the regulation in itself, but the justification for doing so. 
 
 **Policy makers should recognize the opportunity and implement polices that account for these insights**
 
+With the understanding that fostering tax compliance is a multi-faceted undertaking, we urge policy makers to employ a portfolio of instruments to comprehensively approach tax evasion, which can broadly be divided into two categories: classical deterrence mechanisms and tax morale enhancing mechanisms. 
+
+Tax morale enhancing mechanisms consist of mechanisms to increase tax morale by improving the tax administration and more generally by changing the tax culture through enhanced communication channels between the citizen and the tax administration, such as improving the communication between the taxadministration and the taxpayer, by decreasing compliance costs by keeping it smart and simple, by increasing accountability by illustrating that the government is providing "value for money" or by improving the choice architecture of the tax system.
+
+There is a need for greater emphasis on policy tools that enhance tax morale and the importance of a holistic approach to combat tax evasion. There is a colorful potpourri of policy options that can enhance tax morale - we just need to start to use them!
 
 **For further insights please see:**
 insert link here to the pdf of the final report
