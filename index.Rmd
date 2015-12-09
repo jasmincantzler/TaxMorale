@@ -1,7 +1,7 @@
 ---
-title: "Determinants of Tax Morale in Africa"
+title: "Tax Morale in Africa - the Black Box of Tax Compliance"
 author: "Wiebke Weiger & Jasmin Cantzler"
-date: "20. November 2015"
+date: "11 December 2015"
 output: "html_document"
 ---
 
