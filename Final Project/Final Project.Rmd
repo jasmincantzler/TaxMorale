@@ -19,7 +19,7 @@ bibliography: References.bib
 
 # Set working directory
 #setwd("C:/Users/Wiebke/Documents/RepRes/TaxMorale/Final Project")
-#setwd("/Users/jasmincantzler/Documents/TaxMorale/Final Project")
+setwd("/Users/jasmincantzler/Documents/TaxMorale/Final Project")
 
 # Load packages
 library(plyr)
