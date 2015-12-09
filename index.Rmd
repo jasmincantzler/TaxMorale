@@ -40,17 +40,18 @@ TaxMorale_map <- gvisGeoChart(summary_df, locationvar = 'Country',
 print(TaxMorale_map, tag = 'chart')
 ```
 
+**Tax morale is an issue impinging Africa's development**
+
 High levels of tax evasion lead to a misallocation of resources and hinder the ability of the government to invest in the provision of public goods. Therefore, understanding the rationale behind tax evaders becomes essential to national development and state building. 
 
 Traditionally, the standard way to explain tax compliance has been the economics-of-crime approach, which assumes a rational taxpayer maximizing his or her utility by balancing the risk of detection and punishment with the benefit of tax evasion. In recent years there has been a revelation that this approach is too narrow to fully explain tax compliance and with this recognition came the awareness for a need to include more social factors. 
 
-These social factors constitute and influence the individual’s “intrinsic motivation to pay taxes”; i.e. their tax morale. We set out to test whether the commonly identified factors associated to determine tax morale also hold true for African countries. 
+These social factors constitute and influence the individual’s “intrinsic motivation to pay taxes”; i.e. their tax morale. We set out to investigate the determinants of tax morale in African countries and found that these are not much different from what determines tax morale in other regions, such as Europe or the United States.
 
-**The same determinants of tax morale hold true for African countries**
+**The determinants of tax morale seem largely independent of cultural environments**
 
 
-**Policy makers should recognize the opportunity**
-
+**Policy makers should recognize the opportunity and implement polices that account for these insights**
 
 
 **For further insights please see:**
