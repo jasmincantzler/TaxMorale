@@ -25,8 +25,7 @@ setwd("/Users/jasmincantzler/Documents/TaxMorale/Final Project")
 library(plyr)
 library(dplyr)
 library(MASS)
-library(corrplot)
-library(car)
+library(corrplot) 
 library(nnet)
 library(knitr)
 library(stargazer)
@@ -46,37 +45,63 @@ library(gmodels)
 data.numeric <- read.csv('Afrobarometer.nofactors.csv')
 data.factors <- read.csv('Afrobarometer.final.csv')
 round5 <- read.csv('round5.final.csv')
+round4 <- read.csv('round4.final.csv')
+round3 <- read.csv('round3.final.csv')
 
 # sort factor levels in the correct order:
 data.factors$TaxMorale = factor(data.factors$TaxMorale,levels(data.factors$TaxMorale)[c(5,2,3,1,4)])
 round5$TaxMorale = factor(round5$TaxMorale,levels(round5$TaxMorale)[c(5,2,3,1,4)])
+round4$TaxMorale = factor(round4$TaxMorale,levels(round4$TaxMorale)[c(5,2,3,1,4)])
+round3$TaxMorale = factor(round3$TaxMorale,levels(round3$TaxMorale)[c(5,2,3,1,4)])
 data.factors$TrustPresident = factor(data.factors$TrustPresident,levels(data.factors$TrustPresident)[c(3,2,4,1)])
 round5$TrustPresident = factor(round5$TrustPresident,levels(round5$TrustPresident)[c(3,2,4,1)])
+round4$TrustPresident = factor(round4$TrustPresident,levels(round4$TrustPresident)[c(3,2,4,1)])
+round3$TrustPresident = factor(round3$TrustPresident,levels(round3$TrustPresident)[c(3,2,4,1)])
 data.factors$TrustParliament = factor(data.factors$TrustParliament,levels(data.factors$TrustParliament)[c(3,2,4,1)])
 round5$TrustParliament = factor(round5$TrustParliament,levels(round5$TrustParliament)[c(3,2,4,1)])
+round4$TrustParliament = factor(round4$TrustParliament,levels(round4$TrustParliament)[c(3,2,4,1)])
+round3$TrustParliament = factor(round3$TrustParliament,levels(round3$TrustParliament)[c(3,2,4,1)])
 data.factors$TrustCourts = factor(data.factors$TrustCourts,levels(data.factors$TrustCourts)[c(3,2,4,1)])
 round5$TrustCourts = factor(round5$TrustCourts,levels(round5$TrustCourts)[c(3,2,4,1)])
+round4$TrustCourts = factor(round4$TrustCourts,levels(round4$TrustCourts)[c(3,2,4,1)])
+round3$TrustCourts = factor(round3$TrustCourts,levels(round3$TrustCourts)[c(3,2,4,1)])
 data.factors$TrustTax = factor(data.factors$TrustTax,levels(data.factors$TrustTax)[c(3,2,4,1)])
 round5$TrustTax = factor(round5$TrustTax,levels(round5$TrustTax)[c(3,2,4,1)])
 data.factors$CorruptionPresident = factor(data.factors$CorruptionPresident,levels(data.factors$CorruptionPresident)[c(3,4,2,1)])
 round5$CorruptionPresident = factor(round5$CorruptionPresident,levels(round5$CorruptionPresident)[c(3,4,2,1)])
+round4$CorruptionPresident = factor(round4$CorruptionPresident,levels(round4$CorruptionPresident)[c(3,4,2,1)])
+round3$CorruptionPresident = factor(round3$CorruptionPresident,levels(round3$CorruptionPresident)[c(3,4,2,1)])
 data.factors$CorruptionParliament = factor(data.factors$CorruptionParliament,levels(data.factors$CorruptionParliament)[c(3,4,2,1)])
 round5$CorruptionParliament = factor(round5$CorruptionParliament,levels(round5$CorruptionParliament)[c(3,4,2,1)])
+round4$CorruptionParliament = factor(round4$CorruptionParliament,levels(round4$CorruptionParliament)[c(3,4,2,1)])
+round3$CorruptionParliament = factor(round3$CorruptionParliament,levels(round3$CorruptionParliament)[c(3,4,2,1)])
 data.factors$CorruptionOfficials = factor(data.factors$CorruptionOfficials,levels(data.factors$CorruptionOfficials)[c(3,4,2,1)])
 round5$CorruptionOfficials = factor(round5$CorruptionOfficials,levels(round5$CorruptionOfficials)[c(3,4,2,1)])
+round4$CorruptionOfficials = factor(round4$CorruptionOfficials,levels(round4$CorruptionOfficials)[c(3,4,2,1)])
 data.factors$CorruptionCouncilors = factor(data.factors$CorruptionCouncilors,levels(data.factors$CorruptionCouncilors)[c(3,4,2,1)])
 round5$CorruptionCouncilors = factor(round5$CorruptionCouncilors,levels(round5$CorruptionCouncilors)[c(3,4,2,1)])
+round4$CorruptionCouncilors = factor(round4$CorruptionCouncilors,levels(round4$CorruptionCouncilors)[c(3,4,2,1)])
+round3$CorruptionCouncilors = factor(round3$CorruptionCouncilors,levels(round3$CorruptionCouncilors)[c(3,4,2,1)])
 data.factors$CorruptionTax = factor(data.factors$CorruptionTax,levels(data.factors$CorruptionTax)[c(3,4,2,1)])
 round5$CorruptionTax = factor(round5$CorruptionTax,levels(round5$CorruptionTax)[c(3,4,2,1)])
+round4$CorruptionTax = factor(round4$CorruptionTax,levels(round4$CorruptionTax)[c(3,4,2,1)])
+round3$CorruptionTax = factor(round3$CorruptionTax,levels(round3$CorruptionTax)[c(3,4,2,1)])
 data.factors$LivingConditions = factor(data.factors$LivingConditions,levels(data.factors$LivingConditions)[c(4,1,3,2,5)])
 round5$LivingConditions = factor(round5$LivingConditions,levels(round5$LivingConditions)[c(4,1,3,2,5)])
+round4$LivingConditions = factor(round4$LivingConditions,levels(round4$LivingConditions)[c(4,1,3,2,5)])
+round3$LivingConditions = factor(round3$LivingConditions,levels(round3$LivingConditions)[c(4,1,3,2,5)])
 data.factors$Gender = factor(data.factors$Gender,levels(data.factors$Gender)[c(2,1)])
 round5$Gender = factor(round5$Gender,levels(round5$Gender)[c(2,1)])
+round4$Gender = factor(round4$Gender,levels(round4$Gender)[c(2,1)])
+round3$Gender = factor(round3$Gender,levels(round3$Gender)[c(2,1)])
 data.factors$Religion = factor(data.factors$Religion,levels(data.factors$Religion)[c(3,2,1,4)])
 round5$Religion = factor(round5$Religion,levels(round5$Religion)[c(3,2,1,4)])
+round4$Religion = factor(round4$Religion,levels(round4$Religion)[c(3,2,1,4)])
+round3$Religion = factor(round3$Religion,levels(round3$Religion)[c(3,2,1,4)])
 data.factors$AvoidHowOften = factor(data.factors$AvoidHowOften,levels(data.factors$AvoidHowOften)[c(2,4,3,1)])
 round5$AvoidHowOften = factor(round5$AvoidHowOften,levels(round5$AvoidHowOften)[c(2,4,3,1)])
 data.factors$Enforce2 = factor(data.factors$Enforce2,levels(data.factors$Enforce2)[c(2,3,1,4)])
+round3$Enforce2 = factor(round3$Enforce2,levels(round3$Enforce2)[c(2,3,1,4)])
 
 # turn year variable into factor variable and relable it with "round 3", "round 4", and "round 5":
 data.factors$Year <- cut(data.factors$Year,
@@ -86,6 +111,12 @@ data.numeric$Year <- cut(data.numeric$Year,
                          breaks = c(0, 2005, 2008, 2015),
                          labels = c("round 3", "round 4", "round 5"))
 round5$Year <- cut(round5$Year,
+                   breaks = c(0, 2005, 2008, 2015),
+                   labels = c("round 3", "round 4", "round 5"))
+round4$Year <- cut(round4$Year,
+                   breaks = c(0, 2005, 2008, 2015),
+                   labels = c("round 3", "round 4", "round 5"))
+round3$Year <- cut(round3$Year,
                    breaks = c(0, 2005, 2008, 2015),
                    labels = c("round 3", "round 4", "round 5"))
 
@@ -104,12 +135,6 @@ data.3l.numeric$TaxMorale[data.3l.numeric$TaxMorale==5] <- 3
 data.3l.numeric$TaxMorale <- cut(data.3l.numeric$TaxMorale,
                                  breaks = c(0, 1, 2, 3),
                                  labels = c("Disagree", "Neither agree nor disagre", "Agree"))
-round5.3l <- round5
-round5.3l$TaxMorale[round5.3l$TaxMorale=="Strongly Disagree"] <- "Disagree"
-round5.3l$TaxMorale[round5.3l$TaxMorale=="Strongly Agree"] <- "Agree"
-round5.3l$TaxMorale <- round5.3l$TaxMorale[round5.3l$TaxMorale != "Strongly Disagree"]
-round5.3l$TaxMorale <- round5.3l$TaxMorale[round5.3l$TaxMorale != "Strongly Agree"]
-round5.3l$TaxMorale <- factor(round5.3l$TaxMorale)
 
 #DESCRIPTIVES:
 # the dependent variable tax morale in the data
@@ -145,6 +170,22 @@ percountry + geom_segment(aes(yend=Country,xend=0)) +
   labs(x="Mean Level of Tax Morale", y="", title="Level of Tax Morale by Country") +
   theme(panel.grid.major.y=element_blank(), axis.ticks=element_blank())
 
+# descriptive information on How often people avoid and why they avoid paying taxes:
+summary(data.factors$AvoidHowOften)
+# Never:   15277 (33.7%)
+# Rarely:  14606 (32.2%)
+# Often:   12219 (26.9%)
+# Allways:  3242 (07.1%)
+# NAs:     59353
+summary(data.factors$AvoidReason)
+# People cannot afford to pay                   :14295 (34.8%) 
+# The taxes are too high                        : 8474 (20.6%)  
+# The poor services they receive from government: 4438 (10.8%)  
+# The tax system is unfair                      : 3326 ( 8.1%)  
+# People don't avoid paying                     : 2511 ( 6.1%)  
+# Government wastes tax money                   : 2290  
+# (Other)                                       : 5771
+# NA's                                          :63592
 
 # descriptives on the independent variables:
 # comparison of number of missings of the different variables on trust and corruption:
@@ -164,7 +205,7 @@ summary(data.factors$CorruptionOfficialsNational) # 84417 NAs
 # first round of models:
 # model taking into account the largest amount of data and countries possible
 # purpose: 
-# 1) see whether trust and corruption have significant effects across countries and time
+# 1) see whether trust and corruption have significant effects accross countries and time
 # 2) see whether trust and corruption are sensitive to including other control variables
 # 3) test how much the effects change when not controlling for country to see how important country 
 #    characteristics are
@@ -329,176 +370,22 @@ multinom6 <- multinom(TaxMorale ~ TrustPresident + CorruptionTax + Year + Countr
 #Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 
-# second round of models for round 5 including self-employed and interaction of tax payers
-# create dataset for this model:
-datar5 <- DropNA(round5, c("TaxMorale", "TrustPresident", "TrustTax", "CorruptionTax", "AvoidHowOften", 
-                           "SelfEmployedTax", "Country", "LivingConditions", "Age", "Gender",
-                           "Religion"))
-datar5.3l <- DropNA(round5.3l, c("TaxMorale", "TrustPresident", "TrustTax", "CorruptionTax",
-                                 "AvoidHowOften", "SelfEmployedTax", "Country", "LivingConditions", "Age",
-                                 "Gender", "Religion"))
-# 35522 rows dropped from data frame; this means that out of the 51587 original observations only 16065 observations remain
+#REGRESSION ASSUMPTIONS TEST
+#Variance Inflation Factor (only possible if I first transform the data into numeric so not sure how good that is)
+
+dummy_df<-data.frame(data.numeric$Country, data.numeric$TrustPresident, data.numeric$CorruptionTax, data.numeric$CorruptionParliament, data.numeric$SelfEmployedTax, data.numeric$AvoidHowOften, data.numeric$Religion, data.numeric$Gender, data.numeric$LivingConditions, data.numeric$Age)
+colnames(dummy_df) <- c("Country","TrustPresident", "CorruptionTax","CorruptionParliament", "SelfEmployedTax","AvoidHowOften", "Religion", "Gender", "LivingConditions", "Age")
+
+# does not work anymore....
+# VIF<- vif(dummy_df)
 
 
-# polr-models:
-# modelr5.1 (without country and controls):
-modelr5.1 <- polr(TaxMorale ~ TrustPresident + TrustTax + CorruptionTax + AvoidHowOften + SelfEmployedTax,
-               method='logistic',
-               data=datar5, Hess = TRUE)
-#store table:
-(ctable.modelr5.1 <- coef(summary(modelr5.1)))
-#calculate and store p values:
-p.modelr5.1 <- pnorm(abs(ctable.modelr5.1[, "t value"]), lower.tail = FALSE) * 2
-#combined table:
-(ctable.modelr5.1 <- cbind(ctable.modelr5.1, "p value" = p.modelr5.1))
-#confidence interval:
-ci.modelr5.1 <- confint.default(modelr5.1)
-#odds ratios:
-exp(coef(modelr5.1))
-#combine odds ratios and confidence interval:
-ORtable.modelr5.1 <- exp(cbind(OR = coef(modelr5.1), ci.modelr5.1))
-kable(ORtable.modelr5.1)
-ORtable.modelr5.1 <- kable(ORtable.modelr5.1, align = 'c', digits = 2)  
-print(ORtable.modelr5.1)
-
-# modelr5.2 (without country but with controls):
-modelr5.2 <- polr(TaxMorale ~ TrustPresident + TrustTax + CorruptionTax + AvoidHowOften + SelfEmployedTax
-                  + LivingConditions + Age + Gender + Religion,    
-                  method='logistic',
-                  data=datar5, Hess = TRUE)
-#store table:
-(ctable.modelr5.2 <- coef(summary(modelr5.2)))
-#calculate and store p values:
-p.modelr5.2 <- pnorm(abs(ctable.modelr5.2[, "t value"]), lower.tail = FALSE) * 2
-#combined table:
-(ctable.modelr5.2 <- cbind(ctable.modelr5.2, "p value" = p.modelr5.2))
-#confidence interval:
-ci.modelr5.2 <- confint.default(modelr5.2)
-#odds ratios:
-exp(coef(modelr5.2))
-#combine odds ratios and confidence interval:
-ORtable.modelr5.2 <- exp(cbind(OR = coef(modelr5.2), ci.modelr5.2))
-kable(ORtable.modelr5.2)
-ORtable.modelr5.2 <- kable(ORtable.modelr5.2, align = 'c', digits = 2)  
-print(ORtable.modelr5.2)
-
-# modelr5.3 (with country but without controls):
-modelr5.3 <- polr(TaxMorale ~ TrustPresident + TrustTax + CorruptionTax + AvoidHowOften + SelfEmployedTax
-                  + Country,
-                  method='logistic',
-                  data=datar5, Hess = TRUE)
-#store table:
-(ctable.modelr5.3 <- coef(summary(modelr5.3)))
-#calculate and store p values:
-p.modelr5.3 <- pnorm(abs(ctable.modelr5.3[, "t value"]), lower.tail = FALSE) * 2
-#combined table:
-(ctable.modelr5.3 <- cbind(ctable.modelr5.3, "p value" = p.modelr5.3))
-#confidence interval:
-ci.modelr5.3 <- confint.default(modelr5.3)
-#odds ratios:
-exp(coef(modelr5.3))
-#combine odds ratios and confidence interval:
-ORtable.modelr5.3 <- exp(cbind(OR = coef(modelr5.3), ci.modelr5.3))
-kable(ORtable.modelr5.3)
-ORtable.modelr5.3 <- kable(ORtable.modelr5.3, align = 'c', digits = 2)  
-print(ORtable.modelr5.3)
-
-# modelr5.4 (with country and with controls):
-modelr5.4 <- polr(TaxMorale ~ TrustPresident + TrustTax + CorruptionTax + AvoidHowOften + SelfEmployedTax
-                  + Country + LivingConditions + Age + Gender + Religion,    
-                  method='logistic',
-                  data=datar5, Hess = TRUE)
-#store table:
-(ctable.modelr5.4 <- coef(summary(modelr5.4)))
-#calculate and store p values:
-p.modelr5.4 <- pnorm(abs(ctable.modelr5.4[, "t value"]), lower.tail = FALSE) * 2
-#combined table:
-(ctable.modelr5.4 <- cbind(ctable.modelr5.4, "p value" = p.modelr5.4))
-#confidence interval:
-ci.modelr5.4 <- confint.default(modelr5.4)
-#odds ratios:
-exp(coef(modelr5.4))
-#combine odds ratios and confidence interval:
-ORtable.modelr5.4 <- exp(cbind(OR = coef(modelr5.4), ci.modelr5.4))
-kable(ORtable.modelr5.4)
-ORtable.modelr5.4 <- kable(ORtable.modelr5.4, align = 'c', digits = 2)  
-print(ORtable.modelr5.4)
-
-# modelr5.5 (with country and 3 levels but without controls):
-modelr5.5 <- polr(TaxMorale ~ TrustPresident + TrustTax + CorruptionTax + AvoidHowOften + SelfEmployedTax
-                  + Country,
-                  method='logistic',
-                  data=datar5.3l, Hess = TRUE)
-#store table:
-(ctable.modelr5.5 <- coef(summary(modelr5.5)))
-#calculate and store p values:
-p.modelr5.5 <- pnorm(abs(ctable.modelr5.5[, "t value"]), lower.tail = FALSE) * 2
-#combined table:
-(ctable.modelr5.5 <- cbind(ctable.modelr5.5, "p value" = p.modelr5.5))
-#confidence interval:
-ci.modelr5.5 <- confint.default(modelr5.5)
-#odds ratios:
-exp(coef(modelr5.5))
-#combine odds ratios and confidence interval:
-ORtable.modelr5.5 <- exp(cbind(OR = coef(modelr5.5), ci.modelr5.5))
-kable(ORtable.modelr5.5)
-ORtable.modelr5.5 <- kable(ORtable.modelr5.5, align = 'c', digits = 2)  
-print(ORtable.modelr5.5)
-
-# modelr5.6 (with country and 3 levels and with controls):
-modelr5.6 <- polr(TaxMorale ~ TrustPresident + TrustTax + CorruptionTax + AvoidHowOften + SelfEmployedTax
-                  + Country + LivingConditions + Age + Gender + Religion,    
-                  method='logistic',
-                  data=datar5.3l, Hess = TRUE)
-#store table:
-(ctable.modelr5.6 <- coef(summary(modelr5.6)))
-#calculate and store p values:
-p.modelr5.6 <- pnorm(abs(ctable.modelr5.6[, "t value"]), lower.tail = FALSE) * 2
-#combined table:
-(ctable.modelr5.6 <- cbind(ctable.modelr5.6, "p value" = p.modelr5.6))
-#confidence interval:
-ci.modelr5.6 <- confint.default(modelr5.6)
-#odds ratios:
-exp(coef(modelr5.6))
-#combine odds ratios and confidence interval:
-ORtable.modelr5.6 <- exp(cbind(OR = coef(modelr5.6), ci.modelr5.6))
-kable(ORtable.modelr5.6)
-ORtable.modelr5.6 <- kable(ORtable.modelr5.6, align = 'c', digits = 2)  
-print(ORtable.modelr5.6)
-
-# compare AIC of all models:
-summary(modelr5.1) # AIC: 42625.49
-summary(modelr5.2) # AIC: 42555.09
-summary(modelr5.3) # AIC: 41869.11
-summary(modelr5.4) # AIC: 41834.41 --> this model fares best (lowest AIC)
-summary(modelr5.5) # AIC: 21873.51 -- only comparable to modelr5.6 because of different data base
-summary(modelr5.6) # AIC: 21860.30 -- only comparable to modelr5.5 because of different data base
-
-#multinomial model for modelr5.4:
-library(nnet)
-multinomr5.4 <- multinom(TaxMorale ~ TrustPresident + TrustTax + CorruptionTax + AvoidHowOften + SelfEmployedTax +
-                         Country + LivingConditions + Age + Gender + Religion,
-                         data = datar5)
-devtable <- Anova(multinomr5.4) # takes a lot of time to run (results shown below the code)
-#Analysis of Deviance Table (Type II tests)
-# Response: TaxMorale
-# LR Chisq  Df Pr(>Chisq)    
-# TrustPresident      40.64  12  5.618e-05 ***
-# TrustTax           255.48  12  < 2.2e-16 ***
-# CorruptionTax       95.47  12  4.282e-15 ***
-# AvoidHowOften      122.49  12  < 2.2e-16 ***
-# SelfEmployedTax    227.02   4  < 2.2e-16 ***
-# Country           1634.90 132  < 2.2e-16 ***
-# LivingConditions    57.48  16  1.385e-06 ***
-# Age                  1.93   4     0.7489    
-# Gender              36.24   4  2.588e-07 ***
-# Religion            45.89  12  7.235e-06 ***
-# ---
-# Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-### all variables except for Age statistically significant
-summary(multinomr5.4) # AIC: 40556.97 --> fits better than modelr5.4 
-
+#created a dataframe which dropped the missings (cause I could not find out how to do a correlation matrix including missings)
+dummy_df_without_NA <- na.omit(dummy_df)
+# does not work anymore
+# COR<-cor(dummy_df_without_NA)
+#colnames(COR) <- c("Country","TrustPresident", "CorruptionTax","CorruptionParliament", "SelfEmployedTax","AvoidHowOften", "Religion", "Gender", "LivingConditions", "Age")
+# row.names(COR)<-c("Country","TrustPresident", "CorruptionTax","CorruptionParliament", "SelfEmployedTax","AvoidHowOften", "Religion", "Gender", "LivingConditions", "Age")
 
 ```
 
@@ -507,7 +394,7 @@ A country’s ability to efficiently mobilize its national resources is a topic 
 
 Ever since the Monterrey Consensus was adopted in 2002, in which countries recognized the importance of raising domestic revenues, development aid has been increasingly shifting from direct financial assistance to improving tax systems and national resource management. Unfortunately, up to this date, tax systems still attract relatively little international assistance and “estimates based on OECD data suggests that currently around 0.1% of Official Development Assistance (excluding IMF) goes to support the development of tax systems in developing countries [@OECD2015].
 
-One malady plaguing developing countries is tax evasion and tax avoidance; whereby tax evasion “in general refers to illegal practices to escape from taxation”, whereas tax avoidance “in contrast, takes place within the legal context of the tax systems, that is individuals or firms take advantage of the tax code and exploit “loopholes”, i.e. engage in activities that are legal but run counter to the purpose of the tax law" [@GTZ].
+One malady plaguing developing countries is tax evasion and tax avoidance; whereby tax evasion “in general refers to illegal practices to escape from taxation”, whereas tax avoidance “in contrast, takes place within the legal context of the tax systems, that is individuals or firms take advantage of the tax code and exploit “loopholes”, i.e. engage in activities that are legal but run counter to the purpose of the tax law [@GTZ].
 
 High levels of tax evasion lead to a misallocation of resources and hinder the ability of the government to invest in the provision of public goods. Therefore, understanding the rationale behind tax evaders becomes essential to national development and state building. Traditionally, the standard way to explain tax compliance has been the economics-of-crime approach, which assumes a rational taxpayer maximizing his or her utility by balancing the risk of detection and punishment with the benefit of tax evasion. Today, this approach is increasingly regarded as too narrow to fully explain tax compliance, and many argue for the need to include social factors, which are said to explain why people conform to paying taxes even in the absence of strong deterrence mechanisms. These social factors constitute and influence the individual’s “intrinsic motivation to pay taxes,” hereafter referred to as tax morale, by increasing moral costs of tax evasion and thus increasing tax compliance. This link has been increasingly studied and strong evidence has been established that tax morale influences individual tax compliance. However, the majority of these studies focuses on developed countries and only few studies investigate the determinants of tax morale in developing countries. 
 
@@ -530,7 +417,7 @@ Currently, tax morale remains the underdog in explaining tax compliance and “m
 
 Trust in government and/or government officials is one of the classic factors said to influence the tax compliance behavior of individuals [@Torgler2001; @Torgler2003; @Torgler2009]. If people have no faith that their taxes are being fairly collected and spent, their desire to comply with applicable taxes is lowered. Similarly, corruption undermines tax morale by promoting a feeling of tax injustice; leading individuals to feel entitled to evade the taxes of an unfair system.  Related to this feeling of injustice are interactions between taxpayers, which subsequently further influence and potentially erode or increase tax morale. Individuals who know of someone avoiding their taxes are found to have lower tax morale than others [@Torgler2005], whereas the knowledge that others are paying their taxes correspondingly can increase tax morale. This suggests that there might be a “positive snowball effect” [@FreyTorgler; @Lewis], whereby taxpayers’ tax morale increases if they perceive others to be more compliant. Tax administrators also form an important figure in determining tax morale; when tax officials treat individuals with respect, their tax morale is enhanced [@BohnetFrey; @FeldFrey2003]. In addition, the perception of the tax burden seems to have an impact on tax morale: according to a study concerning Latin America [@Torgler2005], over 46 percent of respondents stated a high tax burden to be a reason for tax evasion. Based on the author’s findings, self-employed individuals are especially prone to developing anti-tax feelings, as taxes are typically more visible to them and affect them more directly, which results in lower tax morale. At the same time, individuals’ tax morale might also be influenced by their perception of received benefits, in the form of public goods and services. Torgler suggests that there is a direct input-output relation, where individuals compare money paid with benefits received. An additional relevant factor can be fiscal knowledge, which increases tax morale by influencing the perception of received benefits. Better-educated taxpayers are more knowledgeable about tax law and fiscal connections, and ultimately may be better equipped to see the connection between paying taxes and receiving benefits [@Lewis]. 
 
-Furthermore, strongly established social norms [@Ajzen; @Lewis] play a big role in determining the change of tax morale over time. Social dynamics- such as taxpayer interaction- become customary in the long-term, resulting in attitudes that become social norms. Consequently, what becomes central to complying with official laws is not the regulation in itself, but the justification for doing so. When a social norm dictates that allocating tax money into personal projects is morally acceptable, as opposed to giving it to the tax administration, the afore-mentioned ‘positive snowball effect’ might not be so easy to attain. Traxler [-@Traxler] finds that conditional cooperation is a characteristic inherent in taxpayers, in the sense that they condition their compliance to the behavior of the larger group. Traxler and Winter [-@TraxlerWinter] provide evidence of the existence of social sanctions, for example for an individual who cheats on their taxes when complying is the norm. If this is the case, the logical implication is that there is a need to realign social norms with tax regulations. 
+Furthermore, strongly established social norms [@Ajzen; @Lewis] play a big role in determining the change of tax morale over time. Social dynamics- such as taxpayer interaction- become customary in the long-term, resulting in attitudes that become social norms. Consequently, what becomes central to complying with official laws is not the regulation in itself, but the justification for doing so. When a social norm dictates that allocating tax money into personal projects is morally acceptable, as opposed to giving it to the tax administration, the aforementioned ‘positive snowball effect’ might not be so easy to attain. Traxler [-@Traxler] finds that conditional cooperation is a characteristic inherent in taxpayers, in the sense that they condition their compliance to the behavior of the larger group. Traxler and Winter [-@TraxlerWinter] provide evidence of the existence of social sanctions, for example for an individual who cheats on their taxes when complying is the norm. If this is the case, the logical implication is that there is a need to realign social norms with tax regulations. 
 
 
 ## Tax Morale in Africa
@@ -558,13 +445,14 @@ Tax Morale_i = & \alpha_i + \beta_1 Trust in Government/Public Officials_i + \be
 
 If these are in fact factors that universally influence the intrinsic motivation to pay taxes, we should be able to find them to have significant effects on tax morale in Africa as well. If we are, however, unable to find significant effects, then this would be an indicator that specific cultural, regional or even national characteristics play a crucial role for tax morale in Africa. Our hypothesis therefore is: 
 
-$H_1: Determinants of tax morale identified from the literature also have a significant effect on tax morale in Africa.$
+*H_1: Determinants of tax morale identified from the literature also have a significant effect on tax morale in Africa.*
 
 ## The Data
 Our definition of tax morale as an intrinsic motivation to pay taxes indicates that we are looking at an individual level phenomenon. Consequently the level of analysis also has to be on the individual level. We have therefore decided to look at survey data, more specifically, at the Afrobarometer Survey, which provides data on attitudes of citizens on political, economic, and social issues [@Afro]. The main reason why we have decided to use the Afrobarometer for our analysis (instead of other data sources such as for example the World Value Survey) is that it includes a question on tax morale that has been asked in the past three rounds of the survey, which enables us to also take into account changes over time. And, secondly, the Afrobarometer includes a total of 34 countries out of which 18 countries can be observed at three different points in time[^1] which offers us insight into a relatively large amount of different countries from the continent and therefore also into the question whether national contexts play an important role for tax morale.  
 
 The data is publicly available on the website of the Afrobarometer [www.afrobarometer.org](http://www.afrobarometer.org/). For this analysis we have downloaded the three datasets for the third, fourth, and fifth round of the survey and merged them into a single dataset containing information from respondents at three different points in time. It should be noted however, that the Afrobarometer is not a panel study which means that the respondents from the different years were not the same individuals. 
 
+All survey interviews were conducted face-to-face by interviewers who usually have a first class degree in social science and who receive training by national partners during a five-day training workshop which includes the familiarisation with the survey in national and local languages, sampling protocol and field practice. The interviews were generally conducted within 48 hours after the training [@Afro]. 
 
 
 ### Tax Morale in the Afrobarometer
@@ -581,7 +469,7 @@ qplot(data.factors$TaxMorale,
 ```
 
 ```{r, fig.cap="Level of Tax Morale per Country (mean level of tax morale through all three rounds)", echo=FALSE}
-#percountry <- ggplot(data=subdata.percountry, aes(x=meantaxmorale, y=reorder(Country, meantaxmorale)))
+#percountry <- ggplot(data=summary_df, aes(x=meantaxmorale, y=reorder(Country, meantaxmorale)))
 percountry + geom_segment(aes(yend=Country,xend=0)) +
   geom_point() +
   theme_minimal() +
@@ -590,28 +478,7 @@ percountry + geom_segment(aes(yend=Country,xend=0)) +
   theme(panel.grid.major.y=element_blank(), axis.ticks=element_blank())
 ```
 
-The first impression is that there is in fact a very high level of tax morale in Africa. This could, however, be related to the rather technical phrasing of the statement which only refers to the right of the tax department to do its job. It can be argued, that agreeing to the statement does not necessarily exclude respondents to think that there are nevertheless "valid" reasons for not paying taxes. 
-
-```{r, include=FALSE}
-# descriptive information on How often people avoid and why they avoid paying taxes:
-summary(data.factors$AvoidHowOften)
-# Never:   15277 (33.7%)
-# Rarely:  14606 (32.2%)
-# Often:   12219 (26.9%)
-# Always:  3242 (07.1%)
-# NAs:     59353
-summary(data.factors$AvoidReason)
-# People cannot afford to pay                   :14295 (34.8%) 
-# The taxes are too high                        : 8474 (20.6%)  
-# The poor services they receive from government: 4438 (10.8%)  
-# The tax system is unfair                      : 3326 ( 8.1%)  
-# People don't avoid paying                     : 2511 ( 6.1%)  
-# Government wastes tax money                   : 2290  
-# (Other)                                       : 5771
-# NA's                                          :63592
-```
-
-The fifth round of the Afrobarometer contains two questions that could be informative in this context. One of them asks respondents, how often they think people avoid paying taxes. Of those who answered this question, one third (33.7%) says people never and almost another third (32.2%) says they rarely avoid paying taxes. This seems to be an indicator that people at least perceive tax morale to be relatively high. However, the fifth round also contains a question that directly asks what respondents think is the main reason for why people avoid paying taxes. For this question, only about 6% of those who answered, chose the option "people don't avoid paying". The majority of respondents says that the main reason for avoiding to pay taxes is that people cannot afford to pay them (34.8%) or that they are too high (20.6%). 
+The first impression is that there is in fact a very high level of tax morale in Africa. This could, however, be related to the rather technical phrasing of the statement which only refers to the right of the tax department to do its job. It can be argued, that agreeing to the statement does not necessarily exclude respondents to think that there are nevertheless "valid" reasons for not paying taxes. The fifth round of the Afrobarometer contains two questions that could be informative in this context. One of them asks respondents, how often they think people avoid paying taxes. Of those who answered this question, one third (33.7%) says people never and almost another third (32.2%) says they rarely avoid paying taxes. This seems to be an indicator that people at least perceive tax morale to be relatively high. However, the fifth round also contains a question that directly asks what respondents think is the main reason for why people avoid paying taxes. For this question, only about 6% of those who answered, chose the option "people don't avoid paying". The majority of respondents says that the main reason for avoiding to pay taxes is that people cannot afford to pay them (34.8%) or that they are too high (20.6%). 
 
 
 ### Data on the Determinants of Tax Morale
@@ -625,31 +492,29 @@ Tax Morale_i = & \alpha_i + \beta_1 Trust in Government/Public Officials_i + \be
 \end{aligned}
 \end{equation}
 
-In order to test our hypothesis ($H_1: Determinants of tax morale identified from the literature also have a significant effect on tax morale in Africa$) we need to identify corresponding questions from the Afrobarometer that can be used to operationalize these potential determinants.
+In order to test our hypothesis (*H_1: Determinants of tax morale identified from the literature also have a significant effect on tax morale in Africa*) we need to identify corresponding questions from the Afrobarometer that can be used to operationalize these potential determinants.
 
-The survey includes a variety of different questions regarding the level of trust of respondents in their government as well as regarding the perceived level of corruption. These questions relate to different representatives of the government such as the prime minister or the president, the parliament, local councilors or the tax authorities. It seems plausible not to take the same public figure or institution for our trust and corruption variable. This is because respondents who, for example, say they do not trust the president at all are also more likely to respond that the president is invovled in corruption. As the president or the prime minister is a key leadership figure in many countries we will operationalize $Trust in Government/Public Officials_i$ using the question "How much do you trust the President/Prime Minister?". High levels of trust in the president are assumed to be related to higher levels of tax morale. As for $Level of Corruption_i$ we opt for the Afrobarometer item "How many of the following people do you think are involved in corruption: Tax Officials (e.g. Ministry of Finance officials or Local Government tax collectors)". The perceived level of corruption of tax officials is not only highly relevant for an individual's tax morale, but it can also be argued that there is no direct connection with a respondent's level of trust in the government. We assume that higher levels of perceived corruption are related to lower levels of tax morale.
+The survey includes a variety of different questions regarding the level of trust of respondents in their government as well as regarding the perceived level of corruption. These questions relate to different representatives of the government such as the prime minister or the president, the parliament, local councilors or the tax authorities. It seems plausible not to take the same public figure or institution for our trust and corruption variable. This is because respondents who, for example, say they do not trust the president at all are also more likely to respond that the president is invovled in corruption. As the president or the prime minister is a key leadership figure in many countries we will operationalize $Trust in Government//Public Officials_i$ using the question "How much do you trust the President/Prime Minister?". High levels of trust in the president are assumed to be related to higher levels of tax morale. As for $Level of Corruption_i$ we opt for the Afrobarometer item "How many of the following people do you think are involved in corruption: Tax Officials (e.g. Ministry of Finance officials or Local Government tax collectors)". The perceived level of corruption of tax officials is not only highly relevant for an individual's tax morale, but it can also be argued that there is not a direct connection with a respondent's the level of trust in the government. We assume that higher levels of perceived corruption are related to lower levels of tax morale.
 
-With regards to $Interactions with other taxpayers_i$ we will use the afore-mentioned question on how often respondents think people avoid paying taxes. As this question was only asked in the fifth round, we cannot include the variable in the main model, but we will run an additional model that only looks at the respondents of the fifth round. Our hypothesis in accordance with the literature would be, that higher levels of perceived tax avoidance by others are associated with lower levels of tax morale.
+With regards to $Interactions with other taxpayers_i$ we will use the afore mentioned question on how often respondents think people avoid paying taxes. As this question was only asked in the fifth round, we cannot include the variable in the main model, but we will run an additional model that only looks at the respondents of the fifth round. Our hypothesis in accordance with the literature would be, that higher levels of perceived tax avoidance by others are associated with lower levels of tax morale.
 
-The variable $selfemployed_i$ relates to the idea that self-employed individuals are especially prone to developing anti-tax feelings as taxes are typically more visible to them and affect them more directly. The fifth round of the Afrobarometer contains a question asking the respondent whether they are self-employed and if so whether they are required to pay taxes on the earnings from their business. Therefore, we expect self-employed individuals to report lower levels of tax morale. We will consider this variable in the model that only takes into account data from the fifth round as well. 
+The variable $selfemployed_i$ relates to the idea that self-employed individuals are especially prone to developing anti-tax feelings as taxes are typically more visible to them and affect them more directly. The fifth round of the Afrobarometer contains a question asking the respondent whether they are self-employed and if so whether they are required to pay taxes on the earnings from their business. Therefore, we expect self-employed individuals to report lower levels of tax morale. We will consider this variable in the model that only takes into account data from only the fifth round as well. 
 
-Data on detection and punishment only exists in the third round of the survey. Respondents are asked how likely they think it would be that authorities enforce the law if they did not pay their taxes. Again, the variable cannot be included in the main model. Since round 3 is the round that not only lies the furthest in the past, but also includes the lowest number of countries, we have decided not to run a specific model that would include this variable as it would be difficult to compare the results to the rest of our results.  
+Data on detection and punishment only exists in the third round of the survey. Respondents are asked how likely they think it would be that authorities enforce the law if they did not pay their taxes. Again, the variable cannot be included in the main model, but we will conduct a sub-analysis of just the respondents in that round where we will include this variable. We would expect higher probabilities of detection and/or punishment to be associated with higher levels of tax morale.  
 
-Additionally, we will include a number of control variables in our model such as the respondents' current living conditions, gender, age, and whether they are religious. Living conditions will be used as a proxy for income for which the Afrobarometer does not provide information, and relates to the idea that a valid reason for tax evasion is believed to be that people cannot afford to pay taxes. Based on debates about the influence of gender in financial contexts, we assume women to exhibit higher levels of tax morale than men. With regards to age we argue that older people may be more traditional and conservative than younger ones and thus may be more likely to exhibit higher tax morale and condemn cheating on taxes. Furthermore, we hypothesize that that those who claim a religious faith or identity also show more positive attitudes towards paying taxes. 
+Additionally, we will include a number of control variables in our model such as the respondents' current living conditions, gender, age, and whether they are religous. Living conditions will be used as a proxy for income for which the Afrobarometer does not provide information, and relates to the idea that a valid reason for tax evasion is believed to be that people cannot afford to pay taxes. Based on debates about the influence of gender in financial contexts, we assume women to exhibit higher levels of tax morale than men. With regars to age we argue that older people may be more traditional and conservative than younger ones and thus may be more likely to exhibit higher tax morale and condemn cheating on taxes. Furthermore, we hypothesize that that those who claim a religious faith or identity also show more positive attitudes towards paying taxes. 
 
 
 ## The Research Design
-In line with our research question, which seeks to assess whether the relationship between tax morale and identified determinants which has been found in previous studies also exists for the African context, we apply a regression design to describe the relationship between our dependent variable (tax morale) and our independent variables. As our dependent variable is discrete, taking on values between 1 (strongly disagree) and 5 (strongly agree), we will use a logistic regression model appropriate for this type of data. The most commonly known type of logistic regression is that for binary dependent variables. One option would therefore be to collapse the existing five response categories into two categories and then run a logistic regression model. However, this approach is difficult in our case. While it seems plausible to collapse the categories "strongly disagree" and "disagree" into one variable indicating disagreement with the statement and the same for "strongly agree" and "agree", it is much less clear how to deal with the category "neither agree nor disagree". This response category clearly presents a third option to respondents. Consequently, we have to consider possible models for discrete outcome variables with more than two categories. 
-
-When doing so, one needs to pay attention to the measurement scale of the outcome variable: If it is nominal, the most common approach would be a multinomial logistic regression model. If it is ordinal, we can still use a multinomial logistic regression, but an ordered logistic regression model would be more appropriate in order to take into account the ordinal nature of the outcome variable [@hosmer2013]. Because of the underlying order in the coding of our tax morale variable we opt for the ordered logistic regression model, more precisely, for the most commonly used *proportional-odds logistic-regression model* [@fox2010].  According to Fox and Weisberg (2010) this model offers an attractive feature compared to the multinomial logistic regression model in that it reduces the number of parameters and regression coefficients by using a single linear predictor rather than *m*-1 linear predictors. On the other hand, the proportional odds model is also more restrictive and may not fit the data very well. The critical assumption underlying the model is that of proportional odds, also known as the parallel regression assumption. To test this assumption is quite complicated. Instead of a direct test, Fox and Weisberg (2010) suggest to also run a multinomial logistic regression model and compare the Akaike information criterion (AIC). If the proportional odds model has a larger AIC than the multinomial model this would be an indicator that the proportional odds assumption does not hold [@fox2010, 272]. We will therefore also compare our results to those of a multinomial model.
+In line with our research question, which seeks to assess whether the relationship between tax morale and identified determinants which has been found in previous studies also exists for the African context, we apply a regression design to describe the relationship between our dependent variable (tax morale) and our independent variables. As our dependent variable is discrete, taking on values between 1 (strongly disagree) and 5 (strongly agree), we will use a logistic regression model appropriate for this type of data. The most commonly known type of logistic regression is that for binary dependent variables. One option would therefore be to collapse the existing five response categories into two categories and then run a logistic regression model. However, this approach is difficult in our case. While it seems plausible to collapse the categories "strongly disagree" and "disagree" into one variable indicating disagreement with the statement and the same for "strongly agree" and "agree", it is much less clear how to deal with the category "neither agree nor disagree". This response category clearly presents a third option to respondents. Consequently, we have to consider possible models for discrete outcome variables with more than two categories. When doing so, one needs to pay attention to the measurement scale of the outcome variable: If it is nominal, the most common approach would be a multinomial logistic regression model. If it is ordinal, we can still use a multinomial logistic regression, but an ordered logistic regression model would be more appropriate in order to take into account the ordinal nature of the outcome variable [@hosmer2013]. Because of the underlying order in the coding of our tax morale variable we opt for the ordered logistic regression model, more precisely, for the most commonly used *proportional-odds logistic-regression model* [@fox2010].  According to Fox and Weisberg (2010) this model offers an attractive feature compared to the multinomial logistic regression model in that it reduces the number of parameters and regression coefficients by using a single linear predictor rather than *m*-1 linear predictors. On the other hand, the proportional odds model is also more restrictive and may not fit the data very well. The critical assumption underlying the model is that of proportional odds, also known as the parallel regression assumption. To test this assumption is quite complicated. Instead of a direct test, Fox and Weisberg (2010) suggest to also run a multinomial logistic regression model and compare the Akaike information criterion (AIC). If the proportional odds model has a larger AIC than the multinomial model this would be an indicator that the proportional odds assumption does not hold [@fox2010, 272]. We will therefore also compare our results to those of a multinomial model.
 
 In order to test our hypothesis 
-$H_1: Determinants of tax morale identified from the literature also have a significant effect on tax morale in Africa.$
-we first run a proportional-odds logistic-regression model focusing on two of the main determinants identified by previous research, trust in government and perceived level of corruption, for which data is available in all three rounds of the Afrobarometer. We restrict our main model to these two determinants, because we want to exploit the fact that we have data available that not only covers a number of different countries, but also three different points in time at which the survey was conducted. This allows us not only to assess whether these determinants have a significant effect on tax morale in Africa, but also whether the effects actually hold across national characteristics and time. In other words, it also allows us to investigate whether country specific factors play a crucial role. We then run a few sub-analyses taking into account the other determinants of tax morale, but restricting the sample size to only those respondents of the respective round in which these variables were included. These analyses will provide some further insight on the determinants of tax morale in Africa. The following chapter presents our findings and discusses potential implications.
+*H_1: Determinants of tax morale identified from the literature also have a significant effect on tax morale in Africa.*
+we first run a proportional-odds logistic-regression model focusing on two of the main determinants identified by previous research, trust in government and perceived level of corruption, for which data is available in all three rounds of the Afrobarometer. We restrict our main model to these two determinants, because we want to exploit the fact that we have data available that not only covers a number of different countries, but also three different points in time at which the survey was conducted. This allows us not only to assess whether these determinants have a significant effect on tax morale in Africa, but also whether the effects actually hold accross national characteristics and time. In other words, it also allows us to investigate whether country specific factors play a crucial role. We then run a few sub-analyses taking into account the other determinants of tax morale, but restricting the sample size to only those respondents of the respective round in which these variables were included. These analyses will provide some further insight on the determinants of tax morale in Africa. The following chapter presents our findings and discusses potential implications.
 
 
 #Results and Discussion
-As described above, we conducted a range of proportional-odds logistic-regression models to assess whether trust in government and perceived corruption have an effect on tax morale in African countries as they do in other countries that have been studied. Table 1 presents and compares the different models. The first model in the table shows the results of a proportional-odds logistic-regression including only trust in the president and perceived level of corruption of tax officials as explanatory variables. Furthermore the different survey rounds are included to account for time trends. The second model then also includes the control variables living conditions, being a member of a religious group, age, and gender. Neither of these two models contains country fixed-effects. It can be seen from the table that the coefficients on trust and corruption are robust as to whether control variables are included or not. The following two models in table 1 (model 3 and model 4) are the same as the first two models except for the fact that they include fixed effects for the different countries included in the survey. For the sake of readability the 32 individual coefficients for the different countries have been omitted in the table. We can see however, that the effects of trust and corruption stay statistically significant at the 1%-level also after controlling for country specific characteristics. The direction of the effects also stays the same and the magnitude of the effects varies only slightly for some of the coefficients. Some of the control variables, however, are not statistically significant anymore after including country fixed-effects.     
+As described above, we conducted a range of proportional-odds logistic-regression models to assess whether trust in government and perceived corruption have an effect on tax morale in African countries as they do in other countries that have been studied. Table 1 presents and compares the different models. The first model in the table shows the result of a proportional-odds logistic-regression including only trust in the president and perceived level of corruption of tax officials as explanatory variables. Furthermore the different survey rounds are included to account for time trends. The second model then also includes the control variables living conditions, being a member of a religious group, age, and gender. Neither of these two models contains country fixed-effects. It can be seen from the table that the coefficients on trust and corruption are robust as to whether control variables are included or not. The following two models in table 1 (model 3 and model 4) are the same as the first two models except for the fact that they include fixed effects for the different countries included in the survey. For the sake of readability the 32 individual coeffecients for the different countries have been ommitted in the table. We can see however, that the effects of trust and corruption stay statistically significant at the 1%-level also after controlling for country specific characteristics. The direction of the effects also stays the same and the magnitude of the effects varies only slightly for some of the coefficents. Some of the control variables, however, are not statistically significant anymore after including country fixed-effects.     
 
 ```{r, message=FALSE, results='asis', echo=FALSE}
 
@@ -666,7 +531,7 @@ stargazer::stargazer(model3, model4, model1, model2, model5, model6,
 
 The last two models shown in table 1 also include country fixed effects just like the previous two, but in contrast to the other four models, the dependent variable is coded differently with just three levels: disagree, neither agree or disagree, and agree. Again, the effects of trust and corruption remain significant at the 1%-level and the direction of the effects remains the same too. 
 
-In general these results suggest, that both determinants, trust in government and level of corruption, also significantly affect the level of tax morale in African countries. The fact that the effects do not change much when we include country specific controls indicates that these determinants are valid across national boundaries. 
+In general these results suggest, that both determinants, trust in government and level of corruption, also significantly affect the level of tax morale in African countries. The fact that the effects do not change much when we include country specific controls indicates that these determinants are valid accross national boundaries. 
 
 To take a closer look at what this actually means, table 2 presents the odds ratios for the sixth model from table 1. We chose this model because it has the lowest value for the Akaike information criterion (AIC) which is a measure of the relative quality of different statistical models for a given dataset and therefore provides a means of model selection. 
 
@@ -690,23 +555,16 @@ stargazer::stargazer(multinom6,
                        digits = 2, type = 'latex', header = FALSE)
 
 ```
-A Type II analysis of deviance for this model shows that all of the variables are still highly statistically significant in this model too. We therefore assert that trust in government and the perception of the level of corruption are in fact universal determinants for tax morale which hold for countries across the African continent and which have been found to have an impact on tax morale in previous studies as well. The results from table 3 furthermore paint a similar picture regarding the direction of the effect of trust and corruption as found by the proportional odds model too: Increases in the perception of corruption are negatively associated with agreeing to the tax department always having the right to make people pay taxes and therefore are also negatively associated with tax morale. If trust in government institutions, such as the president increases, however, we see that this is also associated with an increase in tax morale. 
+A Type II analysis of deviance for this model shows that all of the variables are still highly statistically signifiant in this model too.   
 
-In order to also test whether other commonly identified determinants of tax morale play a role in the African context, we ran some sub-analyses using only data for the fifth round of the Afrobarometer which contains data on the perception of the level of tax avoidance by others and on whether respondents are self-employed and required to pay self-employer taxes. We furthermore included a variable asking respondents how much they trust the tax department which is unique to round 5. The dataset is consequently reduced to only 16065 observations and we cannot control for time fixed-effects anymore. We applied the same strategy to this smaller data set as for our main model and found that the AIC of the multinomial model is again lower than that of the proportional odds model indicating that it would be more appropriate to use a multinomial logistic regression model. Conducting a Type II analysis of deviance confirms that all of the determinants except for age are statistically significant (see table 4). 
-
-```{r, message=FALSE, results='asis', echo=FALSE}
-kable(devtable, align = 'c', digits = 5)
-
-```
 
 #Conclusion
-The purpose of this study was to contribute to the growing literature on the determinants of tax morale by filling the gap that exists with regards to studies focusing on less developed countries. We did so by taking a closer look at the African continent making use of data provided by the Afrobarometer on 34 African countries throughout an overall time period ranging from 2005 to 2013. The central question we asked is: Do commonly identified determinants of tax morale also explain this sentiment in African countries? To answer this question we ran a variety of models using both proportional-odds logistic-regression and multinomial logistic regression and different model specifications controlling for country effects, living conditions, age, gender, and being a member of a religious group. 
-
-All of the models indicate that factors which have been found to influence tax morale in previous studies for other countries and regions of the world also have a statistically significant effect on tax morale in the African context. The explanatory variables trust in government and level of corruption, but also interaction with other taxpayers, and being self-employed stay statistically significant even after we control for national characteristics and time fixed-effects. This is a strong indicator that these determinants can be considered to universally influence tax morale across countries.
-
-What this study was not able to do, however, is to take a closer look at individual countries and their specificities with regards to tax morale. Our analyses have shown that the majority of our country fixed-effects where in fact statistically significant. That means that even though we have been able to identify some general determinants of tax morale, there seem to be country-specific factors as well. This would be a fruitful area for future research.
 
 
+***
+Final word count: 
+
+This project used @CiteRStudio to create this assignment.
 
 \pagebreak
 
