@@ -368,6 +368,25 @@ multinom6 <- multinom(TaxMorale ~ TrustPresident + CorruptionTax + Year + Countr
 #Gender               28.5  2  6.455e-07 ***
 #  ---
 #Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+
+#REGRESSION ASSUMPTIONS TEST
+#Variance Inflation Factor (only possible if I first transform the data into numeric so not sure how good that is)
+
+dummy_df<-data.frame(data.numeric$Country, data.numeric$TrustPresident, data.numeric$CorruptionTax, data.numeric$CorruptionParliament, data.numeric$SelfEmployedTax, data.numeric$AvoidHowOften, data.numeric$Religion, data.numeric$Gender, data.numeric$LivingConditions, data.numeric$Age)
+colnames(dummy_df) <- c("Country","TrustPresident", "CorruptionTax","CorruptionParliament", "SelfEmployedTax","AvoidHowOften", "Religion", "Gender", "LivingConditions", "Age")
+
+# does not work anymore....
+# VIF<- vif(dummy_df)
+
+
+#created a dataframe which dropped the missings (cause I could not find out how to do a correlation matrix including missings)
+dummy_df_without_NA <- na.omit(dummy_df)
+# does not work anymore
+# COR<-cor(dummy_df_without_NA)
+#colnames(COR) <- c("Country","TrustPresident", "CorruptionTax","CorruptionParliament", "SelfEmployedTax","AvoidHowOften", "Religion", "Gender", "LivingConditions", "Age")
+# row.names(COR)<-c("Country","TrustPresident", "CorruptionTax","CorruptionParliament", "SelfEmployedTax","AvoidHowOften", "Religion", "Gender", "LivingConditions", "Age")
+
 ```
 
 #Introduction
@@ -428,8 +447,6 @@ If these are in fact factors that universally influence the intrinsic motivation
 
 *H_1: Determinants of tax morale identified from the literature also have a significant effect on tax morale in Africa.*
 
-
-
 ## The Data
 Our definition of tax morale as an intrinsic motivation to pay taxes indicates that we are looking at an individual level phenomenon. Consequently the level of analysis also has to be on the individual level. We have therefore decided to look at survey data, more specifically, at the Afrobarometer Survey, which provides data on attitudes of citizens on political, economic, and social issues [@Afro]. The main reason why we have decided to use the Afrobarometer for our analysis (instead of other data sources such as for example the World Value Survey) is that it includes a question on tax morale that has been asked in the past three rounds of the survey, which enables us to also take into account changes over time. And, secondly, the Afrobarometer includes a total of 34 countries out of which 18 countries can be observed at three different points in time[^1] which offers us insight into a relatively large amount of different countries from the continent and therefore also into the question whether national contexts play an important role for tax morale.  
 
@@ -452,7 +469,7 @@ qplot(data.factors$TaxMorale,
 ```
 
 ```{r, fig.cap="Level of Tax Morale per Country (mean level of tax morale through all three rounds)", echo=FALSE}
-percountry <- ggplot(data=summary_df, aes(x=meantaxmorale, y=reorder(Country, meantaxmorale)))
+#percountry <- ggplot(data=summary_df, aes(x=meantaxmorale, y=reorder(Country, meantaxmorale)))
 percountry + geom_segment(aes(yend=Country,xend=0)) +
   geom_point() +
   theme_minimal() +
