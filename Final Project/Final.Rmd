@@ -1,5 +1,6 @@
 ---
-title: "Opening the Black Box Determinants of Tax Morale in Africa"
+title: "Opening the Black Box"
+subtitle: "Determinants of Tax Morale in Africa"
 author: "Wiebke Weiger & Jasmin Cantzler"
 date: "10 December 2015"
 output:
@@ -704,7 +705,7 @@ The purpose of this study was to contribute to the growing literature on the det
 
 All of the models indicate that factors which have been found to influence tax morale in previous studies for other countries and regions of the world also have a statistically significant effect on tax morale in the African context. The explanatory variables trust in government and level of corruption, but also interaction with other taxpayers, and being self-employed stay statistically significant even after we control for national characteristics and time fixed-effects. This is a strong indicator that these determinants can be considered to universally influence tax morale across countries.
 
-What this study was not able to do, however, is to take a closer look at individual countries and their specificities with regards to tax morale. Our analyses have shown that the majority of our country fixed-effects where in fact statistically significant. That means that even though we have been able to identify some general determinants of tax morale, there seem to be country-specific factors as well. This would be a fruitful area for future research.
+What this study was not able to do, however, is to take a closer look at individual countries and their specificities with regards to tax morale. Our analyses have shown that the majority of our country fixed-effects are in fact statistically significant. That means that even though we have been able to identify some general determinants of tax morale, there seem to be country-specific factors as well. This would be a fruitful area for future research.
 
 
 
