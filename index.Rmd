@@ -44,7 +44,7 @@ TaxMorale_map <- gvisGeoChart(newtry, locationvar = 'Country',
 ```{r, echo=FALSE, results='asis'}
 print(TaxMorale_map, tag = 'chart')
 ```
-*Mean tax morale per country, using the Afrobarometer across Round 3 - Round 5; participants were asked whether "The tax department always has the right to make people pay taxes”. Respondents were offered 5 different options ranging from “strongly disagree” to “strongly agree” (low tax morale to high tax morale). The mean tax morale across these rounds was utilized for this graphic*
+*Mean tax morale per country, using the Afrobarometer across Round 3 - Round 5; participants were asked whether "The tax department always has the right to make people pay taxes”. Respondents were offered 5 different options ranging from “strongly disagree” (coded as 1) to “strongly agree” (coded as 5) (low tax morale to high tax morale). The mean tax morale across these rounds was utilized for this graphic*
 
 **Tax morale is an issue impinging Africa's development**
 
