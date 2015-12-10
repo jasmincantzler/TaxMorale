@@ -13,25 +13,31 @@ library(tidyr)
 library(googleVis)
 library(formattable)
 library(ggplot2)
+library(gdata)  
 
 # Using the no factor one as we want to show the means in the map
-mydata <- read.csv('Afrobarometer.nofactors.csv')
+# mydata <- read.csv('Afrobarometer.nofactors.csv')
 
 #creates a subset with only Tax Morale and country
-summary_df <- mydata %>% 
-  group_by(Country) %>% 
-  summarise(
-    meantaxmorale = mean(TaxMorale, na.rm=TRUE)
-  )
+#summary_df <- mydata %>% 
+#  group_by(Country) %>% 
+#  summarise(
+#    meantaxmorale = mean(TaxMorale, na.rm=TRUE)
+#  )
 
-TaxMorale_map <- gvisGeoChart(summary_df, locationvar = 'Country',
+# saved this subset in Excel to round numbers accordingly
+# read the summary into R
+newtry<- read.xls("Summary.xls")  
+
+TaxMorale_map <- gvisGeoChart(newtry, locationvar = 'Country',
                       colorvar = 'meantaxmorale',
                       options = list(
-                          colors = "['#e31b23', '#ffff00', '#00853f']",
-                          region= '002'
-                          ))
+                          colors = "['#a6611a','#dfc27d','#80cdc1','#018571']",
+                          region= '002',
+                          width=900, height=700))
 
 ```
+
 
 **Tax morale could play a vital role in enhancing country's ability to efficiently mobilize national resources needed to invest in development, relieve poverty and deliver public services. Despite its potential, tax morale remains the underdog in enhancing tax compliance; most studies treat ‘tax morale’ as a black box without discussing or even considering how it might arise or how it might be maintained. We opened the box and present our findings and suggestions to policy makers in this post.**
 
@@ -50,7 +56,7 @@ These social factors constitute and influence the individual’s “intrinsic mo
 
 **The determinants of tax morale seem largely independent of cultural environments**
 
-![](small.png)
+![](new.png)
 
 Trust in government and/or government officials is one of the classic factors influencing the tax compliance behavior of individuals. If people have no faith that their taxes are being fairly collected and spent, their desire to comply with applicable taxes is lowered. 
 
@@ -69,4 +75,4 @@ Tax morale enhancing mechanisms consist of mechanisms to increase tax morale by 
 
 There is a need for greater emphasis on policy tools that enhance tax morale and the importance of a holistic approach to combat tax evasion. There is a colorful potpourri of policy options that can enhance tax morale - we just need to start to use them!
 
-**For further insights please see [here.](https://github.com/jasmincantzler/TaxMorale/blob/master/Final%20Project/Final_Project.pdf)**
+**For further insights please see [here.](https://github.com/jasmincantzler/TaxMorale/blob/master/Final%20Project/Final.pdf)**
